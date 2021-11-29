@@ -21,12 +21,15 @@
     pkgs.ripgrep
     pkgs.skim
     pkgs.tree
+    pkgs.gh
 
     pkgs.tmux
     pkgs.tmux-xpanes
 
+    pkgs.ctags
     pkgs.deno
-    pkgs.nodePackages.pyright
+    pkgs.pyright
+    pkgs.rnix-lsp
     pkgs.rust-analyzer
     pkgs.terraform-ls
 

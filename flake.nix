@@ -22,7 +22,13 @@
 
     overlays = [
       inputs.neovim-nightly-overlay.overlay
+      (self: super:
+        {
+          zsh-defer = super.callPackage ./pkgs/zsh-defer.nix { };
+        }
+      )
     ];
+
   in {
     homeConfigurations = {
 

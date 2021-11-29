@@ -11,7 +11,7 @@
     pkgs.zsh-autopair
     pkgs.zsh-autosuggestions
     pkgs.zsh-completions
-    # pkgs.zsh-defer
+    pkgs.zsh-defer
     pkgs.zsh-fast-syntax-highlighting
     pkgs.zsh-you-should-use
 
@@ -61,11 +61,13 @@
           export PATH="$VOLTA_HOME/bin:$PATH"
       fi
 
-      source "${pkgs.skim}/share/skim/key-bindings.zsh"
-      source "${pkgs.zsh-autopair}/share/zsh/zsh-autopair"
-      source "${pkgs.zsh-you-should-use}/share/zsh/plugins/you-should-use/you-should-use.plugin.zsh"
-      source "${pkgs.zsh-fast-syntax-highlighting}/share/zsh/site-functions/fast-syntax-highlighting.plugin.zsh"
-      source "${pkgs.zsh-autosuggestions}/share/zsh-autosuggestions/zsh-autosuggestions.zsh"
+      source "${pkgs.zsh-defer}/share/zsh/plugins/zsh-defer/zsh-defer.plugin.zsh"
+      zsh-defer source "${pkgs.skim}/share/skim/key-bindings.zsh"
+      zsh-defer source "${pkgs.zsh-autopair}/share/zsh/zsh-autopair"
+      zsh-defer source "${pkgs.zsh-you-should-use}/share/zsh/plugins/you-should-use/you-should-use.plugin.zsh"
+      zsh-defer source "${pkgs.zsh-fast-syntax-highlighting}/share/zsh/site-functions/fast-syntax-highlighting.plugin.zsh"
+      zsh-defer source "${pkgs.zsh-autosuggestions}/share/zsh-autosuggestions/zsh-autosuggestions.zsh"
+      zsh-defer source "${pkgs.grc}/etc/grc.zsh"
     '';
 
   home.file.".config/nvim" = {

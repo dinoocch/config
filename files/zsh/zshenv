@@ -73,3 +73,8 @@ if (( $+commands[rustc] )) {
 export _JAVA_OPTIONS='-Dawt.useSystemAAFontSettings=on -Dswing.aatext=true'
 export _JAVA_AWT_WM_NONREPARTENTING=1
 export GPG_TTY="$(tty)"
+
+# Nix
+if [ -f "$HOME/.nix-profile/etc/profile.d/nix.sh" ]; then
+	. /home/dino/.nix-profile/etc/profile.d/nix.sh
+fi

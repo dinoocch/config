@@ -31,6 +31,16 @@
 
   in {
     homeConfigurations = {
+      docchial = home.lib.homeManagerConfiguration {
+        system = "x86_64-darwin";
+        username = "docchial";
+        homeDirectory = "/Users/docchial";
+        configuration = { pkgs, imports, ... }:
+          {
+            imports = [ ./home.nix ];
+            nixpkgs.overlays = overlays;
+          };
+      };
 
       dino = home.lib.homeManagerConfiguration {
         system = "x86_64-linux";

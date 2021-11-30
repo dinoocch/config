@@ -2,19 +2,19 @@
 
 ## Install Nix
 
-```bash
+```zsh
 sh <(curl -L https://nixos.org/nix/install)
 ```
 
 ## Enable Flakes
 
-```bash
+```zsh
 nix-env -iA nixpkgs.nixFlakes
 ```
 
 Add the following to `/etc/nix/nix.conf`:
 
-```toml
+```
 experimental-features = nix-command flakes
 ```
 
@@ -23,14 +23,14 @@ experimental-features = nix-command flakes
 
 First add the channel:
 
-```bash
+```zsh
 nix-channel --add https://github.com/nix-community/home-manager/archive/master.tar.gz home-manager
 nix-channel --update
 ```
 
 On single-user linux I had to export a variable:
 
-```bash
+```zsh
 export NIX_PATH=$HOME/.nix-defexpr/channels${NIX_PATH:+:}$NIX_PATH
 ```
 
@@ -46,7 +46,7 @@ export NIX_PATH=darwin-config=$HOME/.nixpkgs/darwin-configuration.nix:$HOME/.nix
 
 Then install home-manager:
 
-```bash
+```zsh
 nix-shell '<home-manager>' -A install
 ```
 

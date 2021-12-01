@@ -74,4 +74,12 @@
     source = ./files/nvim;
     recursive = true;
   };
+
+  home.file.".gitconfig".source = ./files/git/gitconfig;
+  home.file.".gitconfig-linkedin".source = ./files/git/gitconfig-linkedin;
+  home.file.".gitignore".source = ./files/git/gitignore;
+
+  home.file.".tmux.conf".source = ./files/tmux.conf;
+
+  xdg.configFile."alacritty/alacritty.yml".source = ./files/alacritty.yml;
 }

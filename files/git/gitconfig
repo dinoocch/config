@@ -1,0 +1,56 @@
+[alias]
+	br = branch
+	cm = commit
+	cmm = commit --no-edit
+	co = checkout
+	fe = fetch --all -p
+	fixup = commit --amend -C HEAD
+	lg = log --color --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit
+	lga = log --color --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit --all
+	ll = !git log --color --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit --all --since=\"$(git show -s --pretty=format:'%cd' master~3)\"
+	pop = stash pop
+	rev = diff --staged -M
+	review = diff --staged
+	save = commit -m'savepoint'
+	st = status -sb
+
+[credential]
+	helper = cache --timeout=3600
+
+[push]
+	default = matching
+
+[color]
+	ui = true
+
+[pull]
+	rebase = true
+
+[rebase]
+	autoStash = true
+
+[commit]
+	gpgsign = false
+
+[merge]
+	tool = vimdiff
+	conflictstyle = diff3
+
+[status]
+	submoduleSummary = true
+
+[rerere]
+	enabled=true
+
+[user]
+	name = dinoocch
+	email = dino.occhialini@gmail.com
+	signingkey = BDF3F2F6
+
+[includeIf "gitdir:~/li/"]
+	path = .gitconfig-linkedin
+[filter "lfs"]
+	clean = git-lfs clean -- %f
+	smudge = git-lfs smudge -- %f
+	process = git-lfs filter-process
+	required = true

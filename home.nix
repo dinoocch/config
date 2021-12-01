@@ -31,10 +31,10 @@
     pkgs.deno
     pkgs.pyright
     pkgs.rnix-lsp
-    pkgs.rust-analyzer
     pkgs.terraform-ls
 
     pkgs.rustup
+    pkgs.rust-analyzer-nightly
   ];
 
   home.file.".zshenv".source = ./files/zsh/zshenv;

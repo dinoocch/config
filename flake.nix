@@ -12,9 +12,14 @@
     };
 
     neovim-nightly-overlay.url = "github:nix-community/neovim-nightly-overlay";
+
+    fenix = {
+      url = "github:nix-community/fenix";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
-  outputs = inputs @ { self, home, nixpkgs, ... }:
+  outputs = inputs @ { self, home, nixpkgs, fenix, ... }:
   let
     nixpkgs_config = {
       allowUnfree = true;
@@ -22,6 +27,7 @@
 
     overlays = [
       inputs.neovim-nightly-overlay.overlay
+      fenix.overlay
       (self: super:
         {
           zsh-defer = super.callPackage ./pkgs/zsh-defer.nix { };

@@ -18,6 +18,13 @@ Add the following to `/etc/nix/nix.conf`:
 experimental-features = nix-command flakes
 ```
 
+# Add cachix
+
+```zsh
+nix-env -iA cachix -f https://cachix.org/api/v1/install
+cahix use nix-community
+```
+
 ## Install home-manager
 
 

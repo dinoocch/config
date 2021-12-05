@@ -296,6 +296,7 @@ return require('packer').startup(function()
     use {
         'gelguy/wilder.nvim',
         requires = {
+            -- This is a hack which only works because fzy-lua-native commits built artifacts...
             'romgrk/fzy-lua-native',
             'kyazdani42/nvim-web-devicons'
         },

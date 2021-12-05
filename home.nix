@@ -3,42 +3,45 @@
 {
   programs.home-manager.enable = true;
 
-  home.packages = [
-    pkgs.neovim-nightly
+  home.packages = with pkgs; [
+    neovim-nightly
+    tree-sitter
 
-    pkgs.grc
-    pkgs.starship
-    pkgs.zsh-autopair
-    pkgs.zsh-autosuggestions
-    pkgs.zsh-completions
-    pkgs.zsh-defer
-    pkgs.zsh-fast-syntax-highlighting
-    pkgs.zsh-you-should-use
+    grc
+    starship
+    zsh-autopair
+    zsh-autosuggestions
+    zsh-completions
+    zsh-defer
+    zsh-fast-syntax-highlighting
+    zsh-you-should-use
 
-    pkgs.bat
-    pkgs.exa
-    pkgs.fd
-    pkgs.htop
-    pkgs.ripgrep
-    pkgs.skim
-    pkgs.tree
-    pkgs.gh
+    bat
+    exa
+    fd
+    htop
+    ripgrep
+    skim
+    tree
+    gh
 
-    pkgs.tmux
-    pkgs.tmux-xpanes
+    tmux
+    tmux-xpanes
 
-    pkgs.ctags
-    pkgs.deno
-    pkgs.pyright
-    pkgs.rnix-lsp
-    pkgs.terraform-ls
+    ctags
+    deno
+    pyright
+    rnix-lsp
+    terraform-ls
 
-    pkgs.rustup
-    pkgs.rust-analyzer-nightly
+    rustup
+    rust-analyzer-nightly
+
+    (luajit.withPackages(ps: with ps; [ pcre2 ]))
   ];
 
   home.file.".zshenv".source = ./files/zsh/zshenv;
-  home.file.".config/zsh" = {
+  xdg.configFile."zsh" = {
     source = ./files/zsh/config;
     recursive = true;
   };
@@ -70,7 +73,7 @@
       zsh-defer source "${pkgs.grc}/etc/grc.zsh"
     '';
 
-  home.file.".config/nvim" = {
+  xdg.configFile."nvim" = {
     source = ./files/nvim;
     recursive = true;
   };

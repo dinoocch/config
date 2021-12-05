@@ -76,6 +76,20 @@ return require('packer').startup(function()
         } end
     }
 
+    use {
+        'lukas-reineke/indent-blankline.nvim',
+        config = function()
+            vim.opt.list = true
+            vim.opt.listchars:append("eol:↴")
+            require("indent_blankline").setup {
+                show_end_of_line = true,
+                -- space_char_blankline = " ",
+                -- show_current_context = true,
+                -- show_current_context_start = true,
+            }
+        end
+    }
+
     -- Improved terminal support
     -- TODO: Consider akinsho/nvim-toggleterm.lua
     use {
@@ -252,4 +266,46 @@ return require('packer').startup(function()
 
     -- More syntaxes
     use 'sheerun/vim-polyglot'
+
+    -- Prettier wildmenu
+    use {
+        'gelguy/wilder.nvim',
+        requires = {
+            'romgrk/fzy-lua-native',
+            'kyazdani42/nvim-web-devicons'
+        },
+        config = function()
+            -- " For lua_fzy_highlighter   : requires fzy-lua-native vim plugin found
+            vim.cmd [[
+                call wilder#setup({'modes': [':', '/', '?']})
+                call wilder#set_option('use_python_remote_plugin', 0)
+                call wilder#set_option('pipeline', [
+                      \   wilder#branch(
+                      \     wilder#cmdline_pipeline({
+                      \       'fuzzy': 1,
+                      \       'fuzzy_filter': wilder#lua_fzy_filter(),
+                      \     }),
+                      \     wilder#vim_search_pipeline(),
+                      \   ),
+                      \ ])
+                call wilder#set_option('renderer', wilder#renderer_mux({
+                      \ ':': wilder#popupmenu_renderer({
+                      \   'highlighter': wilder#lua_fzy_highlighter(),
+                      \   'left': [
+                      \     ' ',
+                      \     wilder#popupmenu_devicons(),
+                      \   ],
+                      \   'right': [
+                      \     ' ',
+                      \     wilder#popupmenu_scrollbar(),
+                      \   ],
+                      \ }),
+                      \ '/': wilder#wildmenu_renderer({
+                      \   'highlighter': wilder#lua_fzy_highlighter(),
+                      \ }),
+                      \ }))
+            ]]
+        end
+    }
+
 end)

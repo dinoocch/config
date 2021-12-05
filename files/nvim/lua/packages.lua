@@ -51,18 +51,18 @@ return require('packer').startup(function()
         'nvim-treesitter/nvim-treesitter',
         config = function()
             require('nvim-treesitter.configs').setup({
-                highlight = { enable = true },
-                incremental_selection = {
-                    enable = true,
-                    keymaps = {
-                        init_selection = 'gnn',
-                        node_incremental = 'grn',
-                        scope_incremental = 'grc',
-                        node_decremental = 'grm',
+                    highlight = { enable = true },
+                    incremental_selection = {
+                        enable = true,
+                        keymaps = {
+                            init_selection = 'gnn',
+                            node_incremental = 'grn',
+                            scope_incremental = 'grc',
+                            node_decremental = 'grm',
+                        },
                     },
-                },
-                indent = { enable = true }
-            })
+                    indent = { enable = true }
+                })
         end
     }
 
@@ -70,9 +70,9 @@ return require('packer').startup(function()
         'p00f/nvim-ts-rainbow',
         requires = 'nvim-treesitter/nvim-treesitter',
         config = function() require('nvim-treesitter.configs').setup {
-            rainbow = {
-                enable = true
-            }
+                rainbow = {
+                    enable = true
+                }
         } end
     }
 
@@ -201,12 +201,30 @@ return require('packer').startup(function()
 
     -- completion
     use {
-        'nvim-lua/completion-nvim',
-        config = function() require'config.completion'.setup() end
-    }
+        'ms-jpq/coq_nvim',
+        requires = {'ms-jpq/coq.artifacts', 'ms-jpq/coq.thirdparty'},
 
-    use 'steelsojka/completion-buffers'
-    use 'nvim-treesitter/completion-treesitter'
+        config = function()
+            vim.o.completeopt="menuone,noinsert,noselect"
+            vim.o.shortmess = vim.o.shortmess .. "c"
+            vim.g.coq_settings = { auto_start = "shut-up" }
+            require("coq_3p") {
+                { src = "nvimlua", short_name = "nLUA" },
+                { src = "vimtex", short_name = "vTEX" },
+                { src = "bc", short_name = "MATH", precision = 6 },
+                { src = "copilot", short_name = "COP", tmp_accept_key = "<c-r>" },
+            }
+            local function t(str)
+                return vim.api.nvim_replace_termcodes(str, true, true, true)
+            end
+
+
+            function _G.smart_tab()
+                return vim.fn.pumvisible() == 1 and t'<C-n>' or t'<Tab>'
+            end
+            vim.api.nvim_set_keymap('i', '<Tab>', 'v:lua.smart_tab()', {expr = true, noremap = true})
+        end
+    }
 
     -- dap
     use {
@@ -230,18 +248,6 @@ return require('packer').startup(function()
         config = function()
             vim.g.dap_virtual_text = true
         end
-    }
-
-    -- snippets
-    use {
-        'hrsh7th/vim-vsnip',
-        config = function()
-            vim.g.vsnip_snippet_dir = vim.fn.stdpath('config') .. '/snippets'
-        end
-    }
-
-    use {
-        'hrsh7th/vim-vsnip-integ'
     }
 
     -- More syntaxes

@@ -8,10 +8,6 @@ if vim.fn.isdirectory(packerDir) == 0 then
     os.execute('git clone https://github.com/wbthomason/packer.nvim \'' .. packerDir .. '\'')
 end
 
-local function t(str)
-    return vim.api.nvim_replace_termcodes(str, true, true, true)
-end
-
 vim.cmd [[packadd packer.nvim]]
 
 return require('packer').startup(function()
@@ -30,14 +26,25 @@ return require('packer').startup(function()
 
     -- Lua Statusline
     use {
-        'glepnir/galaxyline.nvim',
-        branch = 'main',
-        -- TODO
-        config = function() require'config.galaxyline' end,
+        'Famiu/feline.nvim',
+        config = function() require'config.statusline' end,
         requires = {
             {'kyazdani42/nvim-web-devicons'},
-            {'Iron-E/nvim-highlite'}
+            {'lewis6991/gitsigns.nvim'},
+            {'SmiteshP/nvim-gps'},
         }
+    }
+
+    use {
+        "SmiteshP/nvim-gps",
+        requires = "nvim-treesitter/nvim-treesitter",
+        config = function()
+            require("nvim-gps").setup {
+                languages = {
+                    ["lua"] = false
+                }
+            }
+        end
     }
 
     -- Colorize hexcolors like #faf000 everywhere
@@ -334,4 +341,8 @@ return require('packer').startup(function()
         end
     }
 
+    use {
+        'ggandor/lightspeed.nvim',
+        requires = {'tpope/vim-repeat'}
+    }
 end)

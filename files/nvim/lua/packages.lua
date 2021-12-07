@@ -221,6 +221,11 @@ return require('packer').startup(function()
     }
 
     use {
+        'simrat39/rust-tools.nvim',
+        config = function() require('rust-tools').setup({}) end
+    }
+
+    use {
         'folke/trouble.nvim',
         config = function()
             require("trouble").setup({})

@@ -32,6 +32,7 @@
     deno
     pyright
     rnix-lsp
+    sumneko-lua-language-server
     terraform-ls
 
     rustup

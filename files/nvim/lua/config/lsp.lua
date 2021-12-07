@@ -63,13 +63,8 @@ for _, lsp in ipairs(servers) do
 end
 
 
-local sumneko_root = os.getenv('HOME') .. '/dev/lua-language-server'
 nvim_lsp.sumneko_lua.setup {
   on_attach = on_attach,
-  cmd = { 
-    sumneko_root .. '/Linux/lua-language-server',
-    sumneko_root .. '/main.lua'
-  },
   settings = {
     Lua = {
       runtime = {

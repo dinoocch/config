@@ -34,9 +34,14 @@
     rnix-lsp
     sumneko-lua-language-server
     terraform-ls
+    kotlin-language-server
+    gopls
 
     rustup
     rust-analyzer-nightly
+
+    openjdk
+    kotlin
 
     (luajit.withPackages(ps: with ps; [ pcre2 ]))
   ];

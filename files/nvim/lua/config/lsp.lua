@@ -53,6 +53,7 @@ local servers = {
   -- "jsonls",
   -- "ocamllsp",
   "pyright",
+  "rnix",
   "rust_analyzer",
   -- "svelte",
   "terraformls",

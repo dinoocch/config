@@ -4,7 +4,8 @@
   programs.home-manager.enable = true;
 
   home.packages = with pkgs; [
-    neovim-nightly
+    # neovim-nightly
+    neovim
     tree-sitter
 
     grc
@@ -24,6 +25,7 @@
     skim
     tree
     gh
+    gping
 
     tmux
     tmux-xpanes
@@ -32,7 +34,7 @@
     deno
     pyright
     rnix-lsp
-    sumneko-lua-language-server
+    # sumneko-lua-language-server
     terraform-ls
     kotlin-language-server
     gopls

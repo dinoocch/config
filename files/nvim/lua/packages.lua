@@ -26,7 +26,7 @@ return require('packer').startup(function()
 
     -- Lua Statusline
     use {
-        'Famiu/feline.nvim',
+        'feline-nvim/feline.nvim',
         config = function() require'config.statusline' end,
         requires = {
             {'kyazdani42/nvim-web-devicons'},
@@ -349,5 +349,9 @@ return require('packer').startup(function()
     use {
         'ggandor/lightspeed.nvim',
         requires = {'tpope/vim-repeat'}
+    }
+
+    use {
+        'rodjek/vim-puppet'
     }
 end)

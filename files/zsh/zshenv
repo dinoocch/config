@@ -76,5 +76,5 @@ export GPG_TTY="$(tty)"
 
 # Nix
 if [ -f "$HOME/.nix-profile/etc/profile.d/nix.sh" ]; then
-	. /home/dino/.nix-profile/etc/profile.d/nix.sh
+	. "$HOME/.nix-profile/etc/profile.d/nix.sh"
 fi

@@ -185,7 +185,7 @@ table.insert(components.active[2], {
 })
 table.insert(components.active[2], {
   provider = 'diagnostic_errors',
-  enabled = function() return lsp.diagnostics_exist('Error') end,
+  enabled = function() return lsp.diagnostics_exist(0) end,
   hl = {
     fg = 'faded_red',
     style = 'bold'
@@ -193,7 +193,7 @@ table.insert(components.active[2], {
 })
 table.insert(components.active[2], {
   provider = 'diagnostic_warnings',
-  enabled = function() return lsp.diagnostics_exist('Warning') end,
+  enabled = function() return lsp.diagnostics_exist(1) end,
   hl = {
     fg = 'faded_yellow',
     style = 'bold'
@@ -201,7 +201,7 @@ table.insert(components.active[2], {
 })
 table.insert(components.active[2], {
   provider = 'diagnostic_hints',
-  enabled = function() return lsp.diagnostics_exist('Hint') end,
+  enabled = function() return lsp.diagnostics_exist(3) end,
   hl = {
     fg = 'faded_aqua',
     style = 'bold'
@@ -209,7 +209,7 @@ table.insert(components.active[2], {
 })
 table.insert(components.active[2], {
   provider = 'diagnostic_info',
-  enabled = function() return lsp.diagnostics_exist('Information') end,
+  enabled = function() return lsp.diagnostics_exist(2) end,
   hl = {
     fg = 'light0',
     style = 'bold'

@@ -2,10 +2,10 @@ local map = vim.api.nvim_set_keymap
 
 -- Toggle breakpoints
 nvim_set_keymap(
-	"n",
-	"<leader>db",
-	[[<Cmd>lua require('dap').toggle_breakpoint()<CR>]],
-	{ noremap = true, silent = true }
+    "n",
+    "<leader>db",
+    [[<Cmd>lua require('dap').toggle_breakpoint()<CR>]],
+    { noremap = true, silent = true }
 )
 -- Continue
 nvim_set_keymap("n", "<leader>dc", [[<Cmd>lua require('dap').continue()<CR>]], { noremap = true, silent = true })

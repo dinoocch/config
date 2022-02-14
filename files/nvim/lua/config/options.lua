@@ -1,10 +1,10 @@
 local scopes = { o = vim.o, b = vim.bo, w = vim.wo }
 
 local function opt(scope, key, value)
-	scopes[scope][key] = value
-	if scope ~= "o" then
-		scopes["o"][key] = value
-	end
+    scopes[scope][key] = value
+    if scope ~= "o" then
+        scopes["o"][key] = value
+    end
 end
 
 -- Appearance
@@ -16,8 +16,8 @@ opt("o", "splitright", true)
 opt("w", "wrap", false)
 
 if vim.fn.has("conceal") then
-	opt("w", "conceallevel", 0)
-	opt("w", "concealcursor", "")
+    opt("w", "conceallevel", 0)
+    opt("w", "concealcursor", "")
 end
 
 opt("o", "mouse", "a")
@@ -69,9 +69,9 @@ local undoDir = vim.fn.stdpath("data") .. "/undo"
 local dirs = { swapDir, backupDir, undoDir }
 
 for i, dir in ipairs(dirs) do
-	if vim.fn.isdirectory(dir) == 0 then
-		vim.fn.mkdir(dir, "p")
-	end
+    if vim.fn.isdirectory(dir) == 0 then
+        vim.fn.mkdir(dir, "p")
+    end
 end
 
 vim.o.dir = swapDir .. "//"

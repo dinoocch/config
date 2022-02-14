@@ -1,4 +1,4 @@
-require('config.options')
-require('config.bindings')
+require("config.options")
+require("config.bindings")
 
-require('packages')
+require("packages")

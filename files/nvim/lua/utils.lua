@@ -11,7 +11,6 @@ local function concat(a, b)
 	return c
 end
 
-
 return {
-	concat = concat
+	concat = concat,
 }

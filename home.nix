@@ -38,6 +38,13 @@
     terraform-ls
     kotlin-language-server
     gopls
+    nodePackages.eslint_d
+    codespell
+    cppcheck
+    nixfmt
+    # nodePackages.prettierd
+    # rustywind
+    stylua
 
     rustup
     rust-analyzer-nightly
@@ -45,7 +52,7 @@
     openjdk
     kotlin
 
-    (luajit.withPackages(ps: with ps; [ pcre2 ]))
+    (luajit.withPackages (ps: with ps; [ pcre2 ]))
   ];
 
   home.file.".zshenv".source = ./files/zsh/zshenv;
@@ -54,32 +61,31 @@
     recursive = true;
   };
   # TODO: There's probably some clever way to do this
-  home.file.".zshrc".text = 
-    ''
-      bindkey -v
-      export KEYTIMEOUT=25
+  home.file.".zshrc".text = ''
+    bindkey -v
+    export KEYTIMEOUT=25
 
-      source ~/.config/zsh/aliases.zsh
-      source ~/.config/zsh/alternatives.zsh
-      source ~/.config/zsh/completion.zsh
-      source ~/.config/zsh/history.zsh
-      source ~/.config/zsh/opts.zsh
-      source ~/.config/zsh/os.zsh
-      source ~/.config/zsh/prompt.zsh
+    source ~/.config/zsh/aliases.zsh
+    source ~/.config/zsh/alternatives.zsh
+    source ~/.config/zsh/completion.zsh
+    source ~/.config/zsh/history.zsh
+    source ~/.config/zsh/opts.zsh
+    source ~/.config/zsh/os.zsh
+    source ~/.config/zsh/prompt.zsh
 
-      if [ -e "$HOME/.volta" ]; then
-          export VOLTA_HOME="$HOME/.volta"
-          export PATH="$VOLTA_HOME/bin:$PATH"
-      fi
+    if [ -e "$HOME/.volta" ]; then
+        export VOLTA_HOME="$HOME/.volta"
+        export PATH="$VOLTA_HOME/bin:$PATH"
+    fi
 
-      source "${pkgs.zsh-defer}/share/zsh/plugins/zsh-defer/zsh-defer.plugin.zsh"
-      zsh-defer source "${pkgs.skim}/share/skim/key-bindings.zsh"
-      zsh-defer source "${pkgs.zsh-autopair}/share/zsh/zsh-autopair"
-      zsh-defer source "${pkgs.zsh-you-should-use}/share/zsh/plugins/you-should-use/you-should-use.plugin.zsh"
-      zsh-defer source "${pkgs.zsh-fast-syntax-highlighting}/share/zsh/site-functions/fast-syntax-highlighting.plugin.zsh"
-      zsh-defer source "${pkgs.zsh-autosuggestions}/share/zsh-autosuggestions/zsh-autosuggestions.zsh"
-      zsh-defer source "${pkgs.grc}/etc/grc.zsh"
-    '';
+    source "${pkgs.zsh-defer}/share/zsh/plugins/zsh-defer/zsh-defer.plugin.zsh"
+    zsh-defer source "${pkgs.skim}/share/skim/key-bindings.zsh"
+    zsh-defer source "${pkgs.zsh-autopair}/share/zsh/zsh-autopair"
+    zsh-defer source "${pkgs.zsh-you-should-use}/share/zsh/plugins/you-should-use/you-should-use.plugin.zsh"
+    zsh-defer source "${pkgs.zsh-fast-syntax-highlighting}/share/zsh/site-functions/fast-syntax-highlighting.plugin.zsh"
+    zsh-defer source "${pkgs.zsh-autosuggestions}/share/zsh-autosuggestions/zsh-autosuggestions.zsh"
+    zsh-defer source "${pkgs.grc}/etc/grc.zsh"
+  '';
 
   xdg.configFile."nvim" = {
     source = ./files/nvim;

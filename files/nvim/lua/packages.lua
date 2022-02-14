@@ -316,7 +316,6 @@ return require("packer").startup(function()
                 { src = "nvimlua", short_name = "nLUA" },
                 { src = "vimtex", short_name = "vTEX" },
                 { src = "bc", short_name = "MATH", precision = 6 },
-                { src = "copilot", short_name = "COP", tmp_accept_key = "<c-r>" },
             })
             local function t(str)
                 return vim.api.nvim_replace_termcodes(str, true, true, true)

@@ -45,6 +45,7 @@
     # nodePackages.prettierd
     # rustywind
     stylua
+    black
 
     rustup
     rust-analyzer-nightly

@@ -193,10 +193,11 @@ return require("packer").startup(function()
     })
 
     use({
-        "akinsho/nvim-bufferline.lua",
+        "romgrk/barbar.nvim",
         requires = { "kyazdani42/nvim-web-devicons" },
         config = function()
-            require("bufferline").setup()
+            vim.api.nvim_set_keymap("n", "]b", [[<cmd>:BufferNext<CR>]], { noremap = true, silent = true })
+            vim.api.nvim_set_keymap("n", "[b", [[<cmd>:BufferPrevious<CR>]], { noremap = true, silent = true })
         end,
     })
 

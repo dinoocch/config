@@ -4,17 +4,12 @@ alias sl="ls"
 alias ll="ls -l"
 alias la="ls -la"
 
-alias d="pwd"
-alias py="python"
-
 alias grep="grep --color=auto"
 
+# SSH with alacritty without terminfo is unhappy
+alias ssh="/usr/bin/env TERM=xterm-256color ssh"
+
 if (( $+commands[git] )) {
-  alias g="git"
-  alias gc="git clone"
-  alias gp="git push"
-  alias gf="git fixup"
-  alias gpf="git push -f"
   alias gcd='cd "$(git rev-parse --show-toplevel)"'
   alias gup='cd "$(git rev-parse --show-toplevel)"'
   alias git-up='cd "$(git rev-parse --show-toplevel)"'

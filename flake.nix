@@ -11,12 +11,19 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    # neovim-nightly-overlay.url = "github:nix-community/neovim-nightly-overlay";
+    neovim-nightly-overlay = {
+      url = "github:nix-community/neovim-nightly-overlay";
+    };
 
     fenix = {
       url = "github:nix-community/fenix";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+
+    # darwin = {
+    #   url = "github:lnl7/nix-darwin";
+    #   inputs.nixpkgs.follows = "nixpkgs";
+    # };
   };
 
   outputs = inputs @ { self, home, nixpkgs, fenix, ... }:
@@ -24,10 +31,10 @@
     nixpkgs_config = {
       allowUnfree = true;
     };
-
+    
     overlays = [
-      # inputs.neovim-nightly-overlay.overlay
-      fenix.overlay
+      inputs.neovim-nightly-overlay.overlay
+      fenix.overlays.default
       (self: super:
         {
           zsh-defer = super.callPackage ./pkgs/zsh-defer.nix { };
@@ -38,26 +45,33 @@
   in {
     homeConfigurations = {
       docchial = home.lib.homeManagerConfiguration {
-        system = "x86_64-darwin";
-        username = "docchial";
-        homeDirectory = "/Users/docchial";
-        configuration = { pkgs, imports, ... }:
+        pkgs = nixpkgs.legacyPackages.x86_64-darwin;
+        modules = [
           {
-            imports = [ ./home.nix ];
             nixpkgs.overlays = overlays;
-          };
+            home = {
+              username = "docchial";
+              homeDirectory = "/Users/docchial";
+              stateVersion = "22.11";
+            };
+          }
+          ./home.nix
+        ];
       };
 
       dino = home.lib.homeManagerConfiguration {
-        system = "x86_64-linux";
-        username = "dino";
-        homeDirectory = "/home/dino";
-        # configuration.imports = [ ./home.nix ];
-        configuration = { pkgs, imports, ... }:
+        pkgs = nixpkgs.legacyPackages.x86_64-linux;
+        modules = [
           {
-            imports = [ ./home.nix ];
             nixpkgs.overlays = overlays;
-          };
+            home = {
+              username = "dino";
+              homeDirectory = "/home/dino";
+              stateVersion = "22.11";
+            };
+          }
+          ./home.nix
+        ];
       };
     };
   };

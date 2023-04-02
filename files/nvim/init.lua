@@ -1,4 +1,1 @@
-require("config.options")
-require("config.bindings")
-
-require("packages")
+require("config.lazy")

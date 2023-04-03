@@ -57,3 +57,19 @@ Then install home-manager:
 nix-shell '<home-manager>' -A install
 ```
 
+## Making changes
+
+First, make any changes needed to this repository.
+Note: when testing changes and adding new files, nix will only include those tracked by git!
+So be sure to `git add -A` first...
+
+Then to apply changes:
+```
+home-manager switch --flake .
+```
+
+To install updates to packages/overlays/flake/etc:
+
+```
+nix flake update
+```

@@ -73,3 +73,21 @@ To install updates to packages/overlays/flake/etc:
 ```
 nix flake update
 ```
+
+## Neovim Treesitter Errors with cpp
+
+Some cpp errors due to missing c++ and nix :/
+
+Probably there's some nix-y way to solve this with the nixpkgs, but idk how to do that.
+
+```
+# From neovim, uninstall grammars
+:TSUinstall all
+
+# Execute a nix shell with cpp
+nix-shell -p gcc
+
+# Run nvim and install grammars again
+nvim
+:TSInstall all
+```

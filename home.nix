@@ -99,4 +99,6 @@
   home.file.".tmux.conf".source = ./files/tmux.conf;
 
   xdg.configFile."alacritty/alacritty.yml".source = ./files/alacritty.yml;
+  xdg.configFile."wezterm/wezterm.lua".source = ./files/wezterm.lua;
+  xdg.configFile."starship.toml".source = ./files/starship.toml;
 }

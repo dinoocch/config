@@ -20,6 +20,8 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
+    /* flake-parts.url = "github:hercules-ci/flake-parts"; */
+
     # darwin = {
     #   url = "github:lnl7/nix-darwin";
     #   inputs.nixpkgs.follows = "nixpkgs";
@@ -28,6 +30,7 @@
 
   outputs = inputs @ { self, home, nixpkgs, fenix, ... }:
   let
+    /* inputs.flake-parts.lib.mkFlake { inherit inputs; } { */
     nixpkgs_config = {
       allowUnfree = true;
     };

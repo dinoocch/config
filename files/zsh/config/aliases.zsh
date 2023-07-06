@@ -127,3 +127,24 @@ alias ds="dotfiles status"
 
 zle -N edit-command-line
 bindkey -M vicmd v edit-command-line
+
+
+
+if (( $+commands[git] )) {
+  function author_commits() {
+    if (git rev-parse --is-inside-work-tree > /dev/null 2>&1) {
+      results=$(git --no-pager log --color --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit --all --author="$1" --since="14 months ago")
+      if [ ! -z ${results// } ]; then
+        echo "-------------- $(git rev-parse --show-toplevel) --------------------"
+        echo "$results"
+      fi
+    } else {
+      for directory in $(fd -t d --maxdepth 1); do
+        (
+          cd $directory
+          author_commits $1
+        )
+      done
+    }
+  }
+}

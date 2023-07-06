@@ -14,6 +14,24 @@ vim.opt.rtp:prepend(lazypath)
 require("lazy").setup({
     spec = {
         { "LazyVim/LazyVim", import = "lazyvim.plugins" },
+        { import = "lazyvim.plugins.extras.coding.copilot" },
+        { import = "lazyvim.plugins.extras.dap.core" },
+        { import = "lazyvim.plugins.extras.editor.mini-files" },
+        { import = "lazyvim.plugins.extras.test.core" },
+        { import = "lazyvim.plugins.extras.editor.flash" },
+        { import = "lazyvim.plugins.extras.coding.yanky" },
+        { import = "lazyvim.plugins.extras.util.project" },
+
+        { import = "lazyvim.plugins.extras.formatting.prettier" },
+        { import = "lazyvim.plugins.extras.linting.eslint" },
+        { import = "lazyvim.plugins.extras.lang.tailwind" },
+        { import = "lazyvim.plugins.extras.lang.typescript" },
+
+        { import = "lazyvim.plugins.extras.lang.clangd" },
+        { import = "lazyvim.plugins.extras.lang.rust" },
+        { import = "lazyvim.plugins.extras.lang.terraform" },
+        { import = "lazyvim.plugins.extras.lang.python" },
+
         { import = "plugins" },
         { import = "languages" },
     },

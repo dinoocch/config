@@ -4,7 +4,7 @@
   programs.home-manager.enable = true;
 
   home.packages = with pkgs; [
-    neovim-nightly
+    # neovim-nightly
     tree-sitter
 
     grc
@@ -46,8 +46,8 @@
     stylua
     black
 
-    rustup
-    rust-analyzer-nightly
+    # rustup
+    # rust-analyzer-nightly
 
     openjdk
     kotlin

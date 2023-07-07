@@ -30,27 +30,27 @@
     tmux-xpanes
 
     ctags
-    deno
-    pyright
-    rnix-lsp
-    # sumneko-lua-language-server
-    terraform-ls
-    kotlin-language-server
-    gopls
-    nodePackages.eslint_d
+    /* deno */
+    /* pyright */
+    /* rnix-lsp */
+    /* sumneko-lua-language-server */
+    /* terraform-ls */
+    /* kotlin-language-server */
+    /* gopls */
+    /* nodePackages.eslint_d */
     codespell
-    cppcheck
-    nixfmt
+    /* cppcheck */
+    /* nixfmt */
     # nodePackages.prettierd
     # rustywind
-    stylua
-    black
+    /* stylua */
+    /* black */
 
     # rustup
     # rust-analyzer-nightly
 
-    openjdk
-    kotlin
+    /* openjdk */
+    /* kotlin */
 
     (luajit.withPackages (ps: with ps; [ pcre2 ]))
   ];

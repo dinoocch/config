@@ -1,9 +1,0 @@
-[user]
-	name = docchial
-	email = docchial@linkedin.com
-
-
-[core]
-  sshCommand = "ssh -i ~/.ssh/docchial_at_linkedin.com_ssh_key"
-
-# vim: ft=gitconfig

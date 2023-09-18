@@ -16,9 +16,7 @@ require("lazy").setup({
         { "LazyVim/LazyVim", import = "lazyvim.plugins" },
         { import = "lazyvim.plugins.extras.coding.copilot" },
         { import = "lazyvim.plugins.extras.dap.core" },
-        { import = "lazyvim.plugins.extras.editor.mini-files" },
         { import = "lazyvim.plugins.extras.test.core" },
-        { import = "lazyvim.plugins.extras.editor.flash" },
         { import = "lazyvim.plugins.extras.coding.yanky" },
         { import = "lazyvim.plugins.extras.util.project" },
 
@@ -34,6 +32,8 @@ require("lazy").setup({
 
         { import = "plugins" },
         { import = "languages" },
+
+        { "echasnovski/mini.pairs", enabled = false },
     },
     defaults = {
         lazy = true,

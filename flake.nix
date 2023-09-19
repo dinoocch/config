@@ -34,6 +34,10 @@
       url = "github:catppuccin/waybar";
       flake = false;
     };
+    catppuccin-starship = {
+      url = "github:catppuccin/starship";
+      flake = false;
+    };
 
     # rk3588 - TODO: Probably needs to use a fork for now?
     niksos-rk3588.url = "github:ryan4yin/nixos-rk3588";

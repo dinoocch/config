@@ -1,6 +1,9 @@
 { pkgs, username, ... }: {
   # This could be more modular if I had a lot of computers needing different configs but I don't
   imports = [
+    ./browser.nix
+    ./dev.nix
+    ./hyprland.nix
   ];
 
   home = {
@@ -10,6 +13,7 @@
 
     packages = with pkgs; [
       discord
+      spotify
 
       # fluffy?
       element-desktop

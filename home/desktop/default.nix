@@ -4,6 +4,7 @@
     ./browser.nix
     ./dev.nix
     ./hyprland.nix
+    ./gtk.nix
   ];
 
   home = {
@@ -12,6 +13,9 @@
     stateVersion = "23.05";
 
     packages = with pkgs; [
+      lutris
+      steam
+      steam-run
       discord
       spotify
 

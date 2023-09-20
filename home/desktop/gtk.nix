@@ -5,7 +5,7 @@
     size = 24;
     gtk.enable = true;
     x11.enable = true;
-  }
+  };
 
   xresources.properties = {
     "*.dpi" = 150;
@@ -32,6 +32,6 @@
         size = "compact";
         variant = "mocha";
       };
-    }
+    };
   };
 }

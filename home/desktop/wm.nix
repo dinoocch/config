@@ -1,6 +1,6 @@
-{pkgs, hyprland, catppuccin-hyprland, ...}: {
+{pkgs, hyprland, catppuccin-hyprland, catppuccin-waybar, ...}: {
   imports = [
-    hyprland.homeManagerModules.default
+    # hyprland.homeManagerModules.default
   ];
 
   home.packages = with pkgs; [

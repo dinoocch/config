@@ -3,7 +3,7 @@
   imports = [
     ./browser.nix
     ./dev.nix
-    ./hyprland.nix
+    ./wm.nix
     ./gtk.nix
   ];
 

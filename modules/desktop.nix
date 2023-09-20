@@ -2,7 +2,7 @@
   imports = [
     ./base.nix
     ./fhs-fonts.nix
-    ./hyprland.nix
+    ./wm.nix
   ];
 
   nixpkgs.config.allowUnfree = true;
@@ -31,15 +31,8 @@
 
   security.rtkit.enable = true;
   sound.enable = false;
-  hardware = {
-    pulseaudio.enable = false;
-    bluetooth.enable = false;
-    blueman.enable = false;
-    polkit.enable = true;
-  };
 
   services = {
-    polkit.enable = true;
     printing.enable = true;
     flatpak.enable = true;
     dbus.packages = [pkgs.gcr];

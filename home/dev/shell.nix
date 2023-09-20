@@ -13,11 +13,11 @@
     zsh-fast-syntax-highlighting
   ];
 
-  programs.eza = {
-    enable = true;
-    enableAliases = true;
-    package = pkgs-unstable.eza;
-  }
+  # programs.eza = {
+  #  enable = true;
+  #  enableAliases = true;
+  #  package = pkgs-unstable.eza;
+  # };
 
   programs.starship = {
     enable = true;
@@ -33,7 +33,7 @@
       };
       palette = "catppuccin_mocha";
     } // builtins.fromTOML (builtins.readFile "${catppuccin-starship}/palettes/mocha.toml");
-  }
+  };
 
   programs.zsh = {
     enable = true;
@@ -55,11 +55,11 @@
       zsh-defer source "${pkgs.zsh-fast-syntax-highlighting}/share/zsh/site-functions/fast-syntax-highlighting.plugin.zsh"
       zsh-defer source "${pkgs.grc}/etc/grc.zsh"
     '';
-  }
+  };
 
-  programs.nushell {
+  programs.nushell = {
     enable = true;
-    configFile = ''
+    configFile.text = ''
       let-env config = {
         show_banner: false
         table: {
@@ -87,5 +87,5 @@
         shell_integration: true
       }
     '';
-  }
+  };
 }

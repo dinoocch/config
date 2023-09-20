@@ -19,7 +19,7 @@
     };
 
     # try wayland for now idk? otherwise I will go back to bspwm
-    hyperland.url = "github:hyprwm/Hyprland/v0.28.0";
+    # hyperland.url = "github:hyprwm/Hyprland/v0.29.1";
     nixpkgs-wayland.url = "github:nix-community/nixpkgs-wayland";
     anyrun = {
       url = "github:Kirottu/anyrun";

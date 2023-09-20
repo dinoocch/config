@@ -1,6 +1,6 @@
-{pkgs, hyprland, ...}: {
+{pkgs, pkgs-unstable, ...}: {
   imports = [
-    hyprland.nixosModules.default
+    # hyprland.nixosModules.default
   ];
 
   xdg.portal = {
@@ -24,7 +24,7 @@
       };
 
       displayManager = {
-        defaultSession = "hyprland";
+        # defaultSession = "hyprland";
         lightdm.enable = false;
         gdm = {
           enable = true;
@@ -37,6 +37,7 @@
   programs = {
     hyprland = {
       enable = true;
+      package = pkgs-unstable.hyprland;
       xwayland = {
         enable = true;
         hidpi = true;

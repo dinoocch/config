@@ -1,7 +1,7 @@
 {config, lib, pkgs, pkgs-unstable, ...}: {
   imports = [
     ./base.nix
-    ./fhs-fonts.nix
+    # ./fhs-fonts.nix
     ./wm.nix
   ];
 

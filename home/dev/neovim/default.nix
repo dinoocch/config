@@ -11,7 +11,7 @@
       vimAlias = true;
       withPython3 = true;
       withNodeJs = true;
-    }
+    };
   };
 
   xdg.configFile."nvim".source = ./config;

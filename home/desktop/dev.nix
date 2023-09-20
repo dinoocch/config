@@ -1,5 +1,8 @@
 # Most dev tools end up being in base
 {pkgs, ...}: {
+  imports = [
+    ../dev 
+  ];
   home.packages = with pkgs; [
     insomnia
   ];

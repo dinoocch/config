@@ -1,4 +1,4 @@
-{pkgs, hyprland, catppuccin-hyprland, catppuccin-waybar, ...}: {
+{pkgs, catppuccin-hyprland, catppuccin-waybar, ...}: {
   imports = [
     # hyprland.homeManagerModules.default
   ];
@@ -11,15 +11,6 @@
     # eww-wayland
     waybar
   ];
-
-  wayland.windowManager.hyprland = {
-    enable = true;
-    xwayland = {
-      enable = true;
-      hidpi = true;
-    };
-    nvidiaPatches = true;
-  };
 
   xdg.configFile."hypr/themes".source = "${catppuccin-hyprland}/themes";
   xdg.configFile."waybar/mocha.css".source = "${catppuccin-waybar}/themes/mocha.css";

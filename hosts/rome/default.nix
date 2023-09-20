@@ -11,7 +11,7 @@
     "ext4"
     "btrfs"
     "xfs"
-    "zfs"
+    # "zfs"
     "ntfs"
     "fat"
     "vfat"

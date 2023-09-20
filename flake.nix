@@ -16,7 +16,7 @@
     home-manager = {
       url = "github:nix-community/home-manager/release-23.05";
       inputs.nixpkgs.follows = "nixpkgs";
-    }
+    };
 
     # try wayland for now idk? otherwise I will go back to bspwm
     hyperland.url = "github:hyprwm/Hyprland/v0.28.0";
@@ -40,8 +40,8 @@
     };
 
     # rk3588 - TODO: Probably needs to use a fork for now?
-    niksos-rk3588.url = "github:ryan4yin/nixos-rk3588";
-  }
+    nixos-rk3588.url = "github:ryan4yin/nixos-rk3588";
+  };
 
   nixConfig = {
     experimental-features = ["nix-command" "flakes"];
@@ -98,6 +98,7 @@
     rome_modules = {
       nixos-modules = [
         ./hosts/rome
+        ./modules/desktop.nix
       ];
       home-module = import ./home/desktop;
     };
@@ -110,7 +111,7 @@
         specialArgs = x64_specialArgs;
       };
     in {
-      rome = nixosSystem (rome_modules // base_args)
+      rome = nixosSystem (rome_modules // base_args);
     };
   };
 }

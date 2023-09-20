@@ -2,6 +2,7 @@
   imports = [
     ./base.nix
     ./fhs-fonts.nix
+    ./hyprland.nix
   ];
 
   nixpkgs.config.allowUnfree = true;

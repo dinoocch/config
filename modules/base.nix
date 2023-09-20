@@ -1,4 +1,8 @@
 {lib, pkgs, ...}: {
+  imports = [
+    ./user-group.nix
+  ];
+
   boot.loader.systemd-boot.configurationLimit = lib.mkDefault 10;
   nix.gc = {
     automatic = lib.mkDefault true;

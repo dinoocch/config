@@ -11,7 +11,7 @@
     "ext4"
     "btrfs"
     "xfs"
-    #"zfs"
+    "zfs"
     "ntfs"
     "fat"
     "vfat"
@@ -26,6 +26,10 @@
       efiSysMountPoint = "/boot/efi";
     };
     systemd-boot.enable = true;
+    initrd.luks.devices = {
+      root = {
+      };
+    };
   };
 
   networking = {
@@ -37,7 +41,7 @@
     interfaces.enp5s0 = {
       useDHCP = true;
     };
-    defaultGateway = "192.168.5.201";
+    # defaultGateway = "192.168.5.201";
     nameservers = [
       # TODO: Once a router is configured use that instead
       "8.8.8.8"

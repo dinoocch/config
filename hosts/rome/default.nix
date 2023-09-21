@@ -7,6 +7,9 @@
 
   # Enable binfmt emulation of aarch64-linux, this is required for cross compilation.
   boot.binfmt.emulatedSystems = ["aarch64-linux"];
+  boot.kernelParams = [
+    "elevator=none"
+  ];
   boot.supportedFilesystems = [
     "ext4"
     "btrfs"

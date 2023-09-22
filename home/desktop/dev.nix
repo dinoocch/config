@@ -1,5 +1,5 @@
 # Most dev tools end up being in base
-{pkgs, ...}: {
+{pkgs, pkgs-unstable,...}: {
   imports = [
     ../dev 
   ];
@@ -13,11 +13,13 @@
 
   programs.wezterm = {
     enable = true;
+    package = pkgs-unstable.wezterm;
     extraConfig = ''
       local wezterm = require("wezterm")
       local config = wezterm.config_builder()
       config.font = wezterm.font("JetBrainsMono Nerd Font")
       config.color_scheme = "Catppuccin Frappe"
+      config.webgpu_power_preference = "HighPerformance"
       return config
     '';
   };

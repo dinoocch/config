@@ -18,6 +18,7 @@
       steam-run
       discord
       spotify
+      easyeffects
 
       # fluffy?
       element-desktop
@@ -25,4 +26,5 @@
   };
 
   programs.home-manager.enable = true;
+  services.easyeffects.enable = true;
 }

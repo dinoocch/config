@@ -29,6 +29,7 @@
       url = "github:catppuccin/hyprland";
       flake = false;
     };
+    spicetify-nix.url = "github:the-argus/spicetify-nix";
     # Is this even worth it lol
     catppuccin-waybar = {
       url = "github:catppuccin/waybar";

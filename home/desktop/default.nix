@@ -28,6 +28,7 @@ in
       # fluffy?
       element-desktop
       gimp
+      vlc
     ];
   };
 

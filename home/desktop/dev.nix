@@ -20,6 +20,7 @@
       config.font = wezterm.font("JetBrainsMono Nerd Font")
       config.color_scheme = "Catppuccin Frappe"
       config.webgpu_power_preference = "HighPerformance"
+      config.enable_wayland = false
       return config
     '';
   };

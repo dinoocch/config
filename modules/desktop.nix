@@ -5,8 +5,7 @@
     ./wm.nix
   ];
 
-  /etc/profiles/per-user/dino/share
-    446  ls /enixpkgs.config.allowUnfree = true;
+  nixpkgs.config.allowUnfree = true;
 
   environment.systemPackages = with pkgs; [
     colmena

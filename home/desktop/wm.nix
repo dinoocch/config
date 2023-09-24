@@ -33,6 +33,7 @@
     # Monitors
     monitor=DP-1,3840x2160@60,0x0,1
     monitor=DP-2,1920x1200@60,3840x0,1,transform,1
+    # debug:overlay = true
 
     # Fix slow startup
     exec systemctl --user import-environment WAYLAND_DISPLAY XDG_CURRENT_DESKTOP

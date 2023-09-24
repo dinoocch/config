@@ -40,7 +40,7 @@
   };
 
   environment.systemPackages = with pkgs; [
-    neovim
+    # pkgs-unstable.neovim
     curl
     git
     aria2

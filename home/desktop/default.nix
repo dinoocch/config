@@ -29,6 +29,7 @@ in
       element-desktop
       gimp
       vlc
+      zoom-us
     ];
   };
 

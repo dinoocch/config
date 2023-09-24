@@ -11,6 +11,16 @@
     zsh
     pkgs-unstable.zsh-defer
     zsh-fast-syntax-highlighting
+
+    gnumake
+    gcc
+    sad
+    jq
+    gnupg
+    zstd
+    unzip
+    nix-output-monitor
+    ast-grep
   ];
 
   # programs.eza = {

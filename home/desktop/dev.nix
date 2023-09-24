@@ -18,7 +18,7 @@
       local wezterm = require("wezterm")
       local config = wezterm.config_builder()
       config.font = wezterm.font("JetBrainsMono Nerd Font")
-      config.color_scheme = "Catppuccin Frappe"
+      config.color_scheme = "Catppuccin Mocha"
       config.webgpu_power_preference = "HighPerformance"
       config.enable_wayland = false
       return config

@@ -1,4 +1,4 @@
-{pkgs, catppuccin-hyprland, catppuccin-waybar, ...}: {
+{pkgs, pkgs-unstable, catppuccin-hyprland, catppuccin-waybar, ...}: {
   imports = [
     # hyprland.homeManagerModules.default
   ];
@@ -28,6 +28,7 @@
     "__GLX_VENDOR_LIBRARY_NAME" = "nvidia";
     "WLR_NO_HARDWARE_CURSORS" = "1";
     "WLR_EGL_NO_MODIFIRES" = "1";
+    "WLR_RENDERER" = "vulkan";
   };
   xdg.configFile."hypr/hyprland.conf".text = ''
     # Monitors
@@ -43,6 +44,7 @@
     exec-once = mako
     exec = pkill waybar & sleep 0.5 && waybar
     exec-once = swww init
+    exec-once = ${pkgs-unstable.hyprdim}/bin/hyprdim --no-dim-when-only --persist --ignore-leaving-special --dialog-dim
 
     input {
         follow_mouse = 0

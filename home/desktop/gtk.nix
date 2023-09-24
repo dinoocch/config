@@ -1,4 +1,4 @@
-{pkgs, config, ...}: {
+{pkgs, pkgs-unstable, config, ...}: {
   home.pointerCursor = {
     package = pkgs.bibata-cursors;
     name = "Bibata-Modern-Ice";
@@ -9,6 +9,12 @@
 
   xresources.properties = {
     "*.dpi" = 150;
+  };
+
+  dconf.settings = {
+    "org/gnome/desktop/interface" = {
+      gtk-key-theme-name = "Catppuccin-Mocha-Compact-Pink-Dark";
+    };
   };
 
   gtk = {
@@ -26,12 +32,23 @@
     };
 
     theme = {
-      name = "Catppuccin-Mocha-Compact-Pink";
-      package = pkgs.catppuccin-gtk.override {
+      name = "Catppuccin-Mocha-Compact-Pink-dark";
+      package = pkgs-unstable.catppuccin-gtk.override {
         accents = ["pink"];
         size = "compact";
         variant = "mocha";
       };
+    };
+    gtk3.extraConfig = {
+      Settings = ''
+        gtk-application-prefer-dark-theme=1
+      '';
+    };
+
+    gtk4.extraConfig = {
+      Settings = ''
+        gtk-application-prefer-dark-theme=1
+      '';
     };
   };
 }

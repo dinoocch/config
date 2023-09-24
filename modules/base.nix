@@ -44,6 +44,8 @@
     curl
     git
     aria2
+    zig
+    sqlite
 
     # create a fhs environment by command `fhs`, so we can run non-nixos packages in nixos!
     (

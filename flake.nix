@@ -103,6 +103,13 @@
       ];
       home-module = import ./home/desktop;
     };
+
+    venice_modules = {
+      nixos-modules = [
+        ./hosts/venice
+      ];
+      home-module = import ./home/dev;
+    };
   in {
     nixosConfigurations = let
       base_args = {
@@ -113,6 +120,31 @@
       };
     in {
       rome = nixosSystem (rome_modules // base_args);
+    };
+
+    colmena = let
+      rk3588_pkgs = import nixos-rk3588.inputs.nixpkgs {system = x64_system;};
+      rk3588_specialArgs = {
+        inherit username userfullname useremail;
+      } // nixos-rk3588.inputs;
+      rk3588_base_args = {
+        inherit home-manager;
+        nixpkgs = nixos-rk3588.inputs.nixpkgs; # or nixpkgs-unstable
+        specialArgs = rk3588_specialArgs;
+        targetUser = "root";
+      };
+    in {
+      meta = {
+        specialArgs = x64_specialArgs;
+        nixpkgs = import nixpkgs {system = x64_system;};
+        nodeSpecialArgs = {
+          venice = rk3588_specialArgs;
+        };
+        nodeNixpkgs = {
+          venice = rk3588_pkgs;
+        };
+      };
+      venice = colmenaSystem (venice_modules // rk3588_base_args);
     };
   };
 }

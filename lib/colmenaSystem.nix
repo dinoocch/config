@@ -5,7 +5,6 @@
   specialArgs,
   nixos-modules,
   home-module ? null,
-  host_tags,
   targetUser ? specialArgs.username,
 }: let
   username = specialArgs.username;
@@ -14,7 +13,6 @@ in
     deployment = {
       targetHost = name;  # hostName or IP address
       targetUser = targetUser;
-      tags = host_tags;
     };
 
     imports =

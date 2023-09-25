@@ -1,10 +1,25 @@
 # Most dev tools end up being in base
-{pkgs, pkgs-unstable,...}: {
+{pkgs, pkgs-unstable, catppuccin-starship, ...}: {
   imports = [
     ../dev 
   ];
   home.packages = with pkgs; [
     insomnia
+    pkgs-unstable.zsh-defer
+    pkgs-unstable.eza
+    zsh-fast-syntax-highlighting
+    skim
+    tree
+    zsh
+    gnumake
+    gcc
+    sad
+    jq
+    gnupg
+    zstd
+    unzip
+    nix-output-monitor
+    ast-grep
   ];
 
   programs.gh = {
@@ -12,6 +27,28 @@
   };
 
   programs.alacritty.enable = true;
+
+  programs.zsh = {
+    enable = true;
+    autocd = true;
+    shellAliases = {
+      sl = "ls";
+      sudo = "sudo ";
+    };
+    shellGlobalAliases = {
+      UUID = "$(uuidgen | tr -d \\n)";
+    };
+    history = {
+      size = 10000000;
+    };
+    defaultKeymap = "viins";
+    initExtra = ''
+      source "${pkgs-unstable.zsh-defer}/share/zsh-defer/zsh-defer.plugin.zsh"
+      zsh-defer source "${pkgs.skim}/share/skim/key-bindings.zsh"
+      zsh-defer source "${pkgs.zsh-fast-syntax-highlighting}/share/zsh/site-functions/fast-syntax-highlighting.plugin.zsh"
+      zsh-defer source "${pkgs.grc}/etc/grc.zsh"
+    '';
+  };
 
   programs.wezterm = {
     enable = true;
@@ -24,6 +61,54 @@
       config.webgpu_power_preference = "HighPerformance"
       config.enable_wayland = true
       return config
+    '';
+  };
+
+  programs.starship = {
+    enable = true;
+    enableBashIntegration = true;
+    enableZshIntegration = true;
+    enableNushellIntegration = true;
+
+    settings = {
+      character = {
+        success_symbol = "[[♥](green) ❯](sky)";
+        error_symbol = "[❯](red)";
+        vicmd_symbol = "[❮](green)";
+      };
+      palette = "catppuccin_mocha";
+    } // builtins.fromTOML (builtins.readFile "${catppuccin-starship}/palettes/mocha.toml");
+  };
+
+  programs.nushell = {
+    enable = true;
+    configFile.text = ''
+      let-env config = {
+        show_banner: false
+        table: {
+          mode: rounded
+          index_mode: always
+          show_empty: true
+        }
+        completions: {
+          case_sensitive: false
+          quick: true
+          partial: true
+          algorithm: "prefix"
+          external: {
+            enable: true
+            max_results: 100
+            completer: null
+          }
+        }
+        file_size: {
+          metric: true
+          format: "auto"
+        }
+        bracketed_paste: true
+        edit_mode: vi
+        shell_integration: true
+      }
     '';
   };
 }

@@ -1,4 +1,4 @@
-{ pkgs, pkgs-unstable, username, spicetify-nix, ... }:
+{ pkgs, pkgs-unstable, spicetify-nix, ... }:
 let
   spicePkgs = spicetify-nix.packages.${pkgs.system}.default;
 in
@@ -9,14 +9,11 @@ in
     ./dev.nix
     ./wm.nix
     ./gtk.nix
+    ./neovim
     spicetify-nix.homeManagerModule
   ];
 
   home = {
-    username = username;
-    homeDirectory = "/home/${username}";
-    stateVersion = "23.05";
-
     packages = with pkgs; [
       lutris
       steam
@@ -33,7 +30,6 @@ in
     ];
   };
 
-  programs.home-manager.enable = true;
   services.easyeffects.enable = true;
   programs.spicetify = {
     enable = true;

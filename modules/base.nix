@@ -27,7 +27,7 @@
     enable = true;
     settings = {
       X11Forwarding = true;
-      PermitRootLogin = "no";
+      PermitRootLogin = "true";
       PasswordAuthentication = false;
     };
     openFirewall = true;
@@ -40,27 +40,8 @@
   };
 
   environment.systemPackages = with pkgs; [
-    # pkgs-unstable.neovim
     curl
     git
-    aria2
-    zig
-    sqlite
-
-    # create a fhs environment by command `fhs`, so we can run non-nixos packages in nixos!
-    (
-      let
-        base = pkgs.appimageTools.defaultFhsEnvArgs;
-      in
-        pkgs.buildFHSUserEnv (base
-          // {
-            name = "fhs";
-            targetPkgs = pkgs: (base.targetPkgs pkgs) ++ [pkgs.pkg-config];
-            profile = "export FHS=1";
-            runScript = "bash";
-            extraOutputsToInstall = ["dev"];
-          })
-    )
   ];
 
   environment.variables.EDITOR = "nvim";
@@ -68,7 +49,6 @@
   environment.shells = with pkgs; [
     bash
     zsh
-    nushell
   ];
   users.defaultUserShell = pkgs.zsh;
   programs.zsh.enable = true;

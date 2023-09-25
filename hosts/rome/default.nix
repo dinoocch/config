@@ -43,6 +43,10 @@
       # TODO: Once a router is configured use that instead
       "8.8.8.8"
     ];
+
+    extraHosts = ''
+      192.168.68.58 venice
+    '';
   };
 
   services.xserver.videoDrivers = ["nvidia"];

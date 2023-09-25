@@ -11,6 +11,8 @@
     enable = true;
   };
 
+  programs.alacritty.enable = true;
+
   programs.wezterm = {
     enable = true;
     package = pkgs-unstable.wezterm;
@@ -20,7 +22,7 @@
       config.font = wezterm.font("JetBrainsMono Nerd Font")
       config.color_scheme = "Catppuccin Mocha"
       config.webgpu_power_preference = "HighPerformance"
-      config.enable_wayland = false
+      config.enable_wayland = true
       return config
     '';
   };

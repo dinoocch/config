@@ -1,4 +1,4 @@
-{ pkgs, username, spicetify-nix, ... }:
+{ pkgs, pkgs-unstable, username, spicetify-nix, ... }:
 let
   spicePkgs = spicetify-nix.packages.${pkgs.system}.default;
 in
@@ -29,7 +29,7 @@ in
       element-desktop
       gimp
       vlc
-      zoom-us
+      pkgs-unstable.zoom-us
     ];
   };
 

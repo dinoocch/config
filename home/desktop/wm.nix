@@ -11,6 +11,8 @@
     # eww-wayland
     waybar
     wofi
+    pkgs-unstable.swww
+    pkgs-unstable.hyprpaper
   ];
 
   xdg.configFile."hypr/themes".source = "${catppuccin-hyprland}/themes";
@@ -42,8 +44,8 @@
 
     # Autostart
     exec-once = mako
+    exec-once = hyprpaper
     exec = pkill waybar & sleep 0.5 && waybar
-    exec-once = swww init
     exec-once = ${pkgs-unstable.hyprdim}/bin/hyprdim --no-dim-when-only --persist --ignore-leaving-special --dialog-dim
 
     input {
@@ -135,5 +137,13 @@
     bindm = $mainMod, mouse:272, movewindow
     bindm = $mainMod, mouse:273, resizewindow
     bindm = ALT, mouse:272, resizewindow
+  '';
+
+  xdg.configFile."hypr/hyprpaper.conf".text = ''
+    # Wallpaper
+    preload = ~/wallpapers/japan-1-hscaled.png
+    preload = ~/wallpapers/japan-2-vscaled.png
+    wallpaper = DP-1,~/wallpapers/japan-1-hscaled.png
+    wallpaper = DP-2,~/wallpapers/japan-2-vscaled.png
   '';
 }

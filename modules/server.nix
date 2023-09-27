@@ -10,7 +10,7 @@ let
   # Build a dervation that stores the content of `${server_name}/.well-known/matrix/server`
   well_known_server = pkgs.writeText "well-known-matrix-server" ''
     {
-      "m.server": "${matrix_hostname}"
+      "m.server": "${matrix_hostname}:8443"
     }
   '';
 
@@ -73,7 +73,8 @@ in
             addr = "[::]";
             port = 443;
             ssl = true;
-          }          {
+          }
+          {
             addr = "0.0.0.0";
             port = 8448;
             ssl = true;
@@ -81,6 +82,16 @@ in
           {
             addr = "[::]";
             port = 8448;
+            ssl = true;
+          }
+          {
+            addr = "0.0.0.0";
+            port = 8443;
+            ssl = true;
+          }
+          {
+            addr = "[::]";
+            port = 8443;
             ssl = true;
           }
         ];
@@ -149,6 +160,6 @@ in
   };
 
   # Open firewall ports for HTTP, HTTPS, and Matrix federation
-  networking.firewall.allowedTCPPorts = [ 80 443 8448 ];
-  networking.firewall.allowedUDPPorts = [ 80 443 8448 ];
+  networking.firewall.allowedTCPPorts = [ 80 443 8448 8443 ];
+  networking.firewall.allowedUDPPorts = [ 80 443 8448 8443 ];
 }

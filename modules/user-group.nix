@@ -2,6 +2,7 @@
   nix.settings.trusted-users = [username];
   users.groups = {
     "${username}" = {};
+    "docker" = {};
   };
   users.users."${username}" = {
     home = "/home/${username}";
@@ -12,6 +13,7 @@
       "users"
       "networkmanager"
       "wheel"
+      "docker"
     ];
     openssh.authorizedKeys.keys = [
       "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIAaADz4VrsCbyI5au/HeE0EK5VIS/Ffcso/3V/vK7fyc"

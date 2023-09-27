@@ -15,6 +15,7 @@
     "${nixos-rk3588}/modules/boards/orangepi5plus.nix"
     ../../modules/base.nix
     ../../modules/user-group.nix
+    ../../modules/server.nix
   ];
 
   users.users.root.openssh.authorizedKeys.keys = config.users.users."${username}".openssh.authorizedKeys.keys;

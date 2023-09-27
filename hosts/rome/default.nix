@@ -45,7 +45,7 @@
     ];
 
     extraHosts = ''
-      192.168.68.58 venice
+      192.168.2.132 venice
     '';
   };
 
@@ -62,6 +62,12 @@
     enable = true;
     driSupport = true;
     driSupport32Bit = true;
+  };
+
+  virtualisation = {
+    docker = {
+      enable = true;
+    };
   };
 
   system.stateVersion = "23.05";

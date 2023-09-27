@@ -23,7 +23,7 @@ in
       easyeffects
 
       # fluffy?
-      element-desktop
+      pkgs-unstable.element-desktop
       gimp
       vlc
       pkgs-unstable.zoom-us

@@ -40,6 +40,11 @@
       flake = false;
     };
 
+    conduit = {
+        url = "gitlab:famedly/conduit";
+        # inputs.nixpkgs.follows = "nixpkgs";
+    };
+
     # rk3588 - TODO: Probably needs to use a fork for now?
     nixos-rk3588.url = "github:ryan4yin/nixos-rk3588";
   };
@@ -67,6 +72,7 @@
   outputs = inputs @ {
     self,
     nixpkgs,
+    conduit,
     nixpkgs-unstable,
     nix-darwin,
     home-manager,
@@ -125,7 +131,7 @@
     colmena = let
       rk3588_pkgs = import nixos-rk3588.inputs.nixpkgs {system = x64_system;};
       rk3588_specialArgs = {
-        inherit username userfullname useremail;
+        inherit username userfullname useremail conduit;
       } // nixos-rk3588.inputs;
       rk3588_base_args = {
         inherit home-manager;

@@ -1,5 +1,5 @@
 # Most dev tools end up being in base
-{pkgs, pkgs-unstable, catppuccin-starship, ...}: {
+{pkgs, pkgs-unstable, catppuccin-starship, catppuccin-alacritty, ...}: {
   imports = [
     ../dev 
   ];
@@ -26,7 +26,25 @@
     enable = true;
   };
 
-  programs.alacritty.enable = true;
+  programs.alacritty = {
+    enable = true;
+    package = pkgs-unstable.alacritty;
+    settings = {
+      font = {
+        normal = {
+          family = "JetBrainsMono Nerd Font";
+          style = "Regular";
+        };
+        bold = {
+          family = "JetBrainsMono Nerd Font";
+          style = "Bold";
+        };
+      };
+      import = [
+        "${catppuccin-alacritty}/catppuccin-mocha.yml"
+      ];
+    };
+  };
 
   programs.zsh = {
     enable = true;

@@ -39,6 +39,10 @@
       url = "github:catppuccin/starship";
       flake = false;
     };
+    catppuccin-alacritty = {
+      url = "github:catppuccin/alacritty";
+      flake = false;
+    };
 
     conduit = {
         url = "gitlab:famedly/conduit";

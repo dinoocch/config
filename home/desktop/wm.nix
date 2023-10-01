@@ -19,18 +19,21 @@
   xdg.configFile."waybar/mocha.css".source = "${catppuccin-waybar}/themes/mocha.css";
 
   systemd.user.sessionVariables = {
-    "NIXOS_OZONE_WL" = "1"; # for any ozone-based browser & electron apps to run on wayland
-    "MOZ_ENABLE_WAYLAND" = "1"; # for firefox to run on wayland
-    "MOZ_WEBRENDER" = "1";
-
-    # for hyprland with nvidia gpu, ref https://wiki.hyprland.org/Nvidia/
-    "LIBVA_DRIVER_NAME" = "nvidia";
-    "XDG_SESSION_TYPE" = "wayland";
-    "GBM_BACKEND" = "nvidia-drm";
-    "__GLX_VENDOR_LIBRARY_NAME" = "nvidia";
-    "WLR_NO_HARDWARE_CURSORS" = "1";
-    "WLR_EGL_NO_MODIFIRES" = "1";
-    "WLR_RENDERER" = "vulkan";
+    NIXOS_OZONE_WL = "1";
+    MOZ_ENABLE_WAYLAND = "1";
+    MOZ_WEBRENDER = "1";
+    __GL_GSYNC_ALLOWED = "0";
+    __GL_VRR_ALLOWED = "0";
+    _JAVA_AWT_WM_NONEREPARENTING = "1";
+    QT_QPA_PLATFORM = "wayland";
+    LIBVA_DRIVER_NAME = "nvidia";
+    XDG_SESSION_TYPE = "wayland";
+    GBM_BACKEND = "nvidia-drm";
+    __GLX_VENDOR_LIBRARY_NAME = "nvidia";
+    WLR_NO_HARDWARE_CURSORS = "1";
+    WLR_EGL_NO_MODIFIRES = "1";
+    WLR_BACKEND = "vulkan";
+    WLR_RENDERER = "vulkan";
   };
   xdg.configFile."hypr/hyprland.conf".text = ''
     # Monitors

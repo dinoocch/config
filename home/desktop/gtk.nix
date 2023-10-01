@@ -32,7 +32,7 @@
     };
 
     theme = {
-      name = "Catppuccin-Mocha-Compact-Pink-dark";
+      name = "Catppuccin-Mocha-Compact-Pink-Dark";
       package = pkgs-unstable.catppuccin-gtk.override {
         accents = ["pink"];
         size = "compact";

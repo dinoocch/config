@@ -32,11 +32,11 @@
     settings = {
       font = {
         normal = {
-          family = "JetBrainsMono Nerd Font";
+          family = "Comic Code Ligatures";
           style = "Regular";
         };
         bold = {
-          family = "JetBrainsMono Nerd Font";
+          family = "Comic Code Ligatures";
           style = "Bold";
         };
       };

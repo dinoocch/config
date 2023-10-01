@@ -12,6 +12,16 @@
       inputs.nixpkgs.follows = "nixpkgs-darwin";
     };
 
+    # Secrets
+    # agenix.url = "github:yaxitech/ragenix";
+    # secrets = {
+    #   url = "git+ssh://git@github.com/dinoocch/secrets";
+    # };
+    custom-fonts = {
+      url = "git+ssh://git@github.com/dinoocch/fonts";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
     # home-manager for non-system configs
     home-manager = {
       url = "github:nix-community/home-manager/release-23.05";

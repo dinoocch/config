@@ -98,7 +98,7 @@
     $mainMod = SUPER
     bind = $mainMod, G, fullscreen,
 
-    bind = $mainMod, RETURN, exec, alacritty
+    bind = $mainMod, RETURN, exec, kitty
     bind = $mainMod, B, exec, firefox
     bind = $mainMod, Q, killactive,
     bind = $mainMod, M, exit,

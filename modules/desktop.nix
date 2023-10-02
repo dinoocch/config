@@ -1,4 +1,4 @@
-{config, lib, pkgs, custom-fonts, pkgs-unstable, ...}: {
+{config, lib, pkgs, pkgs-unstable, custom-fonts, ...}: {
   imports = [
     ./base.nix
     # ./fhs-fonts.nix
@@ -93,7 +93,8 @@
       noto-fonts
       source-sans
       source-serif
-      custom-fonts
+      # custom-fonts
+      pkgs-unstable.comic-code
       (nerdfonts.override {
         fonts = [
           "FiraCode"

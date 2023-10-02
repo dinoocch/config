@@ -87,6 +87,7 @@
     self,
     nixpkgs,
     conduit,
+    custom-fonts,
     nixpkgs-unstable,
     nix-darwin,
     home-manager,
@@ -112,6 +113,7 @@
         pkgs-unstable = import nixpkgs-unstable {
           system = x64_system;
           config.allowUnfree = true;
+          overlays = [custom-fonts.overlay];
         };
       }
       // inputs;

@@ -1,5 +1,5 @@
 # Most dev tools end up being in base
-{pkgs, pkgs-unstable, catppuccin-starship, catppuccin-alacritty, ...}: {
+{pkgs, pkgs-unstable, custom-fonts, catppuccin-starship, catppuccin-alacritty, ...}: {
   imports = [
     ../dev 
   ];
@@ -44,6 +44,17 @@
         "${catppuccin-alacritty}/catppuccin-mocha.yml"
       ];
     };
+  };
+
+  programs.kitty = {
+    enable = true;
+    package = pkgs-unstable.kitty;
+    theme = "Catppuccin-Mocha";
+    settings = {
+      font_family = "Comic Code Ligatures";
+    };
+    # font = "Comic Code Ligatures";
+    # font = pkgs-unstable.comic-code;
   };
 
   programs.zsh = {

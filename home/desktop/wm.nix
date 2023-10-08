@@ -1,6 +1,7 @@
 {pkgs, pkgs-unstable, catppuccin-hyprland, catppuccin-waybar, ...}: {
   imports = [
     # hyprland.homeManagerModules.default
+    ./eww
   ];
 
   home.packages = with pkgs; [
@@ -8,7 +9,7 @@
     grim
     pipewire
     # TODO: Switch to eww
-    # eww-wayland
+    eww-wayland
     waybar
     wofi
     pkgs-unstable.swww

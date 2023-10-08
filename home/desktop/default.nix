@@ -18,6 +18,7 @@ in
       lutris
       steam
       steam-run
+      steamtinkerlaunch
       discord
       # spotify
       easyeffects

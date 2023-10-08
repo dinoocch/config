@@ -19,6 +19,7 @@
     zig
     aria2
     sqlite
+    wget
 
     # create a fhs environment by command `fhs`, so we can run non-nixos packages in nixos!
     (

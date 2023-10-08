@@ -1,7 +1,7 @@
 
 {pkgs, pkgs-unstable, ...}: {
   home.packages = with pkgs; [
-    eww-wayland
+    eww
   ];
 
   xdg.configFile."eww".source = ./bar;

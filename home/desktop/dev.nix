@@ -85,10 +85,9 @@
     extraConfig = ''
       local wezterm = require("wezterm")
       local config = wezterm.config_builder()
-      config.font = wezterm.font("JetBrainsMono Nerd Font")
+      config.font = wezterm.font("Comic Code Ligatures")
       config.color_scheme = "Catppuccin Mocha"
       config.webgpu_power_preference = "HighPerformance"
-      config.enable_wayland = true
       return config
     '';
   };

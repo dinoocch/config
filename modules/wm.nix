@@ -1,17 +1,4 @@
-{pkgs, pkgs-unstable, ...}: {
-  imports = [
-    # hyprland.nixosModules.default
-  ];
-
-  xdg.portal = {
-    enable = true;
-    wlr.enable = true;
-    extraPortals = with pkgs; [
-      xdg-desktop-portal-wlr
-      xdg-desktop-portal-hyprland
-    ];
-  };
-
+{pkgs, ...}: {
   environment.pathsToLink = ["/libexec"]; # links /libexec from derivations to /run/current-system/sw
 
   services = {
@@ -25,42 +12,36 @@
       };
 
       displayManager = {
-        # defaultSession = "hyprland";
+        defaultSession = "none+i3";
         lightdm.enable = false;
         gdm = {
           enable = true;
-          wayland = true;
         };
       };
-    };
-  };
 
-  programs = {
-    hyprland = {
-      enable = true;
-      package = pkgs-unstable.hyprland;
-      xwayland = {
+      windowManager.i3 = {
         enable = true;
-        hidpi = true;
+        extraPackages = with pkgs; [
+          rofi
+          dunst
+          i3blocks
+          i3lock
+          i3status
+          i3-gaps
+          picom
+          feh
+          xcolor
+          arandr
+          dex
+          xorg.xbacklight
+          xorg.xdpyinfo
+          scrot
+          sysstat
+          alsa-utils
+          xfce.thunar
+          xsel
+        ];
       };
-      nvidiaPatches = true;
     };
   };
-
-  environment.systemPackages = with pkgs; [
-    waybar
-    swaybg
-    swayidle
-    swaylock
-    wlogout
-    wl-clipboard
-    hyprpicker
-    wf-recorder
-    grim
-    slurp
-    mako
-    yad
-  ];
-  # Is this needed?
-  security.pam.services.swaylock = {};
 }

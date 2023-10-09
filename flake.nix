@@ -46,6 +46,10 @@
       url = "github:catppuccin/alacritty";
       flake = false;
     };
+    catppuccin-rofi = {
+      url = "github:catppuccin/rofi";
+      flake = false;
+    };
 
     conduit = {
         url = "gitlab:famedly/conduit";

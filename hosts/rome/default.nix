@@ -1,4 +1,4 @@
-{config, ...} @ args:
+{config, pkgs, ...} @ args:
 {
   imports = [
     # Include the results of the hardware scan.

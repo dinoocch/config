@@ -8,7 +8,7 @@
   };
 
   xresources.properties = {
-    "*.dpi" = 150;
+    "*.dpi" = 120;
   };
 
   dconf.settings = {

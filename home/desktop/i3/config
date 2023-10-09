@@ -102,22 +102,22 @@ bindsym $mod+a focus parent
 # Multimedia Keys
 
 # audio control
-bindsym XF86AudioPlay exec playerctl play
-bindsym XF86AudioPause exec playerctl pause
-bindsym XF86AudioNext exec playerctl next
-bindsym XF86AudioPrev exec playerctl previous
+bindsym XF86AudioPlay exec dbus-send --print-reply --dest=org.mpris.MediaPlayer2.spotify /org/mpris/MediaPlayer2 org.mpris.MediaPlayer2.Player.PlayPause
+bindsym XF86AudioPause exec dbus-send --print-reply --dest=org.mpris.MediaPlayer2.spotify /org/mpris/MediaPlayer2 org.mpris.MediaPlayer2.Player.PlayPause
+bindsym XF86AudioNext exec dbus-send --print-reply --dest=org.mpris.MediaPlayer2.spotify /org/mpris/MediaPlayer2 org.mpris.MediaPlayer2.Player.Next
+bindsym XF86AudioPrev exec dbus-send --print-reply --dest=org.mpris.MediaPlayer2.spotify /org/mpris/MediaPlayer2 org.mpris.MediaPlayer2.Player.Previous
 
 ##############
 # compositor #
 ##############
 
-exec_always --no-startup-id picom -b
+# exec_always --no-startup-id picom -b
 
 #############################################
 # autostart applications/services on login: #
 #############################################
 
-exec --no-startup-id xrandr --output DP-0 --mode 3840x2160 --pos 0x0 --rotate normal --output DP-2 --mode 1920x1200 --pos 3840x120 --rotate left
+exec --no-startup-id xrandr --output DP-0 --mode 3840x2160 --primary --pos 0x0 --rotate normal --output DP-2 --mode 1920x1200 --pos 3840x120 --rotate left
 exec --no-startup-id /usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1
 exec --no-startup-id sleep 1 && feh --bg-fill ~/wallpapers/japan-2-vscaled.png --bg-fill ~/wallpapers/japan-1-hscaled.png
 exec --no-startup-id /usr/bin/dunst

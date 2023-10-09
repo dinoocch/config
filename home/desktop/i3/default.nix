@@ -1,8 +1,10 @@
 { pkgs, pkgs-unstable, catppuccin-rofi, ... }: {
   home.packages = with pkgs; [
     pkgs-unstable.i3status-rust
+    flameshot
     rofi-power-menu
     (pkgs.callPackage ../../../packages/i3-autolayout.nix {})
+    (pkgs.libsForQt5.callPackage ../../../packages/discord-screenaudio.nix {})
   ];
 
   xdg.configFile."i3/config".source = ./config;

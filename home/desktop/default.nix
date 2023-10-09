@@ -16,16 +16,17 @@ in
   home = {
     packages = with pkgs; [
       lutris
-      steam
-      steam-run
+      pkgs-unstable.steam
+      pkgs-unstable.steam-run
       steamtinkerlaunch
-      discord
+      pkgs-unstable.discord-canary
       # spotify
       easyeffects
 
       # fluffy?
       pkgs-unstable.element-desktop
       gimp
+      krita
       vlc
       pkgs-unstable.zoom-us
     ];

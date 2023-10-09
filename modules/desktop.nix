@@ -52,6 +52,10 @@
       thunar-archive-plugin
       thuman-volman
     ];
+    # gamemode.enable = true;
+
+    # TODO: Figure out what is wrong with krisp...
+    noisetorch.enable = true;
   };
 
   security.rtkit.enable = true;
@@ -72,7 +76,7 @@
       alsa.enable = true;
       alsa.support32Bit = true;
       pulse.enable = true;
-      jack.enable = true;
+      jack.enable = false;
       wireplumber.enable = true;
     };
   };

@@ -70,5 +70,10 @@
     };
   };
 
+  services.printing = {
+    enable = true;
+    drivers = [ pkgs.hplip ];
+  };
+
   system.stateVersion = "23.05";
 }

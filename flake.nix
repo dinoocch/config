@@ -36,7 +36,10 @@
       url = "github:catppuccin/hyprland";
       flake = false;
     };
-    spicetify-nix.url = "github:the-argus/spicetify-nix";
+    spicetify-nix = {
+      url = "github:the-argus/spicetify-nix";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
     # Is this even worth it lol
     catppuccin-starship = {
       url = "github:catppuccin/starship";
@@ -61,7 +64,10 @@
     };
 
     # rk3588 - TODO: Probably needs to use a fork for now?
-    nixos-rk3588.url = "github:ryan4yin/nixos-rk3588";
+    nixos-rk3588 = { 
+      url = "github:ryan4yin/nixos-rk3588";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
   nixConfig = {

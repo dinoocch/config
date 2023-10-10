@@ -12,7 +12,7 @@
       };
 
       displayManager = {
-        defaultSession = "none+i3";
+        defaultSession = "none+bspwm";
         lightdm.enable = false;
         gdm = {
           enable = true;
@@ -22,25 +22,16 @@
       windowManager.i3 = {
         enable = true;
         extraPackages = with pkgs; [
-          rofi
-          dunst
           i3blocks
           i3lock
           i3status
           i3-gaps
-          picom
           feh
-          xcolor
-          arandr
-          dex
-          xorg.xbacklight
-          xorg.xdpyinfo
-          scrot
-          sysstat
-          alsa-utils
-          xfce.thunar
-          xsel
         ];
+      };
+
+      windowManager.bspwm = {
+        enable = true;
       };
     };
   };

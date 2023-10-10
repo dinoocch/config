@@ -22,6 +22,7 @@ in
       pkgs-unstable.discord-canary
       # spotify
       easyeffects
+      flameshot
 
       # fluffy?
       pkgs-unstable.element-desktop

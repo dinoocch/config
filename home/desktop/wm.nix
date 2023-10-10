@@ -2,6 +2,8 @@
   imports = [
     ./eww
     ./i3
+    ./bspwm
+    ./rofi.nix
   ];
   systemd.user.sessionVariables = {
     MOZ_WEBRENDER = "1";
@@ -15,6 +17,16 @@
 
   fonts.fontconfig.enable = true;
   home.packages = with pkgs; [
+    dunst
     pipewire
+    xcolor
+    arandr
+    xorg.xbacklight
+    xorg.xdpyinfo
+    scrot
+    sysstat
+    alsa-utils
+    xfce.thunar
+    xsel
   ];
                                                                     }

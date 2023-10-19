@@ -75,6 +75,7 @@ label-focused-padding = 1
 label-occupied = %index%
 label-occupied-foreground = ${colors.text}
 label-occupied-background = ${colors.mantle}
+label-occupied-underline = ${colors.sky}
 label-occupied-padding = 1
 
 label-urgent = %index%

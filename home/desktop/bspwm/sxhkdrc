@@ -25,7 +25,7 @@ XF86AudioPrev
     dbus-send --print-reply --dest=org.mpris.MediaPlayer2.spotify /org/mpris/MediaPlayer2 org.mpris.MediaPlayer2.Player.Previous
 
 super + shift + e
-    bspc quit
+    rofi -show power-menu -modi power-menu:rofi-power-menu
 
 super + {_,shift + }q
     bspc node -{c,k}

@@ -33,6 +33,14 @@
       windowManager.bspwm = {
         enable = true;
       };
+
+      libinput = {
+        enable = true;
+        mouse = {
+          middleEmulation = false;
+          disableWhileTyping = false;
+        };
+      };
     };
   };
 }

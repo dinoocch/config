@@ -137,6 +137,14 @@ in
           '';
         };
       };
+
+      "rust.${server_name}" = {
+        forceSSL = true;
+        enableACME = true;
+        locations."/" = {
+          root = ./rust-intro;
+        };
+      };
     };
 
     upstreams = {
@@ -154,6 +162,7 @@ in
     records = [
       server_name
       matrix_hostname
+      "rust.${server_name}"
     ];
     # TODO: Create some private age encrypted secrets flake
     apikeyFile = "/etc/cfdns-token";

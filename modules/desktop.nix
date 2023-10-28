@@ -21,6 +21,9 @@
     sqlite
     wget
 
+    winetricks
+    wineWowPackages.staging
+
     # create a fhs environment by command `fhs`, so we can run non-nixos packages in nixos!
     (
       let

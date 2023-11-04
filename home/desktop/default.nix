@@ -23,6 +23,7 @@ in
       # spotify
       easyeffects
       flameshot
+      pkgs-unstable.spotify
 
       # fluffy?
       pkgs-unstable.element-desktop
@@ -34,14 +35,14 @@ in
   };
 
   services.easyeffects.enable = true;
-  programs.spicetify = {
-    enable = true;
-    theme = spicePkgs.themes.catppuccin-mocha;
-    colorScheme = "flamingo";
-    enabledExtensions = with spicePkgs.extensions; [
-      fullAppDisplay
-      shuffle
-      hidePodcasts
-    ];
-  };
+  # programs.spicetify = {
+  #  enable = true;
+  #  theme = spicePkgs.themes.catppuccin-mocha;
+  #  colorScheme = "flamingo";
+  #  enabledExtensions = with spicePkgs.extensions; [
+  #    fullAppDisplay
+  #    shuffle
+  #    hidePodcasts
+  #  ];
+  #};
 }

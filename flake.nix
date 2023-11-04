@@ -137,19 +137,32 @@
       ];
       home-module = import ./home/dev;
     };
+
+    milan_modules = {
+      nixos-modules = [
+        ./hosts/milan
+      ];
+      home-module = import ./home/dev;
+    };
   in {
     nixosConfigurations = let
       base_args = {
         inherit home-manager;
-        nixpkgs = nixpkgs; # or nixpkgs-unstable?
+        nixpkgs = nixpkgs;
         system = x64_system;
         specialArgs = x64_specialArgs;
       };
     in {
       rome = nixosSystem (rome_modules // base_args);
+      milan = nixosSystem (milan_modules // base_args);
     };
 
     colmena = let
+      base_args = {
+        inherit home-manager;
+        nixpkgs = nixpkgs;
+        specialArgs = x64_specialArgs;
+      };
       rk3588_pkgs = import nixos-rk3588.inputs.nixpkgs {system = x64_system;};
       rk3588_specialArgs = {
         inherit username userfullname useremail conduit;
@@ -172,6 +185,7 @@
         };
       };
       venice = colmenaSystem (venice_modules // rk3588_base_args);
+      milan = colmenaSystem (milan_modules // base_args);
     };
   };
 }

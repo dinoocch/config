@@ -1,4 +1,4 @@
-{pkgs, ...}: {
+{pkgs, pkgs-unstable, catppuccin-starship, ...}: {
   home.packages = with pkgs; [
     bat
     fd
@@ -26,5 +26,27 @@
       size = 10000000;
     };
     defaultKeymap = "viins";
+    initExtra = ''
+      source "${pkgs-unstable.zsh-defer}/share/zsh-defer/zsh-defer.plugin.zsh"
+      zsh-defer source "${pkgs.skim}/share/skim/key-bindings.zsh"
+      zsh-defer source "${pkgs.zsh-fast-syntax-highlighting}/share/zsh/site-functions/fast-syntax-highlighting.plugin.zsh"
+      zsh-defer source "${pkgs.grc}/etc/grc.zsh"
+    '';
+  };
+
+  programs.starship = {
+    enable = true;
+    enableBashIntegration = true;
+    enableZshIntegration = true;
+    enableNushellIntegration = true;
+
+    settings = {
+      character = {
+        success_symbol = "[[♥](green) ❯](sky)";
+        error_symbol = "[❯](red)";
+        vicmd_symbol = "[❮](green)";
+      };
+      palette = "catppuccin_mocha";
+    } // builtins.fromTOML (builtins.readFile "${catppuccin-starship}/palettes/mocha.toml");
   };
 }

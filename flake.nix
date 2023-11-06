@@ -162,6 +162,7 @@
         inherit home-manager;
         nixpkgs = nixpkgs;
         specialArgs = x64_specialArgs;
+        targetUser = "root";
       };
       rk3588_pkgs = import nixos-rk3588.inputs.nixpkgs {system = x64_system;};
       rk3588_specialArgs = {

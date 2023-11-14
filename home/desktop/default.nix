@@ -24,6 +24,7 @@ in
       easyeffects
       flameshot
       pkgs-unstable.spotify
+      pkgs-unstable.protontricks
 
       # fluffy?
       pkgs-unstable.element-desktop

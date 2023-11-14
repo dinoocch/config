@@ -32,7 +32,7 @@
     hostName = "rome";
     hostId = "2c1a46a1";
     wireless.enable = false;
-    networkmanager.enable = true;
+    networkmanager.enable = false;
 
     enableIPv6 = true;
     interfaces.enp7s0 = {
@@ -46,7 +46,7 @@
 
     extraHosts = ''
       192.168.2.132 venice
-      192.168.2.194 milan
+      192.168.2.195 milan
     '';
   };
 

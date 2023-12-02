@@ -7,6 +7,7 @@
     ../../modules/base.nix
     ../../modules/user-group.nix
     ../../modules/server.nix
+    ../../modules/grafana.nix
   ];
 
   boot.supportedFilesystems = [
@@ -153,6 +154,10 @@
         "0.0.0.0/0 refuse"
         "127.0.0.0/8 allow"
         "10.0.0.0/8 allow"
+      ];
+      local-zone = "\"appt.dinoocch.dev\" static";
+      local-data = [
+        "\"grafana.dinoocch.dev. IN A 10.1.1.1\""
       ];
     };
   };

@@ -11,6 +11,7 @@
   #  enableAliases = true;
   #  package = pkgs-unstable.eza;
   # };
+  programs.direnv.enable = true;
 
   programs.zsh = {
     enable = true;

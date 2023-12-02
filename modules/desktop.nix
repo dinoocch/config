@@ -74,7 +74,7 @@
     ];
     pipewire = {
       enable = true;
-      package = pkgs-unstable.pipewire;
+      package = pkgs.pipewire;
       audio.enable = true;
       alsa.enable = true;
       alsa.support32Bit = true;

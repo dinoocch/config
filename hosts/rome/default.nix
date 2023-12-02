@@ -41,12 +41,12 @@
     # defaultGateway = "192.168.5.201";
     nameservers = [
       # TODO: Once a router is configured use that instead
-      "8.8.8.8"
+      # "8.8.8.8"
     ];
 
     extraHosts = ''
       192.168.2.132 venice
-      192.168.2.195 milan
+      10.1.1.1 milan
     '';
   };
 

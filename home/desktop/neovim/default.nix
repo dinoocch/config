@@ -1,4 +1,4 @@
-{pkgs, pkgs-unstable, ...}: {
+{config, pkgs, pkgs-unstable, ...}: {
   home.packages = with pkgs; [
     tree-sitter
   ];
@@ -16,4 +16,5 @@
   };
 
   xdg.configFile."nvim".source = ./config;
+  home.file."./.config/nvim/lazy-lock.json".source = config.lib.file.mkOutOfStoreSymlink "${config.home.homeDirectory}/.local/share/nvim/lazy-lock.json";
 }

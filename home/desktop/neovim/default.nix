@@ -1,6 +1,15 @@
 {config, pkgs, pkgs-unstable, ...}: {
   home.packages = with pkgs; [
     tree-sitter
+    lua-language-server
+    stylua
+    shfmt
+    pyright
+    rust-analyzer
+    rustfmt
+    taplo
+    rnix-lsp
+    nixpkgs-fmt
   ];
 
   programs = {
@@ -15,6 +24,7 @@
     };
   };
 
-  xdg.configFile."nvim".source = ./config;
-  home.file."./.config/nvim/lazy-lock.json".source = config.lib.file.mkOutOfStoreSymlink "${config.home.homeDirectory}/.local/share/nvim/lazy-lock.json";
+  home.file.".config/nvim" = {
+    source = ./config;
+  };
 }

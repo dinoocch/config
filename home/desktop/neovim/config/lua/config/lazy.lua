@@ -34,6 +34,9 @@ require("lazy").setup({
         { import = "languages" },
 
         { "echasnovski/mini.pairs", enabled = false },
+        -- Mason does not work with nixos, which is nbd to be honest...
+        { "williamboman/mason-lspconfig.nvim", enabled = false },
+        { "williamboman/mason.nvim", enabled = false },
     },
     defaults = {
         lazy = true,
@@ -54,4 +57,6 @@ require("lazy").setup({
             "zipPlugin",
         },
     },
+    -- Use a path out of the nix store for the lock file
+    lockfile = vim.fn.stdpath("data") .. "/lazy-lock.json",
 })

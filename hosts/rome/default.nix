@@ -41,7 +41,7 @@
     # defaultGateway = "192.168.5.201";
     nameservers = [
       # TODO: Once a router is configured use that instead
-      # "8.8.8.8"
+      "8.8.8.8"
     ];
 
     extraHosts = ''

@@ -10,7 +10,7 @@
     forceSSL = true;
     enableACME = true;
     locations."/" = {
-127      proxyPass = "http://[::]:2342$request_uri";
+      proxyPass = "http://[::]:2342$request_uri";
       proxyWebsockets = true;
     };
   };

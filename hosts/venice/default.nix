@@ -1,24 +1,39 @@
-{
-  config,
-  username,
-  nixos-rk3588,
-  ...
-} @ args:
+{lib, config, username, ...} @ args:
 {
   imports = [
-    {
-      nixpkgs.crossSystem = {
-        config = "aarch64-unknown-linux-gnu";
-      };
-    }
+    # Include the results of the hardware scan.
+    ./hardware-configuration.nix
 
-    "${nixos-rk3588}/modules/boards/orangepi5plus.nix"
     ../../modules/base.nix
     ../../modules/user-group.nix
     ../../modules/server.nix
+    ../../modules/grafana.nix
+  ];
+
+  boot.supportedFilesystems = [
+    "ext4"
+    "btrfs"
+    "xfs"
+    # "zfs"
+    "ntfs"
+    "fat"
+    "vfat"
+    "exfat"
+    "cifs"
   ];
 
   users.users.root.openssh.authorizedKeys.keys = config.users.users."${username}".openssh.authorizedKeys.keys;
+
+  # Bootloader.
+  boot.loader = {
+    efi.canTouchEfiVariables = true;
+    systemd-boot.enable = true;
+  };
+
+  networking = {
+    hostName = "venice";
+    enableIPv6 = true;
+  };
 
   virtualisation = {
     podman = {
@@ -29,19 +44,6 @@
     oci-containers = {
       backend = "podman";
     };
-  };
-
-  networking = {
-    hostName = "venice";
-    wireless.enable = false;
-    networkmanager.enable = false;
-
-    interfaces.enP3p49s0 = {
-      useDHCP = true;
-    };
-    nameservers = [
-      "8.8.8.8"
-    ];
   };
 
   system.stateVersion = "23.05";

@@ -45,8 +45,8 @@
     ];
 
     extraHosts = ''
-      192.168.2.132 venice
       10.1.1.1 milan
+      10.1.1.80 venice
     '';
   };
 

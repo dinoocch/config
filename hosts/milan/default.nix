@@ -6,8 +6,7 @@
 
     ../../modules/base.nix
     ../../modules/user-group.nix
-    ../../modules/server.nix
-    ../../modules/netboot.nix
+    # ../../modules/netboot.nix
   ];
 
   boot.supportedFilesystems = [
@@ -85,7 +84,7 @@
         table inet filter {
           flowtable f {
             hook ingress priority filter
-            devices = { "enp2s0", "enp3s0" };
+            devices = { "enp2s0", "enp3s0", "enp4s0" };
           }
 
           chain output {
@@ -95,13 +94,15 @@
           chain input {
             type filter hook input priority 0; policy drop;
 
-            tcp dport { 22, 80, 443 } counter accept
+            tcp dport { 53 } counter accept
+            udp dport { 53, 67 } counter accept
             iifname { "enp3s0" } tcp dport { 22, 64172 } counter accept comment "router services"
             iifname { "enp3s0" } udp dport { 67, 69, 4011 } counter accept comment "pixiecore udp ports"
 
             iifname { "enp3s0" } counter accept comment "lan -> router"
-            iifname { "enp2s0" } ct state { established, related } counter accept
-            iifname { "enp2s0" } icmp type { echo-request, destination-unreachable, time-exceeded } counter accept comment "Allow select ICMP"
+
+            iifname { "enp2s0", "enp3s0", "enp4s0" } ct state { established, related } counter accept
+            iifname { "enp2s0", "enp3s0", "enp4s0" } icmp type { echo-request, destination-unreachable, time-exceeded } counter accept comment "Allow select ICMP"
             iifname { "enp2s0" } counter drop comment "Drop unsolicited inbound traffic"
           }
 
@@ -112,15 +113,19 @@
             ip6 nexthdr { tcp, udp } flow offload @f;
 
             iifname { "enp3s0", "enp4s0", "enp5s0" } oifname { "enp2s0" } accept comment "local -> wan"
-            iifname { "enp2s0" } oifname { "enp3s0", "enp4s0", "enp5s0" } ct state { established, related } accept comment "wan -> lan"
+            iifname { "enp2s0" } oifname { "enp3s0", "enp4s0", "enp5s0" } ct state { established, related } accept comment "wan -> local"
             iifname { "enp3s0", "enp4s0" } oifname { "enp5s0" } counter accept comment "local -> iot"
             iifname { "enp5s0" } oifname { "enp3s0", "enp4s0" } ct state { established, related } counter accept comment "iot -> local"
+
+            ct status dnat counter accept comment "Allow forwarded connections"
           }
         }
 
         table ip nat {
           chain prerouting {
             type nat hook prerouting priority 100; policy accept;
+
+            iifname { "enp2s0" } tcp dport { 80, 443, 8443 } dnat to 10.1.1.80
           }
 
           chain postrouting {
@@ -184,6 +189,11 @@
         hostName = "rome-1g";
         ipAddress = "10.1.1.68";
         ethernetAddress = "18:c0:4d:09:d5:cc";
+      }
+      {
+        hostName = "venice";
+        ipAddress = "10.1.1.80";
+        ethernetAddress = "a8:b8:e0:01:bb:a9";
       }
     ];
 

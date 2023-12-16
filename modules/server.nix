@@ -163,6 +163,7 @@ in
       server_name
       matrix_hostname
       "rust.${server_name}"
+      "grafana.${server_name}"
     ];
     # TODO: Create some private age encrypted secrets flake
     apikeyFile = "/etc/cfdns-token";

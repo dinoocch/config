@@ -178,14 +178,8 @@
       meta = {
         specialArgs = x64_specialArgs;
         nixpkgs = import nixpkgs {system = x64_system;};
-        nodeSpecialArgs = {
-          venice = rk3588_specialArgs;
-        };
-        nodeNixpkgs = {
-          venice = rk3588_pkgs;
-        };
       };
-      venice = colmenaSystem (venice_modules // rk3588_base_args);
+      venice = colmenaSystem (venice_modules // base_args);
       milan = colmenaSystem (milan_modules // base_args);
     };
   };

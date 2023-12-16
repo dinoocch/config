@@ -33,6 +33,11 @@
   networking = {
     hostName = "venice";
     enableIPv6 = true;
+
+    extraHosts = ''
+      10.1.1.1 milan
+      10.1.1.69 rome
+    '';
   };
 
   virtualisation = {

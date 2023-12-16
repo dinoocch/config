@@ -1,6 +1,7 @@
 {lib, pkgs, ...}: {
   imports = [
     ./user-group.nix
+    ./monitoring.nix
   ];
 
   boot.loader.systemd-boot.configurationLimit = lib.mkDefault 10;

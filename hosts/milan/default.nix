@@ -41,6 +41,11 @@
 
     enableIPv6 = true;
 
+    extraHosts = ''
+      10.1.1.69 rome
+      10.1.1.80 venice
+    '';
+
     # WAN Port
     interfaces.enp2s0 = {
       useDHCP = true;
@@ -152,6 +157,7 @@
   services.unbound = {
     enable = true;
     resolveLocalQueries = false;
+    localControlSocketPath = "/run/unbound/unbound.ctl";
     settings = {
       interface = [
         "127.0.0.1"
@@ -169,6 +175,11 @@
         "\"grafana.dinoocch.dev. IN A 10.1.1.1\""
       ];
     };
+  };
+
+  services.prometheus.exporters.unbound = {
+    enable = true;
+    controlInterface = "/run/unbound/unbound.ctl";
   };
 
   services.dhcpd4 = {

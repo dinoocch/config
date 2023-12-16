@@ -7,7 +7,7 @@
     ../../modules/base.nix
     ../../modules/user-group.nix
     ../../modules/server.nix
-    ../../modules/grafana.nix
+    ../../modules/netboot.nix
   ];
 
   boot.supportedFilesystems = [
@@ -94,7 +94,11 @@
 
           chain input {
             type filter hook input priority 0; policy drop;
+
             tcp dport { 22, 80, 443 } counter accept
+            iifname { "enp3s0" } tcp dport { 22, 64172 } counter accept comment "router services"
+            iifname { "enp3s0" } udp dport { 67, 69, 4011 } counter accept comment "pixiecore udp ports"
+
             iifname { "enp3s0" } counter accept comment "lan -> router"
             iifname { "enp2s0" } ct state { established, related } counter accept
             iifname { "enp2s0" } icmp type { echo-request, destination-unreachable, time-exceeded } counter accept comment "Allow select ICMP"

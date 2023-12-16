@@ -42,9 +42,10 @@
   environment.systemPackages = with pkgs; [
     curl
     git
+    vim
   ];
 
-  environment.variables.EDITOR = "nvim";
+  environment.variables.EDITOR = "vim";
 
   environment.shells = with pkgs; [
     bash

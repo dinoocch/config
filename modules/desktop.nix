@@ -87,15 +87,16 @@
   xdg.portal = {
     enable = true;
     xdgOpenUsePortal = false;
+    config.common.default = "*";
     extraPortals = with pkgs; [
       xdg-desktop-portal-gtk
     ];
   };
 
   fonts = {
-    enableDefaultFonts = true;
+    enableDefaultPackages = true;
     fontDir.enable = true;
-    fonts = with pkgs; [
+    packages = with pkgs; [
       material-design-icons
       font-awesome
       noto-fonts

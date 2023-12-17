@@ -72,6 +72,7 @@ in {
     }));
   };
 
+  networking.firewall.allowedTCPPorts = [ 3030 ];
   services.loki = {
     enable = true;
     configuration = {

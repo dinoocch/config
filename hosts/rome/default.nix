@@ -9,7 +9,9 @@
   boot.binfmt.emulatedSystems = ["aarch64-linux"];
   boot.kernelParams = [
     "elevator=none"
+    "nohibernate"
   ];
+  boot.kernelPackages = config.boot.zfs.package.latestCompatibleLinuxPackages;
   boot.supportedFilesystems = [
     "ext4"
     "btrfs"
@@ -21,6 +23,7 @@
     "exfat"
     "cifs"
   ];
+  services.zfs.autoScrub.enable = true;
 
   # Bootloader.
   boot.loader = {

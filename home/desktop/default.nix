@@ -21,9 +21,9 @@ in
       steamtinkerlaunch
       pkgs-unstable.discord-canary
       # spotify
+      # pkgs-unstable.spotify
       easyeffects
       flameshot
-      pkgs-unstable.spotify
       pkgs-unstable.protontricks
 
       # fluffy?
@@ -36,14 +36,14 @@ in
   };
 
   services.easyeffects.enable = true;
-  # programs.spicetify = {
-  #  enable = true;
-  #  theme = spicePkgs.themes.catppuccin-mocha;
-  #  colorScheme = "flamingo";
-  #  enabledExtensions = with spicePkgs.extensions; [
-  #    fullAppDisplay
-  #    shuffle
-  #    hidePodcasts
-  #  ];
-  #};
+  programs.spicetify = {
+   enable = true;
+   theme = spicePkgs.themes.catppuccin;
+   colorScheme = "mocha";
+   enabledExtensions = with spicePkgs.extensions; [
+     fullAppDisplay
+     shuffle
+     hidePodcasts
+   ];
+  };
 }

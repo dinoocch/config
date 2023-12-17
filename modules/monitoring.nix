@@ -7,6 +7,7 @@ let
   machineSupportsFileSystemZfs = config: elem "zfs" config.boot.supportedFilesystems;
   supportsFileSystemZfs = machineSupportsFileSystemZfs config;
 in {
+  networking.firewall.allowedTCPPorts = [ 9100 ];
   services.prometheus = {
     exporters = {
       node = {

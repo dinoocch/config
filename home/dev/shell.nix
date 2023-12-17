@@ -6,11 +6,11 @@
     ripgrep
   ];
 
-  # programs.eza = {
-  #  enable = true;
-  #  enableAliases = true;
-  #  package = pkgs-unstable.eza;
-  # };
+  programs.eza = {
+    enable = true;
+    enableAliases = true;
+    package = pkgs-unstable.eza;
+  };
   programs.direnv.enable = true;
 
   programs.zsh = {

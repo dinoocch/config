@@ -1,9 +1,7 @@
 {username, ...}: {
   imports = [
-    ./shell.nix
-    ./git.nix
-    ./tmux.nix
-    ./utils.nix
+    ../applications/zsh.nix
+    ../applications/git.nix
   ];
 
   home = {

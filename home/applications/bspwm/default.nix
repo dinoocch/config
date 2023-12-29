@@ -1,4 +1,8 @@
 { pkgs, pkgs-unstable, catppuccin-rofi, ... }: {
+  imports = [
+    ../xorg.nix
+  ];
+
   home.packages = with pkgs; [
     nitrogen
     bspwm

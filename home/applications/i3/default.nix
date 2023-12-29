@@ -1,4 +1,8 @@
 { pkgs, pkgs-unstable, catppuccin-rofi, ... }: {
+  imports = [
+    ../xorg.nix
+  ];
+
   home.packages = with pkgs; [
     pkgs-unstable.i3status-rust
     (pkgs.callPackage ../../../packages/i3-autolayout.nix {})

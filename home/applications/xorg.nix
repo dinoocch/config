@@ -1,8 +1,5 @@
-{pkgs, pkgs-unstable, catppuccin-hyprland, catppuccin-waybar, ...}: {
+{pkgs, ...}: {
   imports = [
-    ./eww
-    ./i3
-    ./bspwm
     ./rofi.nix
   ];
   systemd.user.sessionVariables = {
@@ -15,18 +12,15 @@
     __GLX_VENDOR_LIBRARY_NAME = "nvidia";
   };
 
-  fonts.fontconfig.enable = true;
   home.packages = with pkgs; [
     dunst
-    pipewire
     xcolor
     arandr
     xorg.xbacklight
     xorg.xdpyinfo
     scrot
     sysstat
-    alsa-utils
     xfce.thunar
     xsel
   ];
-                                                                    }
+}

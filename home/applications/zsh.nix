@@ -1,17 +1,9 @@
 {pkgs, pkgs-unstable, catppuccin-starship, ...}: {
-  home.packages = with pkgs; [
-    bat
-    fd
-    htop
-    ripgrep
+  imports = [
+    ./starship.nix
+    ./tmux.nix
+    ./utils.nix
   ];
-
-  programs.eza = {
-    enable = true;
-    enableAliases = true;
-    package = pkgs-unstable.eza;
-  };
-  programs.direnv.enable = true;
 
   programs.zsh = {
     enable = true;
@@ -39,19 +31,4 @@
     enable = true;
   };
 
-  programs.starship = {
-    enable = true;
-    enableBashIntegration = true;
-    enableZshIntegration = true;
-    enableNushellIntegration = true;
-
-    settings = {
-      character = {
-        success_symbol = "[[♥](green) ❯](sky)";
-        error_symbol = "[❯](red)";
-        vicmd_symbol = "[❮](green)";
-      };
-      palette = "catppuccin_mocha";
-    } // builtins.fromTOML (builtins.readFile "${catppuccin-starship}/palettes/mocha.toml");
-  };
 }

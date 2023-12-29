@@ -128,21 +128,21 @@
         ./hosts/rome
         ./modules/desktop.nix
       ];
-      home-module = import ./home/desktop;
+      home-module = import ./home/environments/desktop.nix;
     };
 
     venice_modules = {
       nixos-modules = [
         ./hosts/venice
       ];
-      home-module = import ./home/dev;
+      home-module = import ./home/environments/base.nix;
     };
 
     milan_modules = {
       nixos-modules = [
         ./hosts/milan
       ];
-      home-module = import ./home/dev;
+      home-module = import ./home/environments/base.nix;
     };
   in {
     nixosConfigurations = let

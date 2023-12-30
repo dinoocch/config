@@ -126,7 +126,6 @@
     rome_modules = {
       nixos-modules = [
         ./hosts/rome
-        ./modules/desktop.nix
       ];
       home-module = import ./home/environments/desktop.nix;
     };

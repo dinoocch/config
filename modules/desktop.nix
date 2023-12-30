@@ -1,11 +1,12 @@
 {config, lib, pkgs, pkgs-unstable, custom-fonts, ...}: {
   imports = [
     ./base.nix
-    # ./fhs-fonts.nix
-    ./wm.nix
+    # ./xorg.nix
+    ./wayland.nix
   ];
 
   nixpkgs.config.allowUnfree = true;
+  environment.pathsToLink = ["/libexec"]; # links /libexec from derivations to /run/current-system/sw
 
   environment.systemPackages = with pkgs; [
     colmena
@@ -14,9 +15,7 @@
     mpd
     mpc-cli
     ncmpcpp
-    xfce.thunar
     yad
-    zig
     aria2
     sqlite
     wget
@@ -43,19 +42,12 @@
   environment.shells = with pkgs; [
     bash
     zsh
-    nushell
   ];
 
   programs = {
     ssh.startAgent = true;
     dconf.enable = true;
     light.enable = true;
-    # TODO: Do I even need thunar tbh?
-    thunar.plugins = with pkgs.xfce; [
-      thunar-archive-plugin
-      thuman-volman
-    ];
-    # gamemode.enable = true;
 
     # TODO: Figure out what is wrong with krisp...
     noisetorch.enable = true;
@@ -65,13 +57,20 @@
   sound.enable = false;
 
   services = {
-    printing.enable = true;
+    printing = {
+      enable = true;
+      drivers = [ pkgs.hplip ];
+    };
+
+    gvfs.enable = true; # Mount, trash, and other functionalities
+    tumbler.enable = true; # Thumbnail support for images
     flatpak.enable = true;
     dbus.packages = [pkgs.gcr];
     geoclue2.enable = true;
     udev.packages = with pkgs; [
       gnome.gnome-settings-daemon
     ];
+
     pipewire = {
       enable = true;
       package = pkgs.pipewire;

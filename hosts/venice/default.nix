@@ -5,9 +5,9 @@
     ./hardware-configuration.nix
 
     ../../modules/base.nix
-    ../../modules/user-group.nix
-    ../../modules/server.nix
+    ../../modules/conduit.nix
     ../../modules/grafana.nix
+    ../../modules/rust-intro
   ];
 
   boot.supportedFilesystems = [
@@ -33,22 +33,6 @@
   networking = {
     hostName = "venice";
     enableIPv6 = true;
-
-    extraHosts = ''
-      10.1.1.1 milan
-      10.1.1.69 rome
-    '';
-  };
-
-  virtualisation = {
-    podman = {
-      enable = true;
-      dockerCompat = true;
-      defaultNetwork.settings.dns_enabled = true;
-    };
-    oci-containers = {
-      backend = "podman";
-    };
   };
 
   system.stateVersion = "23.05";

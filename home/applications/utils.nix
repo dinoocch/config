@@ -10,6 +10,7 @@
     bat
     fd
     htop
+    btop
     ripgrep
 
     # nix-build --log-format internal-json -v |& nom --json
@@ -38,5 +39,12 @@
     enable = true;
     enableAliases = true;
     package = pkgs-unstable.eza;
+  };
+
+  programs.yazi = {
+    enable = true;
+    package = pkgs-unstable.yazi;
+    enableBashIntegration = true;
+    enableZshIntegration = true;
   };
 }

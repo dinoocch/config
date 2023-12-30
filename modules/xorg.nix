@@ -1,9 +1,5 @@
 {pkgs, ...}: {
-  environment.pathsToLink = ["/libexec"]; # links /libexec from derivations to /run/current-system/sw
-
   services = {
-    gvfs.enable = true; # Mount, trash, and other functionalities
-    tumbler.enable = true; # Thumbnail support for images
     xserver = {
       enable = true;
 

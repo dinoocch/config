@@ -9,7 +9,8 @@
     ../applications/terminal.nix
     ../applications/spicetify.nix
 
-    ../applications/bspwm
+    # ../applications/bspwm
+    ../applications/hyprland
   ];
 
   home.packages = with pkgs; [

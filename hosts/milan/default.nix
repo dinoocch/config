@@ -5,8 +5,6 @@
     ./hardware-configuration.nix
 
     ../../modules/base.nix
-    ../../modules/user-group.nix
-    # ../../modules/netboot.nix
   ];
 
   boot.supportedFilesystems = [
@@ -40,11 +38,6 @@
     hostName = "milan";
 
     enableIPv6 = true;
-
-    extraHosts = ''
-      10.1.1.69 rome
-      10.1.1.80 venice
-    '';
 
     # WAN Port
     interfaces.enp2s0 = {

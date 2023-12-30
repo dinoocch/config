@@ -4,7 +4,12 @@
     ./monitoring.nix
   ];
 
-  boot.loader.systemd-boot.configurationLimit = lib.mkDefault 10;
+  boot.loader = {
+    efi.canTouchEfiVariables = lib.mkDefault true;
+    systemd-boot.enable = lib.mkDefault true;
+    systemd-boot.configurationLimit = lib.mkDefault 10;
+  };
+
   nix.gc = {
     automatic = lib.mkDefault true;
     dates = lib.mkDefault "weekly";
@@ -33,6 +38,7 @@
     };
     openFirewall = true;
   };
+
   services = {
     power-profiles-daemon = {
       enable = true;
@@ -54,4 +60,22 @@
   ];
   users.defaultUserShell = pkgs.zsh;
   programs.zsh.enable = true;
+
+  virtualisation = {
+    podman = {
+      enable = true;
+      dockerCompat = true;
+      defaultNetwork.settings.dns_enabled = true;
+    };
+    oci-containers = {
+      backend = "podman";
+    };
+  };
+
+  # TODO: DNS entries in milan
+  networking.extraHosts = ''
+      10.1.1.1 milan
+      10.1.1.69 rome
+      10.1.1.80 venice
+  '';
 }

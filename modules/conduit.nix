@@ -25,12 +25,12 @@ let
 in
 
 {
-  # Configure Conduit itself
+  imports = [
+    ./acme.nix
+  ];
+
   services.matrix-conduit = {
     enable = true;
-
-    # This causes NixOS to use the flake defined in this repository instead of
-    # the build of Conduit built into nixpkgs.
     package = conduit.packages.${pkgs.system}.default;
 
     settings.global = {
@@ -40,20 +40,6 @@ in
     };
   };
 
-  # Configure automated TLS acquisition/renewal
-  security.acme = {
-    acceptTerms = true;
-    defaults = {
-      email = admin_email;
-    };
-  };
-
-  # ACME data must be readable by the NGINX user
-  users.users.nginx.extraGroups = [
-    "acme"
-  ];
-
-  # Configure NGINX as a reverse proxy
   services.nginx = {
     enable = true;
     recommendedProxySettings = true;
@@ -110,12 +96,12 @@ in
         '';
       };
 
+      # TODO: Add a real website someday
       "${server_name}" = {
         forceSSL = true;
         enableACME = true;
 
         locations."=/.well-known/matrix/server" = {
-          # Use the contents of the derivation built previously
           alias = "${well_known_server}";
 
           extraConfig = ''
@@ -125,7 +111,6 @@ in
         };
 
         locations."=/.well-known/matrix/client" = {
-          # Use the contents of the derivation built previously
           alias = "${well_known_client}";
 
           extraConfig = ''
@@ -135,14 +120,6 @@ in
             # https://matrix.org/docs/spec/client_server/r0.4.0#web-browser-clients
             add_header Access-Control-Allow-Origin "*";
           '';
-        };
-      };
-
-      "rust.${server_name}" = {
-        forceSSL = true;
-        enableACME = true;
-        locations."/" = {
-          root = ./rust-intro;
         };
       };
     };
@@ -162,8 +139,6 @@ in
     records = [
       server_name
       matrix_hostname
-      "rust.${server_name}"
-      "grafana.${server_name}"
     ];
     # TODO: Create some private age encrypted secrets flake
     apikeyFile = "/etc/cfdns-token";

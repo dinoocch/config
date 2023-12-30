@@ -15,7 +15,10 @@ let
     job_name = k;
     scrape_interval = "30s";
   } // (removeAttrs v [ "hostNames" "port" ]))));
-in {
+
+in
+
+{
   services.grafana = {
     enable = true;
     domain = "grafana.dinoocch.dev";
@@ -47,6 +50,16 @@ in {
       proxyPass = "http://[::]:2342$request_uri";
       proxyWebsockets = true;
     };
+  };
+
+  services.cfdyndns = {
+    enable = true;
+    email = "dino.occhialini@gmail.com";
+    records = [
+      "grafana.dinoocch.dev"
+    ];
+    # TODO: Create some private age encrypted secrets flake
+    apikeyFile = "/etc/cfdns-token";
   };
 
   systemd.services.prometheus.serviceConfig.LimitNOFILE = 1024000;

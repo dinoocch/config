@@ -11,4 +11,6 @@
       };
     };
   };
+
+  security.pam.services.waylock = {};
 }

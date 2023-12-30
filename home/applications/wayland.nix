@@ -61,7 +61,6 @@
     swayidle
     wf-recorder
     wl-clipboard
-    wlogout
     waylock
     yad
     wofi

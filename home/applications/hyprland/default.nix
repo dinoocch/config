@@ -1,6 +1,7 @@
 {pkgs-unstable, catppuccin-hyprland, ...}: {
   imports = [
     ../wayland.nix
+    ../wlogout.nix
   ];
 
   home.packages = with pkgs-unstable; [
@@ -24,13 +25,13 @@
       source = ./waybar;
       recursive = true;
     };
-  };
 
-  xdg.configFile."hypr/hyprpaper.conf".text = ''
-    # Wallpaper
-    preload = ~/wallpapers/japan-1-hscaled.png
-    preload = ~/wallpapers/japan-2-vscaled.png
-    wallpaper = DP-1,~/wallpapers/japan-1-hscaled.png
-    wallpaper = DP-2,~/wallpapers/japan-2-vscaled.png
-  '';
+    "hypr/hyprpaper.conf".text = ''
+      # Wallpaper
+      preload = ~/wallpapers/japan-1-hscaled.png
+      preload = ~/wallpapers/japan-2-vscaled.png
+      wallpaper = DP-1,~/wallpapers/japan-1-hscaled.png
+      wallpaper = DP-2,~/wallpapers/japan-2-vscaled.png
+    '';
+  };
 }

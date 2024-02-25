@@ -14,7 +14,7 @@
   ];
 
   home.packages = with pkgs; [
-      lutris
+      pkgs-unstable.lutris
       pkgs-unstable.steam
       pkgs-unstable.steam-run
       steamtinkerlaunch
@@ -27,6 +27,8 @@
       krita
       vlc
       pkgs-unstable.zoom-us
+      pkgs-unstable.vscode
+      pkgs-unstable.ollama
   ];
 
   fonts.fontconfig.enable = true;

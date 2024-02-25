@@ -3,7 +3,6 @@
 let
   server_name = "dinoocch.dev";
   matrix_hostname = "matrix.${server_name}";
-  admin_email = "dino@${server_name}";
 
   # These ones you can leave alone
 

@@ -62,6 +62,9 @@
         url = "gitlab:famedly/conduit";
         # inputs.nixpkgs.follows = "nixpkgs";
     };
+    hyprland = {
+      url = "github:hyprwm/Hyprland";
+    };
 
     # rk3588 - TODO: Probably needs to use a fork for now?
     nixos-rk3588 = { 
@@ -126,6 +129,7 @@
     rome_modules = {
       nixos-modules = [
         ./hosts/rome
+        ./modules/desktop.nix
       ];
       home-module = import ./home/environments/desktop.nix;
     };

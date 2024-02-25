@@ -1,4 +1,7 @@
-{...}: {
+{...}: let
+  admin_email = "dino@dinoocch.dev";
+in
+{
   # Configure automated TLS acquisition/renewal
   security.acme = {
     acceptTerms = true;

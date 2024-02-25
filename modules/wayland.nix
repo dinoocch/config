@@ -1,4 +1,4 @@
-{username, pkgs-unstable, ...}: {
+{pkgs, username, hyprland, ...}: {
   services = {
     xserver.enable = false;
     greetd = {
@@ -6,11 +6,16 @@
       settings = {
         default_session = {
           user = username;
-          command = "${pkgs-unstable.hyprland}/bin/Hyprland";
+          command = "${hyprland.packages.${pkgs.system}.hyprland}/bin/Hyprland";
         };
       };
     };
   };
 
   security.pam.services.waylock = {};
+
+  programs.hyprland = {
+    enable = true;
+    package = hyprland.packages.${pkgs.system}.hyprland;
+  };
 }

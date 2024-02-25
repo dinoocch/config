@@ -4,7 +4,7 @@ let
 in
 {
   imports = [
-    ./acme.nix
+    ../acme.nix
   ];
 
   services.nginx.virtualHosts."rust.${server_name}" = {
@@ -12,7 +12,7 @@ in
     enableACME = true;
     locations."/" = {
       # TODO: Build this with a flake...
-      root = ./rust-intro;
+      root = ./dist;
     };
   };
 

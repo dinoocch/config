@@ -62,13 +62,16 @@
   programs.zsh.enable = true;
 
   virtualisation = {
+    docker = {
+      enable = true;
+    };
     podman = {
       enable = true;
-      dockerCompat = true;
+# dockerCompat = true;
       defaultNetwork.settings.dns_enabled = true;
     };
     oci-containers = {
-      backend = "podman";
+      # backend = "podman";
     };
   };
 

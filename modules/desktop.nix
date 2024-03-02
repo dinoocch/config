@@ -3,6 +3,7 @@
     ./base.nix
     # ./xorg.nix
     ./wayland.nix
+    ./alien.nix
   ];
 
   nixpkgs.config.allowUnfree = true;

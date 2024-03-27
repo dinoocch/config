@@ -7,6 +7,7 @@
     # neovim-nightly
     tree-sitter
 
+    sqlite
     grc
     starship
     zsh-autopair
@@ -17,7 +18,7 @@
     zsh-you-should-use
 
     bat
-    exa
+    eza
     fd
     htop
     ripgrep
@@ -26,8 +27,10 @@
     gh
     gping
 
+    zsh
     tmux
     tmux-xpanes
+    neovim
 
     ctags
     /* deno */
@@ -155,6 +158,16 @@
     bind -r C-l select-window -t :+
     bind C-s set-window-option synchronize-panes
     '';
+  };
+  programs.direnv.enable = true;
+
+  programs.zellij = {
+    enable = true;
+    enableZshIntegration = true;
+    settings = {
+      default_shell = "zsh";
+      theme = "catppuccin-mocha";
+    };
   };
 
 }

@@ -48,13 +48,13 @@
   in {
     homeConfigurations = {
       docchial = home.lib.homeManagerConfiguration {
-        pkgs = nixpkgs.legacyPackages.x86_64-darwin;
+        pkgs = nixpkgs.legacyPackages.x86_64-linux;
         modules = [
           {
             nixpkgs.overlays = overlays;
             home = {
               username = "docchial";
-              homeDirectory = "/Users/docchial";
+              homeDirectory = "/home/docchial";
               stateVersion = "22.11";
             };
           }

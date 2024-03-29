@@ -27,6 +27,7 @@
     gh
     gping
 
+    fish
     zsh
     tmux
     tmux-xpanes
@@ -101,7 +102,7 @@
 
   xdg.configFile."alacritty/alacritty.yml".source = ./files/alacritty.yml;
   xdg.configFile."wezterm/wezterm.lua".source = ./files/wezterm.lua;
-  xdg.configFile."starship.toml".source = ./files/starship.toml;
+  # xdg.configFile."starship.toml".source = ./files/starship.toml;
 
   programs.tmux = {
     enable = true;
@@ -164,10 +165,29 @@
   programs.zellij = {
     enable = true;
     enableZshIntegration = true;
+  };
+
+
+  xdg.configFile."zellij" = {
+    source = ./files/zellij;
+    recursive = true;
+  };
+
+  programs.starship = {
+    enable = true;
+    enableBashIntegration = true;
+    enableZshIntegration = true;
+    enableFishIntegration = true;
     settings = {
-      default_shell = "zsh";
-      theme = "catppuccin-mocha";
+      character = {
+        success_symbol = "[[♥](green) ❯](sky)";
+        error_symbol = "[❯](red)";
+        vicmd_symbol = "[❮](green)";
+      };
     };
   };
 
+  programs.fish = {
+    enable = true;
+  };
 }

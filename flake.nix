@@ -65,6 +65,7 @@
     hyprland = {
       url = "github:hyprwm/Hyprland";
     };
+    nix-alien.url = "github:thiagokokada/nix-alien";
 
     # rk3588 - TODO: Probably needs to use a fork for now?
     nixos-rk3588 = { 

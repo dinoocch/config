@@ -43,6 +43,7 @@
   environment.shells = with pkgs; [
     bash
     zsh
+    fish
   ];
 
   programs = {
@@ -70,6 +71,7 @@
     geoclue2.enable = true;
     udev.packages = with pkgs; [
       gnome.gnome-settings-daemon
+      pkgs-unstable.zsa-udev-rules
     ];
 
     pipewire = {
@@ -122,4 +124,6 @@
       emoji = ["Noto Color Emoji"];
     };
   };
+
+  # hardware.keyboard.zsa.enable = true;
 }

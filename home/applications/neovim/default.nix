@@ -8,7 +8,7 @@
     rust-analyzer
     rustfmt
     taplo
-    rnix-lsp
+    # rnix-lsp
     nixpkgs-fmt
   ];
 

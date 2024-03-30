@@ -8,7 +8,6 @@
     ../../modules/conduit.nix
     ../../modules/grafana.nix
     ../../modules/rust-intro
-    ../../modules/penpot.nix
   ];
 
   boot.supportedFilesystems = [

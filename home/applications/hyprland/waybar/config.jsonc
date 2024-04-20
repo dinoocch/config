@@ -18,24 +18,22 @@
     "custom/powermenu",
   ],
   "hyprland/workspaces": {
-    "format": "{icon}",
+    "format": "{id} {windows}",
     "on-click": "activate",
-    "format-icons": {
-      "1": "",
-      "2": "",
-      "3": "〇",
-      "4": "〇",
-      "5": "〇",
-      "6": "〇",
-      "7": "󰓓",
-      "8": "",
-      "9": "󰙯",
-      "10": "",
-      "focused": "",
-      "default": ""
-    }
+    "format-window-separator": " | ",
+    "window-rewrite-default": "",
+    "window-rewrite": {
+      "title<.*youtube.*>": "",
+      "class<firefox>": "",
+      "class<google-chrome>": "",
+      "class<firefox> title<.*github.*>": "",
+      "class<google-chrome> title<.*github.*>": "",
+      "kitty": "",
+      "code": "󰨞",
+      "discord": "",
+      "spotify": "",
+    },
   },
-
   "clock": {
     "interval": 60,
     "align": 0,

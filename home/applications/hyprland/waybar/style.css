@@ -2,13 +2,12 @@
 
 * {
   /* https://docs.gtk.org/gtk3/css-overview.html#colors */
-  color: @text;
   font-family: "Comic Code Ligatures";
   font-size: 12pt;
   font-weight: bold;
-  border-radius: 8px;
   transition-property: background-color;
   transition-duration: 0.5s;
+  border-radius: 0px;
 }
 @keyframes blink_red {
   to {
@@ -27,37 +26,30 @@
 }
 window#waybar {
   background-color: transparent;
-  border: 2px solid alpha(@crust, 0.3);
 }
 window > box {
-  margin-left: 5px;
-  margin-right: 5px;
-  margin-top: 5px;
-  background-color: shade(@base, 0.9);
   padding: 3px;
   padding-left: 8px;
-  border: 2px none #33ccff;
 }
 #workspaces {
   padding-left: 0px;
   padding-right: 4px;
 }
 #workspaces button {
-  padding-top: 5px;
-  padding-bottom: 5px;
-  padding-left: 6px;
-  padding-right: 6px;
+  padding: 2px 5px;
+  background: transparent;
+  border-top: 2px solid transparent;
 }
-#workspaces button.active {
-  background-color: shade(@surface2, 0.9);
-  color: shade(@sky, 0.9);
+#workspaces button.active, #workspaces button.focused {
+  color: @lavender;
+  border-top: 2px solid @lavender;
 }
 #workspaces button.urgent {
   color: shade(@red, 0.9);
 }
 #workspaces button:hover {
   background-color: shade(@overlay, 0.9);
-  color: shade(@lavender, 0.9);
+  color: shade(@sky, 0.9);
 }
 tooltip {
   background: rgb(48, 45, 65);
@@ -88,11 +80,6 @@ tooltip label {
   padding-right: 10px;
 }
 
-/* #mode { */
-/* 	margin-left: 10px; */
-/* 	background-color: rgb(248, 189, 150); */
-/*     color: rgb(26, 24, 38); */
-/* } */
 #memory {
   color: rgb(181, 232, 224);
 }

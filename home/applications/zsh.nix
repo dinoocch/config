@@ -2,7 +2,6 @@
   imports = [
     ./starship.nix
     ./tmux.nix
-    ./utils.nix
   ];
 
   programs.zsh = {

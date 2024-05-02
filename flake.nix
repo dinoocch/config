@@ -186,5 +186,20 @@
       venice = colmenaSystem (venice_modules // base_args);
       milan = colmenaSystem (milan_modules // base_args);
     };
+
+    homeConfigurations = {
+      "docchial@docchial-mn2" =
+        inputs.home-manager.lib.homeManagerConfiguration {
+          pkgs = nixpkgs.legacyPackages.aarch64-darwin;
+          modules = [ ./home/environments/work.nix ];
+          extraSpecialArgs = {
+            username = "docchial";
+            pkgs-unstable = import nixpkgs-unstable {
+              system = "aarch64-darwin";
+              config.allowUnfree = true;
+            };
+          } // inputs;
+        };
+    };
   };
 }

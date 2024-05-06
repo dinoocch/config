@@ -4,6 +4,7 @@
     ../applications/git.nix
     ../applications/dev.nix
     ../applications/terminal.nix
+    ../applications/mac.nix
   ];
   programs.home-manager.enable = true;
 

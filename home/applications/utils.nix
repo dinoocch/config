@@ -19,7 +19,7 @@
 
   programs.eza = {
     enable = true;
-    enableAliases = true;
+    # enableZshIntegration = true;
     package = pkgs-unstable.eza;
   };
 

@@ -23,6 +23,8 @@
       pkgs-unstable.protontricks
 
       pkgs-unstable.element-desktop
+      ardour
+      audacity
       gimp
       krita
       vlc

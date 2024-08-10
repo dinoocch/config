@@ -87,7 +87,7 @@ in
 
   networking.firewall.allowedTCPPorts = [ 3030 ];
   services.loki = {
-    enable = true;
+    enable = false;
     configuration = {
       server.http_listen_port = 3030;
       auth_enabled = false;
@@ -106,7 +106,6 @@ in
         max_chunk_age = "1h";
         chunk_target_size = 999999;
         chunk_retain_period = "30s";
-        max_transfer_retries = 0;
       };
 
       schema_config = {
@@ -127,7 +126,6 @@ in
           active_index_directory = "/var/lib/loki/boltdb-shipper-active";
           cache_location = "/var/lib/loki/boltdb-shipper-cache";
           cache_ttl = "24h";
-          shared_store = "filesystem";
         };
 
         filesystem = {
@@ -141,7 +139,6 @@ in
       };
 
       chunk_store_config = {
-        max_look_back_period = "0s";
       };
 
       table_manager = {
@@ -151,7 +148,6 @@ in
 
       compactor = {
         working_directory = "/var/lib/loki";
-        shared_store = "filesystem";
         compactor_ring = {
           kvstore = {
             store = "inmemory";

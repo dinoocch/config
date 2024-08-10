@@ -57,7 +57,7 @@ in {
         ) ++ (
           optionals (mountsFileSystemType "xfs") [ "xfs" ]
         ) ++ (
-          optionals (supportsFileSystemZfs) [ "zfs" ]
+          optionals (mountsFileSystemType "zfs") [ "zfs" ]
         );
       };
     };

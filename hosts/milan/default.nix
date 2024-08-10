@@ -126,6 +126,8 @@
             iifname { "enp2s0" } oifname { "enp3s0", "enp4s0", "enp5s0" } ct state { established, related } accept comment "wan -> local"
             iifname { "enp3s0", "enp4s0" } oifname { "enp5s0" } counter accept comment "local -> iot"
             iifname { "enp5s0" } oifname { "enp3s0", "enp4s0" } ct state { established, related } counter accept comment "iot -> local"
+            # iifname { "enp3s0", "enp4s0" } oifname { "enp3s0", "enp4s0" } tcp dport { 631, 9100 } accept comment "printing"
+            # iifname { "enp3s0", "enp4s0" } oifname { "enp3s0", "enp4s0" } accept comment "printing"
 
             ct status dnat counter accept comment "Allow forwarded connections"
           }

@@ -1,4 +1,4 @@
-{ pkgs, pkgs-unstable, catppuccin-rofi, ... }: {
+{ pkgs, pkgs-unstable, ... }: {
   imports = [
     ../xorg.nix
   ];

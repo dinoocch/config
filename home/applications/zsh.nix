@@ -1,4 +1,4 @@
-{pkgs, pkgs-unstable, catppuccin-starship, ...}: {
+{pkgs, pkgs-unstable, ...}: {
   imports = [
     ./starship.nix
     ./tmux.nix

@@ -1,10 +1,8 @@
-{pkgs, pkgs-unstable, config, catppuccin-qt5ct, ...}:
+{pkgs, pkgs-unstable, config, ...}:
 let
   theme = "Catppuccin-Mocha-Compact-Pink-Dark";
   qtct = ''
     [Appearance]
-    color_scheme_path=${catppuccin-qt5ct}/themes/Catppuccin-Mocha.conf";
-    custom_palette=true
     icon_theme=Papirus-Dark
     standard_dialogs=gtk3
     style=Fusion
@@ -48,6 +46,7 @@ in {
   dconf.settings = {
     "org/gnome/desktop/interface" = {
       gtk-key-theme-name = theme;
+      color-scheme = "prefer-dark";
     };
   };
 
@@ -65,14 +64,6 @@ in {
       package = pkgs.papirus-icon-theme;
     };
 
-    theme = {
-      name = theme;
-      package = pkgs-unstable.catppuccin-gtk.override {
-        accents = ["pink"];
-        size = "compact";
-        variant = "mocha";
-      };
-    };
     gtk3.extraConfig = {
       Settings = ''
         gtk-application-prefer-dark-theme=1

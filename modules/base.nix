@@ -1,5 +1,6 @@
 {lib, pkgs, ...}: {
   imports = [
+    ./catppuccin.nix
     ./user-group.nix
     ./monitoring.nix
   ];

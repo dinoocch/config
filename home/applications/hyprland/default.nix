@@ -1,4 +1,4 @@
-{pkgs-unstable, catppuccin-hyprland, ...}: {
+{pkgs-unstable, ...}: {
   imports = [
     ../wayland.nix
     ../wlogout.nix
@@ -13,9 +13,6 @@
   wayland.windowManager.hyprland = {
     enable = true;
     package = pkgs-unstable.hyprland;
-    settings = {
-      source = "${catppuccin-hyprland}/themes/mocha.conf";
-    };
     extraConfig = builtins.readFile ./hyprland.conf;
     systemd.enable = true;
   };
@@ -33,5 +30,14 @@
       wallpaper = DP-1,~/wallpapers/mocha-sword-girl.jpg
       wallpaper = DP-2,~/wallpapers/japan-2-vscaled.png
     '';
+  };
+
+  programs = {
+    fuzzel = {
+      enable = true;
+    };
+    tofi = {
+      enable = true;
+    };
   };
 }

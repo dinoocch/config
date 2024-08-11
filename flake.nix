@@ -28,34 +28,12 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    anyrun = {
-      url = "github:Kirottu/anyrun";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
-    catppuccin-hyprland = {
-      url = "github:catppuccin/hyprland";
-      flake = false;
+    catppuccin = {
+      url = "github:catppuccin/nix";
     };
     spicetify-nix = {
       url = "github:Gerg-L/spicetify-nix";
       inputs.nixpkgs.follows = "nixpkgs";
-    };
-    # Is this even worth it lol
-    catppuccin-starship = {
-      url = "github:catppuccin/starship";
-      flake = false;
-    };
-    catppuccin-alacritty = {
-      url = "github:catppuccin/alacritty";
-      flake = false;
-    };
-    catppuccin-rofi = {
-      url = "github:catppuccin/rofi";
-      flake = false;
-    };
-    catppuccin-qt5ct = {
-      url = "github:catppuccin/qt5ct";
-      flake = false;
     };
 
     conduit = {

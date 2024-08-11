@@ -1,8 +1,4 @@
 {pkgs, ...}: {
-  imports = [
-    # ./anyrun.nix
-  ];
-
   # Wayland environment variables are such a drag
   home.sessionVariables = {
     # Most likely not needed, but force nvidia gbm
@@ -56,13 +52,19 @@
     dolphin
     grim
     hyprpicker
-    mako
     slurp
     swayidle
     wf-recorder
     wl-clipboard
     waylock
     yad
-    wofi
   ];
+
+  services = {
+    mako = {
+      enable = true;
+      # ignoreTimeout = true;
+      defaultTimeout = 5000;
+    };
+  };
 }

@@ -1,5 +1,6 @@
 {username, ...}: {
   imports = [
+    ../applications/catppuccin.nix
     ../applications/zsh.nix
     ../applications/git.nix
   ];

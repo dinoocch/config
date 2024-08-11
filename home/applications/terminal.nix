@@ -1,4 +1,4 @@
-{pkgs-unstable, catppuccin-alacritty, ...}: {
+{pkgs-unstable, ...}: {
   programs.alacritty = {
     enable = true;
     package = pkgs-unstable.alacritty;
@@ -13,16 +13,12 @@
           style = "Bold";
         };
       };
-      import = [
-        "${catppuccin-alacritty}/catppuccin-mocha.yml"
-      ];
     };
   };
 
   programs.kitty = {
     enable = true;
     package = pkgs-unstable.kitty;
-    theme = "Catppuccin-Mocha";
     settings = {
       font_family = "Comic Code Ligatures";
     };

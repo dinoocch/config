@@ -9,24 +9,11 @@
     plugins = with pkgs; [
       tmuxPlugins.yank
       tmuxPlugins.tmux-thumbs
-      {
-        plugin = tmuxPlugins.mkTmuxPlugin {
-          pluginName = "catppuccin";
-          version = "4e48b09";
-          src = pkgs.fetchFromGitHub {
-            owner = "catppuccin";
-            repo = "tmux";
-            rev = "4e48b09a76829edc7b55fbb15467cf0411f07931";
-            sha256 = "bXEsxt4ozl3cAzV3ZyvbPsnmy0RAdpLxHwN82gvjLdU=";
-          };
-        };
-      }
     ];
     extraConfig = ''
       set-option -g -q mouse on
       set-option -ga terminal-overrides ",xterm-256color:RGB"
       set-option -sg escape-time 10
-      set -g @catppuccin_flavour 'mocha'
       set -g status-position top
 
       bind x kill-pane

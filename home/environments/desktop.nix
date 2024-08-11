@@ -4,7 +4,6 @@
     ../applications/browsers.nix
     ../applications/dev.nix
     ../applications/gtk.nix
-    ../applications/insomnia.nix
     ../applications/nushell.nix
     ../applications/terminal.nix
     ../applications/spicetify.nix

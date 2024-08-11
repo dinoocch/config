@@ -33,6 +33,7 @@
       config.font = wezterm.font("Comic Code Ligatures")
       config.color_scheme = "Catppuccin Mocha"
       config.webgpu_power_preference = "HighPerformance"
+      config.hide_tab_bar_if_only_one_tab = true
       return config
     '';
   };

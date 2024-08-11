@@ -49,8 +49,8 @@ window > box {
   color: shade(@red, 0.9);
 }
 #workspaces button:hover {
-  background-color: shade(@overlay, 0.9);
   color: shade(@sky, 0.9);
+  border-bottom: 3px solid @sky;
 }
 tooltip {
   background: rgb(48, 45, 65);

@@ -1,4 +1,4 @@
-{pkgs-unstable, ...}: {
+{pkgs, pkgs-unstable, wezterm, ...}: {
   programs.alacritty = {
     enable = true;
     package = pkgs-unstable.alacritty;
@@ -26,7 +26,7 @@
 
   programs.wezterm = {
     enable = true;
-    package = pkgs-unstable.wezterm;
+    package = wezterm.packages.${pkgs.system}.default;
     extraConfig = ''
       local wezterm = require("wezterm")
       local config = wezterm.config_builder()

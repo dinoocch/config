@@ -43,6 +43,9 @@
     hyprland = {
       url = "git+https://github.com/hyprwm/Hyprland?submodules=1";
     };
+   wezterm = {
+      url = "github:wez/wezterm?dir=nix";
+    };
     nix-alien.url = "github:thiagokokada/nix-alien";
 
     # rk3588 - TODO: Probably needs to use a fork for now?

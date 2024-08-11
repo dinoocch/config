@@ -26,9 +26,9 @@
     "hypr/hyprpaper.conf".text = ''
       # Wallpaper
       preload = ~/wallpapers/mocha-sword-girl.jpg
-      preload = ~/wallpapers/japan-2-vscaled.png
+      preload = ~/wallpapers/mocha-japan-2-vscaled.png
       wallpaper = DP-1,~/wallpapers/mocha-sword-girl.jpg
-      wallpaper = DP-2,~/wallpapers/japan-2-vscaled.png
+      wallpaper = DP-2,~/wallpapers/mocha-japan-2-vscaled.png
     '';
   };
 

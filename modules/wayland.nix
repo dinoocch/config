@@ -1,4 +1,6 @@
-{pkgs, username, hyprland, ...}: {
+{pkgs, username, hyprland, ...}: let
+  hyprland-pkgs = hyprland.inputs.nixpkgs.legacyPackages.${pkgs.stdenv.hostPlatform.system};
+in  {
   services = {
     xserver.enable = false;
     greetd = {
@@ -17,6 +19,11 @@
   programs.hyprland = {
     enable = true;
     package = hyprland.packages.${pkgs.system}.hyprland;
+  };
+  hardware.opengl = {
+    package = hyprland-pkgs.mesa.drivers;
+    driSupport32Bit = true;
+    package32 = hyprland-pkgs.pkgsi686Linux.mesa.drivers;
   };
 
   # TODO: Remove if it doesn't help at all and/or remove the duplication...

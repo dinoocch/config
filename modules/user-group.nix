@@ -36,6 +36,10 @@
           command = "/run/current-system/sw/bin/nix-copy-closure";
           options = ["NOPASSWD"];
         }
+        {
+          command = "/run/current-system/sw/bin/nixos-rebuild";
+          options = ["NOPASSWD"];
+        }
       ];
     }
   ];

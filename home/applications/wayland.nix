@@ -1,4 +1,4 @@
-{pkgs, ...}: {
+{lib, pkgs, ...}: {
   # Wayland environment variables are such a drag
   home.sessionVariables = {
     # Most likely not needed, but force nvidia gbm
@@ -46,6 +46,7 @@
 
     # TODO
     # XWAYLAND_NO_GLAMOR = "1";
+    ELECTRON_OZONE_PLATFORM_HINT = "wayland";
   };
 
   home.packages = with pkgs; [

@@ -14,23 +14,24 @@
   ];
 
   home.packages = with pkgs; [
-      pkgs-unstable.lutris
-      pkgs-unstable.steam
-      pkgs-unstable.steam-run
-      steamtinkerlaunch
-      pkgs-unstable.discord-canary
-      easyeffects
-      pkgs-unstable.protontricks
+    pkgs-unstable.lutris
+    pkgs-unstable.steam
+    pkgs-unstable.steam-run
+    steamtinkerlaunch
+    pkgs-unstable.discord-canary
+    pkgs-unstable.vesktop
+    easyeffects
+    pkgs-unstable.protontricks
 
-      pkgs-unstable.element-desktop
-      ardour
-      audacity
-      gimp
-      krita
-      vlc
-      pkgs-unstable.zoom-us
-      pkgs-unstable.vscode
-      pkgs-unstable.ollama
+    pkgs-unstable.element-desktop
+    ardour
+    audacity
+    gimp
+    krita
+    vlc
+    pkgs-unstable.zoom-us
+    pkgs-unstable.vscode
+    pkgs-unstable.ollama
   ];
 
   fonts.fontconfig.enable = true;

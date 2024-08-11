@@ -8,8 +8,8 @@
     rust-analyzer
     rustfmt
     taplo
-    # rnix-lsp
     nixpkgs-fmt
+    nil
   ];
 
   programs = {

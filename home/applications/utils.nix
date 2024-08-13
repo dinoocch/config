@@ -7,7 +7,6 @@
     gnupg
     zstd
     unzip
-    bat
     fd
     htop
     btop
@@ -16,6 +15,8 @@
     # nix-build --log-format internal-json -v |& nom --json
     nix-output-monitor
   ];
+
+  programs.bat.enable = true;
 
   programs.eza = {
     enable = true;

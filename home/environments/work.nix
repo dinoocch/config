@@ -13,4 +13,27 @@
     homeDirectory = "/Users/${username}";
     stateVersion = "23.05";
   };
+
+  programs.git = {
+    extraConfig = {
+      core = {
+        sshCommand = "ssh -i ~/.ssh/github_personal";
+      };
+    };
+    includes = [
+      {
+        path = "~/.config/git/linkedin.inc";
+        condition = "gitdir:~/li/";
+      }
+    ];
+  };
+
+  xdg.configFile."git/linkedin.inc".text = ''
+    [user]
+    name = docchial
+    email = "docchial@linkedin.com"
+
+    [core]
+    sshCommand = "ssh -i ~/.ssh/docchial_at_linkedin.com_ssh_key"
+    '';
 }

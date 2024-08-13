@@ -1,10 +1,13 @@
-{pkgs, ...}: {
+{...}: {
   programs.gh = {
     enable = true;
   };
 
   programs.git = {
     enable = true;
+    delta = {
+      enable = true;
+    };
     userName = "dinoocch";
     userEmail = "dino.occhialini@gmail.com";
     aliases = {

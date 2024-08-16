@@ -17,4 +17,5 @@
   ];
 
   programs.direnv.enable = true;
+  programs.k9s.enable = true;
 }

@@ -10,6 +10,7 @@
     shellAliases = {
       sl = "ls";
       sudo = "sudo ";
+      git-up = "cd $(git rev-parse --show-toplevel)";
     };
     shellGlobalAliases = {
       UUID = "$(uuidgen | tr -d \\n)";

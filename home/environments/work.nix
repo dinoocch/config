@@ -1,4 +1,4 @@
-{username, ...}: {
+{lib, username, ...}: {
   imports = [
     ../applications/zsh.nix
     ../applications/git.nix
@@ -19,6 +19,7 @@
       core = {
         sshCommand = "ssh -i ~/.ssh/github_personal";
       };
+      user.signingKey = lib.mkForce "~/.ssh/github_personal.pub";
     };
     includes = [
       {
@@ -32,6 +33,7 @@
     [user]
     name = docchial
     email = "docchial@linkedin.com"
+    signingKey = "~/.ssh/docchial_at_linkedin.com_ssh_key.pub"
 
     [core]
     sshCommand = "ssh -i ~/.ssh/docchial_at_linkedin.com_ssh_key"

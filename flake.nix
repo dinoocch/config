@@ -42,17 +42,22 @@
     };
     hyprland = {
       url = "git+https://github.com/hyprwm/Hyprland?submodules=1";
+      inputs.aquamarine.url = "github:hyprwm/aquamarine";
     };
+
+    schizofox = {
+      url = "github:schizofox/schizofox/main";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+    shyfox = {
+      url = "github:naezr/shyfox";
+      flake = false;
+    };
+
    wezterm = {
       url = "github:wez/wezterm?dir=nix";
     };
     nix-alien.url = "github:thiagokokada/nix-alien";
-
-    # rk3588 - TODO: Probably needs to use a fork for now?
-    nixos-rk3588 = { 
-      url = "github:ryan4yin/nixos-rk3588";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
   };
 
   nixConfig = {
@@ -81,7 +86,6 @@
     nixpkgs-unstable,
     nix-darwin,
     home-manager,
-    nixos-rk3588,
     ...
   }: let
     username = "dino";
@@ -147,16 +151,6 @@
         inherit home-manager;
         nixpkgs = nixpkgs;
         specialArgs = x64_specialArgs;
-        targetUser = "root";
-      };
-      rk3588_pkgs = import nixos-rk3588.inputs.nixpkgs {system = x64_system;};
-      rk3588_specialArgs = {
-        inherit username userfullname useremail conduit;
-      } // nixos-rk3588.inputs;
-      rk3588_base_args = {
-        inherit home-manager;
-        nixpkgs = nixos-rk3588.inputs.nixpkgs; # or nixpkgs-unstable
-        specialArgs = rk3588_specialArgs;
         targetUser = "root";
       };
     in {

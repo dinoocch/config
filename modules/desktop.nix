@@ -99,6 +99,7 @@
     enableDefaultPackages = true;
     fontDir.enable = true;
     packages = with pkgs; [
+      alegreya
       material-design-icons
       font-awesome
       noto-fonts

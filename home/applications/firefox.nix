@@ -71,7 +71,7 @@ in
         "gdpr@cavi.au.dk".install_url = "${extUrl}/consent-o-matic/latest.xpi";
         "{3c078156-979c-498b-8990-85f7987dd929}".install_url = "${extUrl}/sidebery/latest.xpi";
         "CanvasBlocker@kkapsner.de".install_url = "${extUrl}/canvasblocker/latest.xpi";
-        "{76aabc99-c1a8-4c1e-832b-d4f2941d5a7a}".install_url = "${extUrl}/catppuccin-mocha-pink-git/latest.xpi";
+        "{8446b178-c865-4f5c-8ccc-1d7887811ae3}".install_url = "${extUrl}/catppuccin-mocha-lavender-git/latest.xpi";
         "{a218c3db-51ef-4170-804b-eb053fc9a2cd}".install_url = "${extUrl}/qr-code-address-bar/latest.xpi";
         "{93f81583-1fd4-45cc-bff4-abba952167bb}".install_url = "${extUrl}/jiffy-reader/latest.xpi";
         "tridactyl.vim@cmcaine.co.uk".install_url = "${extUrl}/tridactyl-vim/latest.xpi";

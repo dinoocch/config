@@ -77,6 +77,13 @@ in
         "tridactyl.vim@cmcaine.co.uk".install_url = "${extUrl}/tridactyl-vim/latest.xpi";
       };
     };
+
+    settings = {
+      "privacy.resistFingerprinting" = false;
+      "privacy.fingerprintingProtection" = true;
+      "privacy.fingerprintingProtection.pbmode" = true;
+      "privacy.fingerprintingProtection.overrides" = "+AllTargets,-CSSPrefersColorScheme,-JSDateTimeUTC";
+    };
   };
 
   home.file = {

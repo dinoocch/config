@@ -20,6 +20,7 @@
     aria2
     sqlite
     wget
+    xterm
 
     pkgs-unstable.winetricks
     pkgs-unstable.wineWowPackages.staging

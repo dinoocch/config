@@ -34,7 +34,6 @@ in
       '';
     };
 
-
     security = {
       sanitizeOnShutdown = false;
       sandbox = true;
@@ -83,6 +82,40 @@ in
       "privacy.fingerprintingProtection" = true;
       "privacy.fingerprintingProtection.pbmode" = true;
       "privacy.fingerprintingProtection.overrides" = "+AllTargets,-CSSPrefersColorScheme,-JSDateTimeUTC";
+
+      # TODO: Sandbox seems to mess with gpu stuff, so force for now
+      "gfx.webrender.all" = true;
+      "gfx.webrender.precache-shaders" = true;
+      "gfx.webrender.compositor" = true;
+      "gfx.webrender.compositor.force-enabled" = true;
+      "media.hardware-video-decoding.enabled" = true;
+      "gfx.canvas.accelerated" = true;
+      "gfx.canvas.accelerated.cache-items" = true;
+      "gfx.canvas.accelerated.cache-size" = 4096;
+      "gfx.content.skia-font-cache-size" = 80;
+      "layers.gpu-process.enabled" = true;
+      "layers.mlgpu.enabled" = true;
+      "media.ffmpeg.vaapi.enabled" = true;
+      "image.cache.size" = 10485760;
+      "image.mem.decode_bytes_at_a_time" = 131072;
+      "image.mem.shared.unmap.min_expiration_msn" = 120000;
+      "media.memory_cache_max_size" = 1048576;
+      "media.memory_caches_combined_limit_kb" = 2560000;
+      "media.cache_readahead_limit" = 9000;
+      "media.cache_resume_threshold" = 6000;
+      "browser.cache.memory.max_entry_size" = 0;
+      "network.buffer.cache.size" = 262144;
+      "network.buffer.cache.count" = 128;
+      "network.http.max-connections" = 1800;
+      "network.http.max-persistent-connections-per-server" = 30;
+      "network.ssl_tokens_cache_capacity" = 32768;
+      "layout.css.backdrop-filter.enabled" = true;
+      "layers.acceleration.force-enabled" = true;
+      "layout.css.font-visibility.private" = 1;
+      "layout.css.font-visibility.standard" = 1;
+      "layout.css.font-visibility.trackingprotection" = 1;
+      "browser.display.use_document_fonts" = true;
+      "extensions.quarantinedDomains.enabled" = false;
     };
   };
 

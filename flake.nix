@@ -41,8 +41,7 @@
         # inputs.nixpkgs.follows = "nixpkgs";
     };
     hyprland = {
-      url = "git+https://github.com/hyprwm/Hyprland?submodules=1";
-      inputs.aquamarine.url = "github:hyprwm/aquamarine";
+      url = "git+https://github.com/hyprwm/Hyprland?submodules=1&rev=838ed87d6ffae0dbdc8a3ecaac2c8be006f6d053";
     };
 
     schizofox = {

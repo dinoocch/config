@@ -30,6 +30,6 @@
     "nvidia-drm.modeset=1"
   ];
   boot.kernelModules = [
-    "nvidia-uvm" # TODO: I'm not sure why this is not loaded automatically?
+    "nvidia_uvm" # TODO:nixpkgs#334340
   ];
 }

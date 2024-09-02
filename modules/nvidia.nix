@@ -24,4 +24,12 @@
     driSupport = true;
     driSupport32Bit = true;
   };
+
+  boot.kernelParams = [
+    "nvidia_drm.fbdev=1"
+    "nvidia-drm.modeset=1"
+  ];
+  boot.kernelModules = [
+    "nvidia-uvm" # TODO: I'm not sure why this is not loaded automatically?
+  ];
 }

@@ -35,11 +35,6 @@ in  {
       enable = true;
       package = hyprland.packages.${pkgs.system}.hyprland;
     };
-    hardware.opengl = {
-      package = hyprland-pkgs.mesa.drivers;
-      driSupport32Bit = true;
-      package32 = hyprland-pkgs.pkgsi686Linux.mesa.drivers;
-    };
 
     # TODO: Remove if it doesn't help at all and/or remove the duplication...
     environment.sessionVariables = {

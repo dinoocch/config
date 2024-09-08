@@ -5,13 +5,6 @@
     nixpkgs.url = "github:nixos/nixpkgs/nixos-24.05";
     nixpkgs-unstable.url = "github:nixos/nixpkgs/nixos-unstable";
 
-    # Darwin
-    nixpkgs-darwin.url = "github:nixos/nixpkgs/nixpkgs-24.05-darwin";
-    nix-darwin = {
-      url = "github:lnl7/nix-darwin";
-      inputs.nixpkgs.follows = "nixpkgs-darwin";
-    };
-
     # Secrets
     # agenix.url = "github:yaxitech/ragenix";
     # secrets = {
@@ -37,8 +30,8 @@
     };
 
     conduit = {
-        url = "gitlab:famedly/conduit";
-        # inputs.nixpkgs.follows = "nixpkgs";
+      url = "gitlab:famedly/conduit";
+      # inputs.nixpkgs.follows = "nixpkgs";
     };
     hyprland = {
       url = "git+https://github.com/hyprwm/Hyprland?submodules=1&rev=838ed87d6ffae0dbdc8a3ecaac2c8be006f6d053";
@@ -53,117 +46,135 @@
       flake = false;
     };
 
-   wezterm = {
+    wezterm = {
       url = "github:wez/wezterm?dir=nix";
     };
-    nix-alien.url = "github:thiagokokada/nix-alien";
+    pre-commit-hooks.url = "github:cachix/git-hooks.nix";
+    treefmt-nix.url = "github:numtide/treefmt-nix";
   };
 
   nixConfig = {
-    experimental-features = ["nix-command" "flakes"];
+    experimental-features = [
+      "nix-command"
+      "flakes"
+    ];
     substituters = [
       "https://cache.nixos.org"
-      "https://anyrun.cachix.org"
       "https://hyprland.cachix.org"
     ];
-    extra-substituters = [
-      "https://nix-community.cachix.org"
-    ];
+    extra-substituters = [ "https://nix-community.cachix.org" ];
     extra-trusted-public-keys = [
       "cache.nixos.org-1:6NCHdD59X431o0gWypbMrAURkbJ16ZPMQFGspcDShjY="
       "nix-community.cachix.org-1:mB9FSh9qf2dCimDSUo8Zy7bkq5CX+/rkCWyvRCYg3Fs="
-      "anyrun.cachix.org-1:pqBobmOjI7nKlsUMV25u9QHa9btJK65/C8vnO3p346s="
       "hyprland.cachix.org-1:a7pgxzMz7+chwVL3/pzj6jIBMioiJM7ypFP8PwtkuGc="
     ];
   };
 
-  outputs = inputs @ {
-    self,
-    nixpkgs,
-    conduit,
-    custom-fonts,
-    nixpkgs-unstable,
-    nix-darwin,
-    home-manager,
-    ...
-  }: let
-    username = "dino";
-    userfullname = "Dino Occhialini";
-    useremail = "dino.occhialini@gmail.com";
+  outputs =
+    inputs@{
+      self,
+      systems,
+      nixpkgs,
+      conduit,
+      custom-fonts,
+      nixpkgs-unstable,
+      treefmt-nix,
+      home-manager,
+      ...
+    }:
+    let
+      username = "dino";
+      userfullname = "Dino Occhialini";
+      useremail = "dino.occhialini@gmail.com";
 
-    x64_system = "x86_64-linux";
-    x64_darwin = "x86_64-darwin";
-    aarch64_system = "aarch64-linux";
-    allSystems = [x64_system x64_darwin aarch64_system];
+      x64_system = "x86_64-linux";
+      nixosSystem = import ./lib/nixosSystem.nix;
+      colmenaSystem = import ./lib/colmenaSystem.nix;
 
-    nixosSystem = import ./lib/nixosSystem.nix;
-    darwinSystem = import ./lib/darwinSystem.nix;
-    colmenaSystem = import ./lib/colmenaSystem.nix;
-
-    x64_specialArgs =
-      {
-        inherit username userfullname useremail;
+      x64_specialArgs = {
+        inherit
+          username
+          userfullname
+          useremail
+          inputs
+          ;
+        pkgs = import nixpkgs {
+          system = x64_system;
+          config.allowUnfree = true;
+        };
         pkgs-unstable = import nixpkgs-unstable {
           system = x64_system;
           config.allowUnfree = true;
-          overlays = [custom-fonts.overlay];
+          overlays = [ custom-fonts.overlay ];
         };
-      }
-      // inputs;
-
-    rome_modules = {
-      nixos-modules = [
-        ./hosts/rome
-        ./modules/desktop.nix
-      ];
-      home-module = import ./home/environments/desktop.nix;
-    };
-
-    venice_modules = {
-      nixos-modules = [
-        ./hosts/venice
-      ];
-      home-module = import ./home/environments/base.nix;
-    };
-
-    milan_modules = {
-      nixos-modules = [
-        ./hosts/milan
-      ];
-      home-module = import ./home/environments/base.nix;
-    };
-  in {
-    nixosConfigurations = let
-      base_args = {
-        inherit home-manager;
-        nixpkgs = nixpkgs;
-        system = x64_system;
-        specialArgs = x64_specialArgs;
       };
-    in {
-      rome = nixosSystem (rome_modules // base_args);
-      milan = nixosSystem (milan_modules // base_args);
-    };
 
-    colmena = let
-      base_args = {
-        inherit home-manager;
-        nixpkgs = nixpkgs;
-        specialArgs = x64_specialArgs;
-        targetUser = "root";
+      rome_modules = {
+        nixos-modules = [
+          ./hosts/rome
+          ./modules/nixos
+          ./modules/roles/desktop.nix
+        ];
+        home-module = import ./hosts/rome/home.nix;
       };
-    in {
-      meta = {
-        specialArgs = x64_specialArgs;
-        nixpkgs = import nixpkgs {system = x64_system;};
-      };
-      venice = colmenaSystem (venice_modules // base_args);
-      milan = colmenaSystem (milan_modules // base_args);
-    };
 
-    homeConfigurations = {
-      "docchial@docchial-mn2" =
-        inputs.home-manager.lib.homeManagerConfiguration {
+      venice_modules = {
+        nixos-modules = [
+          ./hosts/venice
+          ./modules/nixos
+        ];
+        home-module = import ./hosts/venice/home.nix;
+      };
+
+      milan_modules = {
+        nixos-modules = [
+          ./hosts/milan
+          ./modules/nixos
+        ];
+        home-module = import ./hosts/milan/home.nix;
+      };
+
+      supportedSystems = [
+        "x86_64-linux"
+        "aarch64-linux"
+        "x86_64-darwin"
+        "aarch64-darwin"
+      ];
+      forAllSystems = nixpkgs.lib.genAttrs supportedSystems;
+    in
+    {
+      nixosConfigurations =
+        let
+          base_args = {
+            inherit home-manager nixpkgs;
+            system = x64_system;
+            specialArgs = x64_specialArgs;
+          };
+        in
+        {
+          rome = nixosSystem (rome_modules // base_args);
+          milan = nixosSystem (milan_modules // base_args);
+        };
+
+      colmena =
+        let
+          base_args = {
+            inherit home-manager nixpkgs;
+            specialArgs = x64_specialArgs;
+            targetUser = "root";
+          };
+        in
+        {
+          meta = {
+            specialArgs = x64_specialArgs;
+            nixpkgs = import nixpkgs { system = x64_system; };
+          };
+          venice = colmenaSystem (venice_modules // base_args);
+          milan = colmenaSystem (milan_modules // base_args);
+        };
+
+      homeConfigurations = {
+        "docchial@docchial-mn2" = inputs.home-manager.lib.homeManagerConfiguration {
           pkgs = nixpkgs.legacyPackages.aarch64-darwin;
           modules = [ ./home/environments/work.nix ];
           extraSpecialArgs = {
@@ -174,6 +185,24 @@
             };
           } // inputs;
         };
+      };
+
+      formatter.x86_64-linux = nixpkgs.legacyPackages.x86_64-linux.nixfmt-rfc-style;
+      checks = forAllSystems (system: {
+        pre-commit-check = inputs.pre-commit-hooks.lib.${system}.run {
+          src = ./.;
+          hooks = {
+            nixfmt-rfc-style.enable = true;
+            statix.enable = true;
+          };
+        };
+      });
+
+      devShells = forAllSystems (system: {
+        default = nixpkgs.legacyPackages.${system}.mkShell {
+          inherit (self.checks.${system}.pre-commit-check) shellHook;
+          buildInputs = self.checks.${system}.pre-commit-check.enabledPackages;
+        };
+      });
     };
-  };
 }

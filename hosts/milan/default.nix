@@ -1,17 +1,19 @@
-{lib, config, username, ...} @ args:
+{
+  lib,
+  config,
+  username,
+  ...
+}:
 {
   imports = [
     # Include the results of the hardware scan.
     ./hardware-configuration.nix
-
-    ../../modules/base.nix
   ];
 
   boot.supportedFilesystems = [
     "ext4"
     "btrfs"
     "xfs"
-    # "zfs"
     "ntfs"
     "fat"
     "vfat"
@@ -19,14 +21,8 @@
     "cifs"
   ];
 
-  users.users.root.openssh.authorizedKeys.keys = config.users.users."${username}".openssh.authorizedKeys.keys;
-
-  # Bootloader.
-  boot.loader = {
-    efi.canTouchEfiVariables = true;
-    systemd-boot.enable = true;
-  };
-
+  users.users.root.openssh.authorizedKeys.keys =
+    config.users.users."${username}".openssh.authorizedKeys.keys;
   boot.kernel.sysctl = {
     "net.ipv4.conf.all.forwarding" = true;
     "net.ipv4.conf.default.forwarding" = true;
@@ -45,38 +41,52 @@
     };
 
     # Ports
-    interfaces.enp3s0 = {
-      useDHCP = false;
-      ipv4.addresses = [{
-         address = "10.1.1.1";
-         prefixLength = 24;
-      }];
-      ipv6.addresses = [{
-         address = "fd00:1::1";
-         prefixLength = 64;
-      }];
-    };
-    interfaces.enp4s0 = {
-      useDHCP = false;
-      ipv4.addresses = [{
-         address = "10.2.0.1";
-         prefixLength = 16;
-      }];
-      ipv6.addresses = [{
-         address = "fd00:2::1";
-         prefixLength = 64;
-      }];
-    };
-    interfaces.enp5s0 = {
-      useDHCP = false;
-      ipv4.addresses = [{
-         address = "10.3.0.1";
-         prefixLength = 16;
-      }];
-      ipv6.addresses = [{
-         address = "fd00:3::1";
-         prefixLength = 64;
-      }];
+    interfaces = {
+      enp3s0 = {
+        useDHCP = false;
+        ipv4.addresses = [
+          {
+            address = "10.1.1.1";
+            prefixLength = 24;
+          }
+        ];
+        ipv6.addresses = [
+          {
+            address = "fd00:1::1";
+            prefixLength = 64;
+          }
+        ];
+      };
+      enp4s0 = {
+        useDHCP = false;
+        ipv4.addresses = [
+          {
+            address = "10.2.0.1";
+            prefixLength = 16;
+          }
+        ];
+        ipv6.addresses = [
+          {
+            address = "fd00:2::1";
+            prefixLength = 64;
+          }
+        ];
+      };
+      enp5s0 = {
+        useDHCP = false;
+        ipv4.addresses = [
+          {
+            address = "10.3.0.1";
+            prefixLength = 16;
+          }
+        ];
+        ipv6.addresses = [
+          {
+            address = "fd00:3::1";
+            prefixLength = 64;
+          }
+        ];
+      };
     };
 
     nameservers = [
@@ -157,146 +167,204 @@
     };
   };
 
-  systemd.services.nftables.before = lib.mkForce [];
+  systemd.services.nftables.before = lib.mkForce [ ];
   systemd.services.nftables.after = [ "network-pre.target" ];
 
   # Unbound DNS
-  services.unbound = {
-    enable = true;
-    resolveLocalQueries = false;
-    localControlSocketPath = "/run/unbound/unbound.ctl";
-    settings = {
-      interface = [
-        "127.0.0.1"
-        "10.1.1.1"
-        "10.2.0.1"
-        "10.3.0.1"
-        "fd00:1::1"
-        "fd00:2::1"
-        "fd00:3::1"
-      ];
-      access-control = [
-        "0.0.0.0/0 refuse"
-        "127.0.0.0/8 allow"
-        "10.0.0.0/8 allow"
-        "fd00::/8 allow"
-      ];
-      local-zone = "\"appt.dinoocch.dev\" static";
+  services = {
+    unbound = {
+      enable = true;
+      resolveLocalQueries = false;
+      localControlSocketPath = "/run/unbound/unbound.ctl";
+      settings = {
+        interface = [
+          "127.0.0.1"
+          "10.1.1.1"
+          "10.2.0.1"
+          "10.3.0.1"
+          "fd00:1::1"
+          "fd00:2::1"
+          "fd00:3::1"
+        ];
+        access-control = [
+          "0.0.0.0/0 refuse"
+          "127.0.0.0/8 allow"
+          "10.0.0.0/8 allow"
+          "fd00::/8 allow"
+        ];
+        local-zone = "\"appt.dinoocch.dev\" static";
+      };
     };
-  };
 
-  services.prometheus.exporters.unbound = {
-    enable = true;
-    controlInterface = "/run/unbound/unbound.ctl";
-  };
-
-  services.kea.dhcp4 = {
-    enable = true;
-    settings = {
-      interfaces-config = {
-        interfaces = [ "enp3s0" "enp4s0" "enp5s0" ];
-      };
-
-      lease-database = {
-        name = "/var/lib/kea/dhcp4.leases";
-        type = "memfile";
-        persist = true;
-      };
-
-      subnet4 = [
-        {
-          interface = "enp3s0";
-          subnet = "10.1.1.0/24";
-          pools = [
-            { pool = "10.1.1.10 - 10.1.1.60"; }
-          ];
-          option-data = [
-            { name = "routers"; data = "10.1.1.1"; }
-            { name = "domain-name-servers"; data = "10.1.1.1"; }
-          ];
-          reservations = [
-            { hw-address = "18:c0:4d:09:d5:cd"; ip-address = "10.1.1.69"; hostname = "rome"; }
-            { hw-address = "18:c0:4d:09:d5:cc"; ip-address = "10.1.1.68"; hostname = "rome-1g"; }
-            { hw-address = "a8:b8:e0:01:bb:a9"; ip-address = "10.1.1.80"; hostname = "venice"; }
-          ];
-        }
-        {
-          interface = "enp4s0";
-          subnet = "10.2.0.0/16";
-          pools = [
-            { pool = "10.2.0.5 - 10.2.250.250"; }
-          ];
-          option-data = [
-            { name = "routers"; data = "10.2.0.1"; }
-            { name = "domain-name-servers"; data = "10.2.0.1"; }
-          ];
-        }
-        {
-          interface = "enp5s0";
-          subnet = "10.3.0.0/16";
-          pools = [
-            { pool = "10.3.0.5 - 10.3.250.250"; }
-          ];
-          option-data = [
-            { name = "routers"; data = "10.3.0.1"; }
-            { name = "domain-name-servers"; data = "10.3.0.1"; }
-          ];
-        }
-      ];
+    prometheus.exporters.unbound = {
+      enable = true;
+      controlInterface = "/run/unbound/unbound.ctl";
     };
-  };
 
-  services.kea.dhcp6 = {
-    enable = false;
-    settings = {
-      interfaces-config = {
-        interfaces = [ "enp3s0" "enp4s0" "enp5s0" ];
+    kea.dhcp4 = {
+      enable = true;
+      settings = {
+        interfaces-config = {
+          interfaces = [
+            "enp3s0"
+            "enp4s0"
+            "enp5s0"
+          ];
+        };
+
+        lease-database = {
+          name = "/var/lib/kea/dhcp4.leases";
+          type = "memfile";
+          persist = true;
+        };
+
+        subnet4 = [
+          {
+            interface = "enp3s0";
+            subnet = "10.1.1.0/24";
+            pools = [ { pool = "10.1.1.10 - 10.1.1.60"; } ];
+            option-data = [
+              {
+                name = "routers";
+                data = "10.1.1.1";
+              }
+              {
+                name = "domain-name-servers";
+                data = "10.1.1.1";
+              }
+            ];
+            reservations = [
+              {
+                hw-address = "18:c0:4d:09:d5:cd";
+                ip-address = "10.1.1.69";
+                hostname = "rome";
+              }
+              {
+                hw-address = "18:c0:4d:09:d5:cc";
+                ip-address = "10.1.1.68";
+                hostname = "rome-1g";
+              }
+              {
+                hw-address = "a8:b8:e0:01:bb:a9";
+                ip-address = "10.1.1.80";
+                hostname = "venice";
+              }
+            ];
+          }
+          {
+            interface = "enp4s0";
+            subnet = "10.2.0.0/16";
+            pools = [ { pool = "10.2.0.5 - 10.2.250.250"; } ];
+            option-data = [
+              {
+                name = "routers";
+                data = "10.2.0.1";
+              }
+              {
+                name = "domain-name-servers";
+                data = "10.2.0.1";
+              }
+            ];
+          }
+          {
+            interface = "enp5s0";
+            subnet = "10.3.0.0/16";
+            pools = [ { pool = "10.3.0.5 - 10.3.250.250"; } ];
+            option-data = [
+              {
+                name = "routers";
+                data = "10.3.0.1";
+              }
+              {
+                name = "domain-name-servers";
+                data = "10.3.0.1";
+              }
+            ];
+          }
+        ];
       };
-      lease-database = {
-        name = "/var/lib/kea/dhcp6.leases";
-        type = "memfile";
-        persist = true;
+    };
+
+    kea.dhcp6 = {
+      enable = false;
+      settings = {
+        interfaces-config = {
+          interfaces = [
+            "enp3s0"
+            "enp4s0"
+            "enp5s0"
+          ];
+        };
+        lease-database = {
+          name = "/var/lib/kea/dhcp6.leases";
+          type = "memfile";
+          persist = true;
+        };
+        subnet6 = [
+          {
+            interface = "enp3s0";
+            subnet = "fd00:1::/64";
+            pools = [ { pool = "fd00:1::10 - fd00:1::60"; } ];
+            option-data = [
+              {
+                name = "routers";
+                data = "fd00:1::1";
+              }
+              {
+                name = "domain-name-servers";
+                data = "fd00:1::1";
+              }
+            ];
+            reservations = [
+              {
+                hw-address = "18:c0:4d:09:d5:cd";
+                ip-address = "fd00:1::69";
+                hostname = "rome";
+              }
+              {
+                hw-address = "18:c0:4d:09:d5:cc";
+                ip-address = "fd00:1::68";
+                hostname = "rome-1g";
+              }
+              {
+                hw-address = "a8:b8:e0:01:bb:a9";
+                ip-address = "fd00:1::80";
+                hostname = "venice";
+              }
+            ];
+          }
+          {
+            interface = "enp4s0";
+            subnet = "fd00:2::/64";
+            pools = [ { pool = "fd00:2::5 - fd00:2::fffe"; } ];
+            option-data = [
+              {
+                name = "routers";
+                data = "fd00:2::1";
+              }
+              {
+                name = "domain-name-servers";
+                data = "fd00:2::1";
+              }
+            ];
+          }
+          {
+            interface = "enp5s0";
+            subnet = "fd00:3::/64";
+            pools = [ { pool = "fd00:3::5 - fd00:3::fffe"; } ];
+            option-data = [
+              {
+                name = "routers";
+                data = "fd00:3::1";
+              }
+              {
+                name = "domain-name-servers";
+                data = "fd00:3::1";
+              }
+            ];
+          }
+        ];
       };
-      subnet6 = [
-        {
-          interface = "enp3s0";
-          subnet = "fd00:1::/64";
-          pools = [
-            { pool = "fd00:1::10 - fd00:1::60"; }
-          ];
-          option-data = [
-            { name = "routers"; data = "fd00:1::1"; }
-            { name = "domain-name-servers"; data = "fd00:1::1"; }
-          ];
-          reservations = [
-            { hw-address = "18:c0:4d:09:d5:cd"; ip-address = "fd00:1::69"; hostname = "rome"; }
-            { hw-address = "18:c0:4d:09:d5:cc"; ip-address = "fd00:1::68"; hostname = "rome-1g"; }
-            { hw-address = "a8:b8:e0:01:bb:a9"; ip-address = "fd00:1::80"; hostname = "venice"; }
-          ];
-        }
-        {
-          interface = "enp4s0";
-          subnet = "fd00:2::/64";
-          pools = [
-            { pool = "fd00:2::5 - fd00:2::fffe"; }
-          ];
-          option-data = [
-            { name = "routers"; data = "fd00:2::1"; }
-            { name = "domain-name-servers"; data = "fd00:2::1"; }
-          ];
-        }
-        {
-          interface = "enp5s0";
-          subnet = "fd00:3::/64";
-          pools = [
-            { pool = "fd00:3::5 - fd00:3::fffe"; }
-          ];
-          option-data = [
-            { name = "routers"; data = "fd00:3::1"; }
-            { name = "domain-name-servers"; data = "fd00:3::1"; }
-          ];
-        }
-      ];
     };
   };
 

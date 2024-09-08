@@ -120,6 +120,7 @@
         nixos-modules = [
           ./hosts/venice
           ./modules/nixos
+          ./modules/roles/server.nix
         ];
         home-module = import ./hosts/venice/home.nix;
       };

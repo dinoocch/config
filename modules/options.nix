@@ -111,7 +111,10 @@ with lib;
     };
 
     prometheus = {
-      enable = mkEnableOption ''Enable prometheus'';
+      enable = mkOption {
+        type = types.bool;
+        default = true;
+      };
 
       port = mkOption {
         type = types.int;

@@ -8,7 +8,7 @@
 with lib;
 let
   cfg = config.dino.server.matrix;
-  server_name = config.dino.domain;
+  server_name = config.dino.server.domain;
   matrix_hostname = "matrix.${server_name}";
 
   # These ones you can leave alone

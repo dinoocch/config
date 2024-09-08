@@ -1,9 +1,4 @@
-{
-  config,
-  pkgs,
-  lib,
-  ...
-}:
+{ config, lib, ... }:
 with lib;
 let
   cfg = config.dino.server;
@@ -66,11 +61,7 @@ in
       };
 
       cfdyndns = {
-        enable = true;
-        email = "dino.occhialini@gmail.com";
         records = [ "grafana.dinoocch.dev" ];
-        # TODO: Create some private age encrypted secrets flake
-        apikeyFile = "/etc/cfdns-token";
       };
       prometheus = {
         enable = true;

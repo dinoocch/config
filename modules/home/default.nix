@@ -15,6 +15,7 @@ in
     ./neovim
     ./catppuccin.nix
     ./darwin.nix
+    ./desktop.nix
     ./dev.nix
     ./firefox.nix
     ./git.nix

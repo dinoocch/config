@@ -48,7 +48,8 @@
       url = "github:wez/wezterm?dir=nix";
     };
     pre-commit-hooks.url = "github:cachix/git-hooks.nix";
-    treefmt-nix.url = "github:numtide/treefmt-nix";
+    nix-index-database.url = "github:nix-community/nix-index-database";
+    nix-index-database.inputs.nixpkgs.follows = "nixpkgs";
   };
 
   nixConfig = {
@@ -76,7 +77,6 @@
       conduit,
       custom-fonts,
       nixpkgs-unstable,
-      treefmt-nix,
       home-manager,
       ...
     }:

@@ -3,6 +3,7 @@
   lib,
   pkgs,
   pkgs-unstable,
+  inputs,
   ...
 }:
 with lib;
@@ -10,6 +11,8 @@ let
   cfg = config.dino.gui;
 in
 {
+  imports = [ inputs.nix-index-database.nixosModules.nix-index ];
+
   config = mkIf cfg.enable {
     nixpkgs.config.allowUnfree = true;
     environment.pathsToLink = [ "/libexec" ]; # links /libexec from derivations to /run/current-system/sw
@@ -59,6 +62,7 @@ in
 
       # TODO: Figure out what is wrong with krisp...
       noisetorch.enable = true;
+      nix-index-database.comma.enable = true;
     };
 
     security.rtkit.enable = true;

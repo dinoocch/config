@@ -58,6 +58,10 @@ in
           proxyPass = "http://[::]:2342$request_uri";
           proxyWebsockets = true;
         };
+
+        extraConfig = ''
+          access_log /var/log/nginx/grafana.dinoocch.dev.access.log json_combined;
+        '';
       };
 
       cfdyndns = {
@@ -80,6 +84,11 @@ in
           nginx = {
             hostNames = [ "venice" ];
             port = 9113;
+          };
+
+          nginxlog = {
+            hostNames = [ "venice" ];
+            port = 9117;
           };
 
           unbound = {

@@ -16,7 +16,7 @@ let
   # Build a dervation that stores the content of `${server_name}/.well-known/matrix/server`
   well_known_server = pkgs.writeText "well-known-matrix-server" ''
     {
-      "m.server": "${matrix_hostname}:8443"
+      "m.server": "${matrix_hostname}:443"
     }
   '';
 
@@ -60,26 +60,6 @@ in
                 port = 443;
                 ssl = true;
               }
-              {
-                addr = "0.0.0.0";
-                port = 8448;
-                ssl = true;
-              }
-              {
-                addr = "[::]";
-                port = 8448;
-                ssl = true;
-              }
-              {
-                addr = "0.0.0.0";
-                port = 8443;
-                ssl = true;
-              }
-              {
-                addr = "[::]";
-                port = 8443;
-                ssl = true;
-              }
             ];
 
             locations."/_matrix/" = {
@@ -93,6 +73,7 @@ in
 
             extraConfig = ''
               merge_slashes off;
+              access_log /var/log/nginx/matrix.dinoocch.dev.access.log json_combined;
             '';
           };
 
@@ -141,14 +122,10 @@ in
     networking.firewall.allowedTCPPorts = [
       80
       443
-      8448
-      8443
     ];
     networking.firewall.allowedUDPPorts = [
       80
       443
-      8448
-      8443
     ];
   };
 }

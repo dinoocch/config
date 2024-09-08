@@ -55,6 +55,41 @@ in
             ++ (optionals (mountsFileSystemType "xfs") [ "xfs" ])
             ++ (optionals (mountsFileSystemType "zfs") [ "zfs" ]);
         };
+
+        nginx = mkIf config.dino.server.enable { enable = true; };
+        nginxlog = mkIf config.dino.server.enable {
+          enable = true;
+          user = "nginx";
+          group = "nginx";
+
+          settings = {
+            parser = "json";
+            namespaces =
+              let
+                mkApp = domain: {
+                  name = domain;
+                  parser = "json";
+                  metrics_override = {
+                    prefix = "nginxlog";
+                  };
+                  source.files = [ "/var/log/nginx/${domain}.access.log" ];
+                  namespace_label = "vhost";
+                };
+              in
+              [
+                {
+                  name = "catch";
+                  parser = "json";
+                  metrics_override = {
+                    prefix = "nginxlog";
+                  };
+                  source.files = [ "/var/log/nginx/access.log" ];
+                  namespace_label = "vhost";
+                }
+              ]
+              ++ builtins.map mkApp (builtins.attrNames config.services.nginx.virtualHosts);
+          };
+        };
       };
     };
   };

@@ -147,7 +147,7 @@
           chain prerouting {
             type nat hook prerouting priority 100; policy accept;
 
-            iifname { "enp2s0" } tcp dport { 80, 443, 8443 } dnat to 10.1.1.80
+            iifname { "enp2s0" } tcp dport { 80, 443 } dnat to 10.1.1.80
           }
 
           chain postrouting {

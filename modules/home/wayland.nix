@@ -42,7 +42,7 @@ in
     };
 
     home.packages = with pkgs; [
-      dolphin
+      pcmanfm
       grim
       hyprpicker
       slurp

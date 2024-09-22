@@ -27,12 +27,9 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    conduit = {
-      url = "gitlab:famedly/conduit";
-      # inputs.nixpkgs.follows = "nixpkgs";
-    };
     hyprland = {
-      url = "git+https://github.com/hyprwm/Hyprland?submodules=1&rev=838ed87d6ffae0dbdc8a3ecaac2c8be006f6d053";
+      # url = "git+https://github.com/hyprwm/Hyprland?submodules=1&rev=838ed87d6ffae0dbdc8a3ecaac2c8be006f6d053";
+      url = "git+https://github.com/hyprwm/Hyprland?submodules=1";
     };
 
     schizofox = {
@@ -50,6 +47,13 @@
     pre-commit-hooks.url = "github:cachix/git-hooks.nix";
     nix-index-database.url = "github:nix-community/nix-index-database";
     nix-index-database.inputs.nixpkgs.follows = "nixpkgs";
+
+    microvm.url = "github:astro/microvm.nix";
+    microvm.inputs.nixpkgs.follows = "nixpkgs";
+    conduit = {
+      url = "gitlab:famedly/conduit";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
   nixConfig = {

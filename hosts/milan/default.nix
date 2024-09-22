@@ -198,7 +198,7 @@
 
     prometheus.exporters.unbound = {
       enable = true;
-      controlInterface = "/run/unbound/unbound.ctl";
+      unbound.host = "unix:///run/unbound/unbound.ctl";
     };
 
     kea.dhcp4 = {

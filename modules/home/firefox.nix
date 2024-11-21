@@ -6,10 +6,13 @@
   ...
 }:
 with lib;
+let
+  inherit (pkgs-unstable.stdenv) isLinux;
+in
 {
   imports = [ inputs.schizofox.homeManagerModule ];
 
-  config = mkIf config.dino.gui.enable {
+  config = mkIf (config.dino.gui.enable && isLinux) {
     programs.schizofox = {
       enable = true;
       package = pkgs-unstable.firefox-beta-unwrapped;

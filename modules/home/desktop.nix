@@ -1,15 +1,17 @@
 {
   config,
   lib,
+  pkgs,
   pkgs-unstable,
   ...
 }:
 with lib;
 let
+  inherit (pkgs) stdenv;
   cfg = config.dino.gui;
 in
 {
-  config = mkIf cfg.enable {
+  config = mkIf (cfg.enable && stdenv.isLinux) {
     home.packages = with pkgs-unstable; [
       lutris
       steam

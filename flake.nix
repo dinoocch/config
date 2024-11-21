@@ -41,9 +41,9 @@
       flake = false;
     };
 
-    wezterm = {
-      url = "github:wez/wezterm?dir=nix";
-    };
+    # wezterm = {
+    #   url = "github:wez/wezterm?dir=nix";
+    # };
     pre-commit-hooks.url = "github:cachix/git-hooks.nix";
     nix-index-database.url = "github:nix-community/nix-index-database";
     nix-index-database.inputs.nixpkgs.follows = "nixpkgs";
@@ -179,14 +179,15 @@
       homeConfigurations = {
         "docchial@docchial-mn2" = inputs.home-manager.lib.homeManagerConfiguration {
           pkgs = nixpkgs.legacyPackages.aarch64-darwin;
-          modules = [ ./home/environments/work.nix ];
+          modules = [ ./hosts/work/home.nix ];
           extraSpecialArgs = {
+            inherit inputs;
             username = "docchial";
             pkgs-unstable = import nixpkgs-unstable {
               system = "aarch64-darwin";
               config.allowUnfree = true;
             };
-          } // inputs;
+          };
         };
       };
 

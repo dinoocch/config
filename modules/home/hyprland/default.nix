@@ -1,15 +1,17 @@
 {
   config,
   lib,
+  pkgs,
   pkgs-unstable,
   ...
 }:
 with lib;
 let
+  inherit (pkgs) stdenv;
   cfg = config.dino.gui;
 in
 {
-  config = mkIf (cfg.enable && cfg.desktopEnvironment == "hyprland") {
+  config = mkIf (cfg.enable && stdenv.isLinux && cfg.desktopEnvironment == "hyprland") {
     home.packages = with pkgs-unstable; [
       waybar
       hyprpaper

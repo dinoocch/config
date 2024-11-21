@@ -1,5 +1,8 @@
-{ lib, ... }:
+{ lib, pkgs, ... }:
 with lib;
+let
+  inherit (pkgs) stdenv;
+in
 {
   options.dino = {
     minimal = mkOption {
@@ -106,7 +109,7 @@ with lib;
         type = types.bool;
         readOnly = true;
         # TODO: Maybe someday use this if I want to use x11?
-        default = true;
+        default = stdenv.isLinux;
       };
     };
 

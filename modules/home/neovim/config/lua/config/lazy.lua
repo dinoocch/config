@@ -39,8 +39,8 @@ require("lazy").setup({
 
 		{ "echasnovski/mini.pairs", enabled = false },
 		-- Mason does not work with nixos, which is nbd to be honest...
-		{ "williamboman/mason-lspconfig.nvim", enabled = false },
-		{ "williamboman/mason.nvim", enabled = false },
+		{ "williamboman/mason-lspconfig.nvim", enabled = true },
+		{ "williamboman/mason.nvim", enabled = true },
 	},
 	defaults = {
 		lazy = true,

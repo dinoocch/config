@@ -8,6 +8,7 @@
 with lib;
 
 let
+  inherit (pkgs) stdenv;
   # TODO: Surely there is some better option
   css =
     let
@@ -122,7 +123,7 @@ let
 in
 
 {
-  config = mkIf config.dino.gui.enable {
+  config = mkIf (stdenv.isLinux && config.dino.gui.enable) {
     home.pointerCursor = {
       package = pkgs.bibata-cursors;
       name = "Bibata-Modern-Ice";

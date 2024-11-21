@@ -6,10 +6,11 @@
 }:
 with lib;
 let
+  inherit (pkgs) stdenv;
   cfg = config.dino.gui;
 in
 {
-  config = mkIf (cfg.enable && cfg.isWayland) {
+  config = mkIf (cfg.enable && stdenv.isLinux && cfg.isWayland) {
     # TODO: Are these even needed?
     home.sessionVariables = {
       GBM_BACKEND = "nvidia-drm";

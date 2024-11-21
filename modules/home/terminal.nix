@@ -1,9 +1,7 @@
 {
   lib,
   config,
-  pkgs,
   pkgs-unstable,
-  inputs,
   ...
 }:
 with lib;
@@ -37,7 +35,6 @@ with lib;
 
       wezterm = {
         enable = true;
-        package = inputs.wezterm.packages.${pkgs.system}.default;
         extraConfig = ''
           local wezterm = require("wezterm")
           local config = wezterm.config_builder()

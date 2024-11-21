@@ -1,8 +1,8 @@
-{ inputs, ... }:
+{ _ }:
 {
-  imports = [ inputs.microvm.nixosModules.microvm ];
-
-  microvm = {
-    hypervisor = "cloud-hypervisor";
-  };
+  # imports = [ inputs.microvm.nixosModules.microvm ];
+  #
+  # microvm = {
+  #   hypervisor = "cloud-hypervisor";
+  # };
 }

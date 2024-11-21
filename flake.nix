@@ -24,7 +24,7 @@
     catppuccin.url = "github:catppuccin/nix";
     spicetify-nix = {
       url = "github:Gerg-L/spicetify-nix";
-      inputs.nixpkgs.follows = "nixpkgs";
+      inputs.nixpkgs.follows = "nixpkgs-unstable";
     };
 
     hyprland = {
@@ -48,8 +48,8 @@
     nix-index-database.url = "github:nix-community/nix-index-database";
     nix-index-database.inputs.nixpkgs.follows = "nixpkgs";
 
-    microvm.url = "github:astro/microvm.nix";
-    microvm.inputs.nixpkgs.follows = "nixpkgs";
+    # microvm.url = "github:astro/microvm.nix";
+    # microvm.inputs.nixpkgs.follows = "nixpkgs";
     conduit = {
       url = "gitlab:famedly/conduit";
       inputs.nixpkgs.follows = "nixpkgs";

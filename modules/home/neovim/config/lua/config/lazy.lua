@@ -32,7 +32,7 @@ require("lazy").setup({
 		{ import = "lazyvim.plugins.extras.lang.gleam" },
 		{ import = "lazyvim.plugins.extras.lang.go" },
 		{ import = "lazyvim.plugins.extras.lang.nix" },
-		-- { import = "lazyvim.plugins.extras.lang.java" },
+		{ import = "lazyvim.plugins.extras.lang.java" },
 
 		{ import = "plugins" },
 		{ import = "languages" },

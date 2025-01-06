@@ -32,7 +32,7 @@ in
             pull.rebase = true;
             fetch.prune = true;
             push.autosetupremote = true;
-            init.defaultBranch = "main";
+            init.defaultBranch = "master";
             merge.conflictstyle = "zdiff3";
             rebase = {
               autosquash = true;
@@ -62,7 +62,7 @@ in
       programs.git = {
         extraConfig = {
           core = {
-            sshCommand = "ssh -i ~/.ssh/github_personal";
+            # sshCommand = "ssh -i ~/.ssh/github_personal";
           };
           user.signingKey = lib.mkForce "~/.ssh/github_personal.pub";
         };
@@ -70,6 +70,10 @@ in
           {
             path = "~/.config/git/linkedin.inc";
             condition = "gitdir:~/li/";
+          }
+          {
+            path = "~/.config/git/linkedin.inc";
+            condition = "gitdir:/var/folders/";
           }
         ];
       };

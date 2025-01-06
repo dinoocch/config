@@ -42,6 +42,12 @@ in
           outer.top =        5
           outer.right =      5
 
+          [[on-window-detected]]
+          if.app-id="com.mitchellh.ghostty"
+          run= [
+            "layout tiling",
+          ]
+
           [exec]
           inherit-env-vars = true
 

@@ -45,6 +45,19 @@ with lib;
           return config
         '';
       };
+
+      ghostty = {
+        enable = true;
+        enableZshIntegration = true;
+        settings = {
+          auto-update = "off";
+          background-opacity = 0.9;
+          confirm-close-surface = false;
+          font-family = "Comic Code Ligatures";
+          theme = "catppuccin-mocha";
+          window-decoration = false;
+        };
+      };
     };
   };
 }

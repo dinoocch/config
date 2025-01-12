@@ -23,6 +23,7 @@ with lib;
           taplo
           nixpkgs-fmt
           nil
+          fzf
         ]
       );
       file.".config/nvim" = {

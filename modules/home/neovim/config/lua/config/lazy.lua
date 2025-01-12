@@ -27,20 +27,20 @@ require("lazy").setup({
 		{ import = "lazyvim.plugins.extras.lang.python" },
 		{ import = "lazyvim.plugins.extras.lang.rust" },
 		{ import = "lazyvim.plugins.extras.lang.tailwind" },
-		{ import = "lazyvim.plugins.extras.lang.terraform" },
+		-- { import = "lazyvim.plugins.extras.lang.terraform" },
 		{ import = "lazyvim.plugins.extras.lang.typescript" },
-		{ import = "lazyvim.plugins.extras.lang.gleam" },
+		-- { import = "lazyvim.plugins.extras.lang.gleam" },
 		{ import = "lazyvim.plugins.extras.lang.go" },
 		{ import = "lazyvim.plugins.extras.lang.nix" },
-		{ import = "lazyvim.plugins.extras.lang.java" },
+		-- { import = "lazyvim.plugins.extras.lang.java" },
 
 		{ import = "plugins" },
 		{ import = "languages" },
 
 		{ "echasnovski/mini.pairs", enabled = false },
 		-- Mason does not work with nixos, which is nbd to be honest...
-		{ "williamboman/mason-lspconfig.nvim", enabled = true },
-		{ "williamboman/mason.nvim", enabled = true },
+		{ "williamboman/mason-lspconfig.nvim", enabled = false },
+		{ "williamboman/mason.nvim", enabled = false },
 	},
 	defaults = {
 		lazy = true,

@@ -66,7 +66,6 @@ in
     };
 
     security.rtkit.enable = true;
-    sound.enable = false;
 
     services = {
       printing = {
@@ -80,7 +79,7 @@ in
       dbus.packages = [ pkgs.gcr ];
       geoclue2.enable = true;
       udev.packages = with pkgs; [
-        gnome.gnome-settings-daemon
+        gnome-settings-daemon
         pkgs-unstable.zsa-udev-rules
       ];
 

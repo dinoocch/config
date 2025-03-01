@@ -12,6 +12,9 @@ end
 vim.opt.rtp:prepend(lazypath)
 vim.g.lazyvim_json = vim.fn.stdpath("data") .. "/lazy/lazyvim.json"
 
+-- TODO: There's no reason to do this, just use nix...
+local is_darwin = vim.loop.os_uname().sysname == "Darwin"
+
 require("lazy").setup({
 	spec = {
 		{ "LazyVim/LazyVim", import = "lazyvim.plugins" },
@@ -39,15 +42,15 @@ require("lazy").setup({
 
 		{ "echasnovski/mini.pairs", enabled = false },
 		-- Mason does not work with nixos, which is nbd to be honest...
-		{ "williamboman/mason-lspconfig.nvim", enabled = false },
-		{ "williamboman/mason.nvim", enabled = false },
+		{ "williamboman/mason-lspconfig.nvim", enabled = is_darwin },
+		{ "williamboman/mason.nvim", enabled = is_darwin },
 	},
 	defaults = {
 		lazy = true,
 		version = false,
 	},
 	install = {
-		colorscheme = { "gruvbox" },
+		colorscheme = { "catppuccin" },
 	},
 	checker = {
 		enabled = true,

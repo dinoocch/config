@@ -26,6 +26,7 @@ in
 
     (mkIf cfg.rust {
       home.packages = with pkgs; [
+        iconv
         rustc
         cargo
         cargo-generate

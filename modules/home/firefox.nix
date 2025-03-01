@@ -15,8 +15,6 @@ in
   config = mkIf (config.dino.gui.enable && isLinux) {
     programs.schizofox = {
       enable = true;
-      package = pkgs-unstable.firefox-beta-unwrapped;
-
       theme = {
         font = "Alegreya";
         defaultUserChrome.enable = false;

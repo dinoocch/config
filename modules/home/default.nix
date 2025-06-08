@@ -17,7 +17,7 @@ in
     ./darwin.nix
     ./desktop.nix
     ./dev.nix
-    # ./firefox.nix
+    ./firefox.nix
     ./git.nix
     ./gtk.nix
     ./shells.nix

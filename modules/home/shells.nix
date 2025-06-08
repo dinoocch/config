@@ -38,7 +38,7 @@ in
           size = 10000000;
         };
         defaultKeymap = "viins";
-        initExtra = ''
+        initContent = ''
           if [ -e '/nix/var/nix/profiles/default/etc/profile.d/nix-daemon.sh' ]; then
             source '/nix/var/nix/profiles/default/etc/profile.d/nix-daemon.sh'
           fi

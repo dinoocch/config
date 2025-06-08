@@ -1,6 +1,12 @@
-{ lib, pkgs, ... }:
+{
+  inputs,
+  lib,
+  pkgs,
+  ...
+}:
 {
   imports = [
+    inputs.determinate.nixosModules.default
     ../options.nix
     ./acme.nix
     ./catppuccin.nix

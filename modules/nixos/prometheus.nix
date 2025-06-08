@@ -63,7 +63,6 @@ in
           group = "nginx";
 
           settings = {
-            parser = "json";
             namespaces =
               let
                 mkApp = domain: {

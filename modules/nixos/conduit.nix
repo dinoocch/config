@@ -2,7 +2,7 @@
   config,
   lib,
   pkgs,
-  inputs,
+  # inputs,
   ...
 }:
 with lib;
@@ -34,7 +34,7 @@ in
     services = {
       matrix-conduit = {
         enable = true;
-        package = inputs.conduit.packages.${pkgs.system}.default;
+        # package = inputs.conduit.packages.${pkgs.system}.default;
 
         settings.global = {
           inherit server_name;

@@ -220,6 +220,7 @@
 
         subnet4 = [
           {
+            id = 1;
             interface = "enp3s0";
             subnet = "10.1.1.0/24";
             pools = [ { pool = "10.1.1.10 - 10.1.1.60"; } ];
@@ -252,6 +253,7 @@
             ];
           }
           {
+            id = 2;
             interface = "enp4s0";
             subnet = "10.2.0.0/16";
             pools = [ { pool = "10.2.0.5 - 10.2.250.250"; } ];
@@ -267,6 +269,7 @@
             ];
           }
           {
+            id = 3;
             interface = "enp5s0";
             subnet = "10.3.0.0/16";
             pools = [ { pool = "10.3.0.5 - 10.3.250.250"; } ];
@@ -302,6 +305,7 @@
         };
         subnet6 = [
           {
+            id = 4;
             interface = "enp3s0";
             subnet = "fd00:1::/64";
             pools = [ { pool = "fd00:1::10 - fd00:1::60"; } ];
@@ -334,6 +338,7 @@
             ];
           }
           {
+            id = 5;
             interface = "enp4s0";
             subnet = "fd00:2::/64";
             pools = [ { pool = "fd00:2::5 - fd00:2::fffe"; } ];
@@ -349,6 +354,7 @@
             ];
           }
           {
+            id = 6;
             interface = "enp5s0";
             subnet = "fd00:3::/64";
             pools = [ { pool = "fd00:3::5 - fd00:3::fffe"; } ];

@@ -47,7 +47,7 @@ with lib;
       };
 
       ghostty = {
-        enable = false;
+        enable = true;
         enableZshIntegration = true;
         settings = {
           auto-update = "off";

@@ -42,7 +42,7 @@ in
         let
           base = pkgs.appimageTools.defaultFhsEnvArgs;
         in
-        pkgs.buildFHSUserEnv (
+        pkgs.buildFHSEnv (
           base
           // {
             name = "fhs";
@@ -113,14 +113,9 @@ in
         source-sans
         source-serif
         pkgs-unstable.comic-code
-        (nerdfonts.override {
-          fonts = [
-            "FiraCode"
-            "JetBrainsMono"
-            "Iosevka"
-            # TODO: Comic Code Ligatures
-          ];
-        })
+        nerd-fonts.fira-code
+        nerd-fonts.jetbrains-mono
+        nerd-fonts.iosevka
       ];
 
       # TODO: Comic Code Ligatures

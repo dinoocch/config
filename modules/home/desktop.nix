@@ -18,7 +18,6 @@ in
       steam-run
       steamtinkerlaunch
       discord-canary
-      vesktop
       protontricks
       element-desktop
       audacity

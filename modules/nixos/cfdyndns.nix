@@ -6,7 +6,7 @@ in
 {
   config = mkIf cfg.enable {
     services.cfdyndns = {
-      enable = true;
+      enable = false;
       email = "dino.occhialini@gmail.com";
       records = [ cfg.domain ];
       # TODO: Create some private age encrypted secrets flake

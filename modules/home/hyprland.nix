@@ -34,7 +34,7 @@ in
       settings = {
         exec-once = [
           "[workspace special:spotify silent] spotify"
-          "[workspace special:discord silent] discord-canary"
+          "[workspace special:discord silent] discordcanary"
           "waybar"
           "hyprpaper"
         ];
@@ -91,8 +91,6 @@ in
         };
 
         "$mod" = "SUPER";
-        "$menu" = "fuzzel";
-
         bind =
           [
             "$mod, E, exec, pcmanfm"
@@ -160,7 +158,6 @@ in
         windowrulev2 = [
           "workspace special:spotify, initialTitle:^(Spotify Premium)$"
           "workspace special:discord, class:^(discord)$"
-          "workspace special:discord, class:^(vesktop)$"
         ];
 
         workspace = [

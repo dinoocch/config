@@ -11,7 +11,7 @@ in
 {
   imports = [
     ../options.nix
-    ./hyprland
+    ./hyprland.nix
     ./neovim
     ./catppuccin.nix
     ./darwin.nix
@@ -25,6 +25,7 @@ in
     ./terminal.nix
     ./tmux.nix
     ./utils.nix
+    ./waybar.nix
     ./wayland.nix
     ./wlogout.nix
     ./zellij.nix

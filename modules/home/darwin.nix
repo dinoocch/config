@@ -2,6 +2,8 @@
 let
   inherit (pkgs) stdenv;
   inherit (lib) mkIf;
+
+  mod = "cmd-ctrl-alt";
 in
 {
   config = mkIf stdenv.isDarwin {
@@ -29,6 +31,7 @@ in
           start-at-login = true
           enable-normalization-flatten-containers = true
           enable-normalization-opposite-orientation-for-nested-containers = true
+
           accordion-padding = 30
           default-root-container-layout = 'tiles'
           default-root-container-orientation = 'auto'
@@ -42,11 +45,6 @@ in
           outer.top =        5
           outer.right =      5
 
-          [[on-window-detected]]
-          if.app-id="com.mitchellh.ghostty"
-          run= [
-            "layout tiling",
-          ]
 
           [exec]
           inherit-env-vars = true
@@ -58,141 +56,126 @@ in
           # See: https://nikitabobko.github.io/AeroSpace/guide#binding-modes
           # 'main' binding mode must be always presented
           [mode.main.binding]
-          # All possible keys:
-          # - Letters.        a, b, c, ..., z
-          # - Numbers.        0, 1, 2, ..., 9
-          # - Keypad numbers. keypad0, keypad1, keypad2, ..., keypad9
-          # - F-keys.         f1, f2, ..., f20
-          # - Special keys.   minus, equal, period, comma, slash, backslash, quote, semicolon, backtick,
-          #                   leftSquareBracket, rightSquareBracket, space, enter, esc, backspace, tab
-          # - Keypad special. keypadClear, keypadDecimalMark, keypadDivide, keypadEnter, keypadEqual,
-          #                   keypadMinus, keypadMultiply, keypadPlus
-          # - Arrows.         left, down, up, right
-          #
-          # All possible modifiers: cmd, alt, ctrl, shift
-          # All possible commands: https://nikitabobko.github.io/AeroSpace/commands
-          #
-          # You can uncomment this line to open up terminal with alt + enter shortcut
-          # See: https://nikitabobko.github.io/AeroSpace/commands#exec-and-forget
-          # alt-enter = 'exec-and-forget open -n /System/Applications/Utilities/Terminal.app'
+          ${mod}-enter = 'exec-and-forget open -n /Applications/Ghostty.app'
+          ${mod}-slash = 'layout tiles horizontal vertical'
+          ${mod}-comma = 'layout accordion horizontal vertical'
 
-          # See: https://nikitabobko.github.io/AeroSpace/commands#layout
-          alt-slash = 'layout tiles horizontal vertical'
-          alt-comma = 'layout accordion horizontal vertical'
+          ${mod}-h = 'focus left'
+          ${mod}-j = 'focus down'
+          ${mod}-k = 'focus up'
+          ${mod}-l = 'focus right'
+          ${mod}-shift-h = 'move left'
+          ${mod}-shift-j = 'move down'
+          ${mod}-shift-k = 'move up'
+          ${mod}-shift-l = 'move right'
 
-          # See: https://nikitabobko.github.io/AeroSpace/commands#focus
-          alt-h = 'focus left'
-          alt-j = 'focus down'
-          alt-k = 'focus up'
-          alt-l = 'focus right'
+          ${mod}-shift-minus = 'resize smart -50'
+          ${mod}-shift-equal = 'resize smart +50'
 
-          # See: https://nikitabobko.github.io/AeroSpace/commands#move
-          alt-shift-h = 'move left'
-          alt-shift-j = 'move down'
-          alt-shift-k = 'move up'
-          alt-shift-l = 'move right'
+          ${mod}-1 = 'workspace 1'
+          ${mod}-2 = 'workspace 2'
+          ${mod}-3 = 'workspace 3'
+          ${mod}-4 = 'workspace 4'
+          ${mod}-5 = 'workspace 5'
+          ${mod}-6 = 'workspace 6'
+          ${mod}-7 = 'workspace 7'
+          ${mod}-8 = 'workspace 8'
+          ${mod}-9 = 'workspace 9'
+          ${mod}-0 = 'workspace 10'
+          ${mod}-a = 'workspace A'
+          ${mod}-b = 'workspace B'
+          ${mod}-c = 'workspace C'
+          ${mod}-d = 'workspace D'
+          ${mod}-e = 'workspace E'
+          ${mod}-g = 'workspace G'
+          ${mod}-i = 'workspace I'
+          ${mod}-m = 'workspace M'
+          ${mod}-n = 'workspace N'
+          ${mod}-o = 'workspace O'
+          ${mod}-p = 'workspace P'
+          ${mod}-q = 'workspace Q'
+          ${mod}-r = 'workspace R'
+          ${mod}-s = 'workspace S'
+          ${mod}-t = 'workspace T'
+          ${mod}-u = 'workspace U'
+          ${mod}-v = 'workspace V'
+          ${mod}-w = 'workspace W'
+          ${mod}-x = 'workspace X'
+          ${mod}-y = 'workspace Y'
+          ${mod}-z = 'workspace Z'
 
-          # See: https://nikitabobko.github.io/AeroSpace/commands#resize
-          alt-shift-minus = 'resize smart -50'
-          alt-shift-equal = 'resize smart +50'
+          ${mod}-shift-1 = 'move-node-to-workspace 1'
+          ${mod}-shift-2 = 'move-node-to-workspace 2'
+          ${mod}-shift-3 = 'move-node-to-workspace 3'
+          ${mod}-shift-4 = 'move-node-to-workspace 4'
+          ${mod}-shift-5 = 'move-node-to-workspace 5'
+          ${mod}-shift-6 = 'move-node-to-workspace 6'
+          ${mod}-shift-7 = 'move-node-to-workspace 7'
+          ${mod}-shift-8 = 'move-node-to-workspace 8'
+          ${mod}-shift-9 = 'move-node-to-workspace 9'
+          ${mod}-shift-0 = 'move-node-to-workspace 10'
+          ${mod}-shift-a = 'move-node-to-workspace A'
+          ${mod}-shift-b = 'move-node-to-workspace B'
+          ${mod}-shift-c = 'move-node-to-workspace C'
+          ${mod}-shift-d = 'move-node-to-workspace D'
+          ${mod}-shift-e = 'move-node-to-workspace E'
+          ${mod}-shift-g = 'move-node-to-workspace G'
+          ${mod}-shift-i = 'move-node-to-workspace I'
+          ${mod}-shift-m = 'move-node-to-workspace M'
+          ${mod}-shift-n = 'move-node-to-workspace N'
+          ${mod}-shift-o = 'move-node-to-workspace O'
+          ${mod}-shift-p = 'move-node-to-workspace P'
+          ${mod}-shift-q = 'move-node-to-workspace Q'
+          ${mod}-shift-r = 'move-node-to-workspace R'
+          ${mod}-shift-s = 'move-node-to-workspace S'
+          ${mod}-shift-t = 'move-node-to-workspace T'
+          ${mod}-shift-u = 'move-node-to-workspace U'
+          ${mod}-shift-v = 'move-node-to-workspace V'
+          ${mod}-shift-w = 'move-node-to-workspace W'
+          ${mod}-shift-x = 'move-node-to-workspace X'
+          ${mod}-shift-y = 'move-node-to-workspace Y'
+          ${mod}-shift-z = 'move-node-to-workspace Z'
 
-          # See: https://nikitabobko.github.io/AeroSpace/commands#workspace
-          alt-1 = 'workspace 1'
-          alt-2 = 'workspace 2'
-          alt-3 = 'workspace 3'
-          alt-4 = 'workspace 4'
-          alt-5 = 'workspace 5'
-          alt-6 = 'workspace 6'
-          alt-7 = 'workspace 7'
-          alt-8 = 'workspace 8'
-          alt-9 = 'workspace 9'
-          alt-0 = 'workspace 10'
-          alt-a = 'workspace A'
-          alt-b = 'workspace B'
-          alt-c = 'workspace C'
-          alt-d = 'workspace D'
-          alt-e = 'workspace E'
-          alt-f = 'workspace F'
-          alt-g = 'workspace G'
-          alt-i = 'workspace I'
-          alt-m = 'workspace M'
-          alt-n = 'workspace N'
-          alt-o = 'workspace O'
-          alt-p = 'workspace P'
-          alt-q = 'workspace Q'
-          alt-r = 'workspace R'
-          alt-s = 'workspace S'
-          alt-t = 'workspace T'
-          alt-u = 'workspace U'
-          alt-v = 'workspace V'
-          alt-w = 'workspace W'
-          alt-x = 'workspace X'
-          alt-y = 'workspace Y'
-          alt-z = 'workspace Z'
-
-          # See: https://nikitabobko.github.io/AeroSpace/commands#move-node-to-workspace
-          alt-shift-1 = 'move-node-to-workspace 1'
-          alt-shift-2 = 'move-node-to-workspace 2'
-          alt-shift-3 = 'move-node-to-workspace 3'
-          alt-shift-4 = 'move-node-to-workspace 4'
-          alt-shift-5 = 'move-node-to-workspace 5'
-          alt-shift-6 = 'move-node-to-workspace 6'
-          alt-shift-7 = 'move-node-to-workspace 7'
-          alt-shift-8 = 'move-node-to-workspace 8'
-          alt-shift-9 = 'move-node-to-workspace 9'
-          alt-shift-0 = 'move-node-to-workspace 10'
-          alt-shift-a = 'move-node-to-workspace A'
-          alt-shift-b = 'move-node-to-workspace B'
-          alt-shift-c = 'move-node-to-workspace C'
-          alt-shift-d = 'move-node-to-workspace D'
-          alt-shift-e = 'move-node-to-workspace E'
-          alt-shift-f = 'move-node-to-workspace F'
-          alt-shift-g = 'move-node-to-workspace G'
-          alt-shift-i = 'move-node-to-workspace I'
-          alt-shift-m = 'move-node-to-workspace M'
-          alt-shift-n = 'move-node-to-workspace N'
-          alt-shift-o = 'move-node-to-workspace O'
-          alt-shift-p = 'move-node-to-workspace P'
-          alt-shift-q = 'move-node-to-workspace Q'
-          alt-shift-r = 'move-node-to-workspace R'
-          alt-shift-s = 'move-node-to-workspace S'
-          alt-shift-t = 'move-node-to-workspace T'
-          alt-shift-u = 'move-node-to-workspace U'
-          alt-shift-v = 'move-node-to-workspace V'
-          alt-shift-w = 'move-node-to-workspace W'
-          alt-shift-x = 'move-node-to-workspace X'
-          alt-shift-y = 'move-node-to-workspace Y'
-          alt-shift-z = 'move-node-to-workspace Z'
-
-          # See: https://nikitabobko.github.io/AeroSpace/commands#workspace-back-and-forth
-          alt-tab = 'workspace-back-and-forth'
-          # See: https://nikitabobko.github.io/AeroSpace/commands#move-workspace-to-monitor
-          alt-shift-tab = 'move-workspace-to-monitor --wrap-around next'
+          ${mod}-tab = 'workspace-back-and-forth'
+          ${mod}-shift-tab = 'move-workspace-to-monitor --wrap-around next'
+          ${mod}-f = 'fullscreen'
 
           # See: https://nikitabobko.github.io/AeroSpace/commands#mode
-          alt-shift-semicolon = 'mode service'
+          ${mod}-shift-semicolon = 'mode service'
 
           # 'service' binding mode declaration.
           # See: https://nikitabobko.github.io/AeroSpace/guide#binding-modes
           [mode.service.binding]
           esc = ['reload-config', 'mode main']
           r = ['flatten-workspace-tree', 'mode main'] # reset layout
-          #s = ['layout sticky tiling', 'mode main'] # sticky is not yet supported https://github.com/nikitabobko/AeroSpace/issues/2
           f = ['layout floating tiling', 'mode main'] # Toggle between floating and tiling layout
           backspace = ['close-all-windows-but-current', 'mode main']
 
-          alt-shift-h = ['join-with left', 'mode main']
-          alt-shift-j = ['join-with down', 'mode main']
-          alt-shift-k = ['join-with up', 'mode main']
-          alt-shift-l = ['join-with right', 'mode main']
+          ${mod}-shift-h = ['join-with left', 'mode main']
+          ${mod}-shift-j = ['join-with down', 'mode main']
+          ${mod}-shift-k = ['join-with up', 'mode main']
+          ${mod}-shift-l = ['join-with right', 'mode main']
 
           [workspace-to-monitor-force-assignment]
-          1 = 1
-          10 = 3
-          A = 3
-          B = 3
-          C = 3
-          D = 3
+          M = 3
+
+          [[on-window-detected]]
+          if.app-id = 'com.mitchellh.ghostty'
+          run = [
+            'layout tiling',
+          ]
+
+          [[on-window-detected]]
+          if.app-id = 'com.spotify.client'
+          run= 'move-node-to-workspace M'
+
+          [[on-window-detected]]
+          if.app-id = 'com.microsoft.teams2'
+          run= 'move-node-to-workspace T'
+
+          [[on-window-detected]]
+          if.app-id = 'com.jetbrains.intellij'
+          run= 'move-node-to-workspace I'
         '';
       };
     };

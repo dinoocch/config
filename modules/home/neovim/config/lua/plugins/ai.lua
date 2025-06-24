@@ -57,14 +57,14 @@ return {
 				},
 				inline = {
 					adapter = "copilot",
-					model = "claude-3.5-sonnet",
+					-- model = "claude-3.5-sonnet",
 				},
 			},
 			adapters = {
 				copilot = function()
 					return require("codecompanion.adapters").extend("copilot", {
 						model = {
-							default = "claude-3.5-sonnet",
+							-- default = "claude-3.5-sonnet",
 						},
 					})
 				end,

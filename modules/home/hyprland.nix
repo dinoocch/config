@@ -34,9 +34,8 @@ in
       settings = {
         exec-once = [
           "[workspace special:spotify silent] spotify"
-          "[workspace special:discord silent] discordcanary"
+          "[workspace special:discord silent] ${pkgs.discord-canary}/bin/discordcanary"
           "waybar"
-          "hyprpaper"
         ];
 
         monitor = [

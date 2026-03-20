@@ -7,6 +7,17 @@ let
 in
 {
   config = mkIf stdenv.isDarwin {
+
+    home.sessionVariables = {
+      # Points to the SDK
+      SDKROOT = "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk";
+
+      # Often needed for crates like 'ring' or 'security-framework'
+      LIBRARY_PATH = "${pkgs.lib.makeLibraryPath [ pkgs.libiconv ]}";
+
+      TERM = "xterm-256color";
+    };
+
     xdg.configFile = {
       "borders/bordersrc" = {
         text = ''

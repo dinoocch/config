@@ -26,6 +26,7 @@ in
       programs.zsh = {
         enable = true;
         autocd = true;
+        cdpath = [ "~" ];
         shellAliases = {
           sl = "ls";
           sudo = "sudo ";
@@ -46,7 +47,7 @@ in
           zsh-defer source "${pkgs.skim}/share/skim/key-bindings.zsh"
           zsh-defer source "${pkgs.zsh-fast-syntax-highlighting}/share/zsh/site-functions/fast-syntax-highlighting.plugin.zsh"
           zsh-defer source "${pkgs.grc}/etc/grc.zsh"
-          path=('/Users/docchial/.cargo/bin' $path)
+          path=('/Users/docchial/.cargo/bin' '/Users/docchial/.local/bin' '/Users/docchial/bin' $path)
           export PATH
           export VOLTA_HOME="$HOME/.volta"
           export PATH="$VOLTA_HOME/bin:$PATH"

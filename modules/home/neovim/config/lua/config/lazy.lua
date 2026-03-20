@@ -40,10 +40,10 @@ require("lazy").setup({
 		{ import = "plugins" },
 		{ import = "languages" },
 
-		{ "echasnovski/mini.pairs", enabled = false },
+		-- { "echasnovski/mini.pairs", enabled = false },
 		-- Mason does not work with nixos, which is nbd to be honest...
-		{ "williamboman/mason-lspconfig.nvim", enabled = is_darwin },
-		{ "williamboman/mason.nvim", enabled = is_darwin },
+		{ "mason-org/mason-lspconfig.nvim", enabled = is_darwin },
+		{ "mason-org/mason.nvim", enabled = is_darwin },
 	},
 	defaults = {
 		lazy = true,

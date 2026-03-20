@@ -7,6 +7,11 @@
 let
   inherit (pkgs) stdenv;
   inherit (lib) mkIf mkMerge;
+
+  extraPaths = [
+    "~/.local/bin"
+    "~/bin"
+  ];
 in
 {
   imports = [
@@ -38,6 +43,10 @@ in
       (mkIf stdenv.isDarwin "/Users/${username}")
       (mkIf (!stdenv.isDarwin) "/home/${username}")
     ];
+
+    sessionVariables = {
+      PATH = "${lib.concatStringsSep ":" extraPaths}:$PATH";
+    };
   };
   programs.home-manager.enable = true;
   xdg.enable = true;

@@ -25,6 +25,7 @@ in
     (mkIf cfg.zsh {
       programs.zsh = {
         enable = true;
+        dotDir = ".config/zsh";
         autocd = true;
         cdpath = [ "~" ];
         shellAliases = {

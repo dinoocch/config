@@ -40,6 +40,7 @@ with lib;
         vimAlias = true;
         withPython3 = false;
         withNodeJs = false;
+        withRuby = false;
       };
     };
   };

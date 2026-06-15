@@ -29,6 +29,7 @@
     yazi = {
       enable = true;
       package = pkgs-unstable.yazi;
+      shellWrapperName = "y";
       enableBashIntegration = true;
       enableZshIntegration = true;
     };

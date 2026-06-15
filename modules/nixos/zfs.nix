@@ -5,6 +5,7 @@ let
 in
 {
   config = mkIf cfg.enable {
+    boot.zfs.forceImportRoot = false;
     boot.kernelParams = [
       "elevator=none"
       "nohibernate"

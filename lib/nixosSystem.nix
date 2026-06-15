@@ -12,6 +12,8 @@ in
 nixpkgs.lib.nixosSystem {
   inherit system specialArgs;
   modules = nixos-modules ++ [
+    nixpkgs.nixosModules.readOnlyPkgs
+    { nixpkgs.pkgs = specialArgs.pkgs; }
     {
       # make `nix run nixpkgs#nixpkgs` use the same nixpkgs as the one used by this flake.
       nix.registry.nixpkgs.flake = nixpkgs;

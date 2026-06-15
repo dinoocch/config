@@ -1,7 +1,5 @@
 { ... }:
 {
-  imports = [
-    ../../modules/home
-    ../../modules/roles/server.nix
-  ];
+  imports = [ ../../modules/home ];
+  config.dino.git.enable = true;
 }

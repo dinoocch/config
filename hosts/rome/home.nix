@@ -1,7 +1,8 @@
 { ... }:
 {
-  imports = [
-    ../../modules/home
-    ../../modules/roles/desktop.nix
-  ];
+  imports = [ ../../modules/home ];
+  config.dino = {
+    dev.enable = true;
+    git.enable = true;
+  };
 }

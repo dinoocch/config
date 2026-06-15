@@ -24,6 +24,15 @@
   users.users.root.openssh.authorizedKeys.keys =
     config.users.users."${username}".openssh.authorizedKeys.keys;
 
+  dino = {
+    server = {
+      enable = true;
+      matrix.enable = true;
+      grafana.enable = true;
+    };
+    git.enable = true;
+  };
+
   # Bootloader.
   boot.loader = {
     efi.canTouchEfiVariables = true;

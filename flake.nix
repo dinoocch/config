@@ -3,7 +3,7 @@
 
   inputs = {
     determinate.url = "https://flakehub.com/f/DeterminateSystems/determinate/*";
-    nixpkgs.url = "github:nixos/nixpkgs/nixos-25.11";
+    nixpkgs.url = "github:nixos/nixpkgs/nixos-26.05";
     nixpkgs-unstable.url = "github:nixos/nixpkgs/nixos-unstable";
 
     # Secrets
@@ -18,11 +18,11 @@
 
     # home-manager for non-system configs
     home-manager = {
-      url = "github:nix-community/home-manager/release-25.11";
+      url = "github:nix-community/home-manager/release-26.05";
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    catppuccin.url = "github:catppuccin/nix/release-25.11";
+    catppuccin.url = "github:catppuccin/nix/release-26.05";
     spicetify-nix = {
       url = "github:Gerg-L/spicetify-nix";
       inputs.nixpkgs.follows = "nixpkgs-unstable";
@@ -181,20 +181,25 @@
           milan = colmenaSystem (milan_modules // base_args);
         };
 
-      homeConfigurations = {
-        "docchial@docchial-mn2" = inputs.home-manager.lib.homeManagerConfiguration {
-          pkgs = nixpkgs.legacyPackages.aarch64-darwin;
-          modules = [ ./hosts/work/home.nix ];
-          extraSpecialArgs = {
-            inherit inputs;
-            username = "docchial";
-            pkgs-unstable = import nixpkgs-unstable {
-              system = "aarch64-darwin";
-              config.allowUnfree = true;
+      homeConfigurations =
+        let
+          workConfig = inputs.home-manager.lib.homeManagerConfiguration {
+            pkgs = nixpkgs.legacyPackages.aarch64-darwin;
+            modules = [ ./hosts/work/home.nix ];
+            extraSpecialArgs = {
+              inherit inputs;
+              username = "docchial";
+              pkgs-unstable = import nixpkgs-unstable {
+                system = "aarch64-darwin";
+                config.allowUnfree = true;
+              };
             };
           };
+        in
+        {
+          "docchial@docchial-mn2" = workConfig;
+          "docchial" = workConfig;
         };
-      };
 
       formatter.x86_64-linux = nixpkgs.legacyPackages.x86_64-linux.nixfmt-rfc-style;
       checks = forAllSystems (system: {

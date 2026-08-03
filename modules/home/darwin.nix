@@ -42,6 +42,7 @@ in
           start-at-login = true
           enable-normalization-flatten-containers = true
           enable-normalization-opposite-orientation-for-nested-containers = true
+          on-focused-monitor-changed = ['move-mouse monitor-lazy-center']
 
           accordion-padding = 30
           default-root-container-layout = 'tiles'
@@ -67,7 +68,7 @@ in
           # See: https://nikitabobko.github.io/AeroSpace/guide#binding-modes
           # 'main' binding mode must be always presented
           [mode.main.binding]
-          ${mod}-enter = 'exec-and-forget open -n /Applications/Ghostty.app'
+          ${mod}-enter = "exec-and-forget osascript -e 'tell application \"Ghostty\" to new window'"
           ${mod}-slash = 'layout tiles horizontal vertical'
           ${mod}-comma = 'layout accordion horizontal vertical'
 
@@ -79,6 +80,15 @@ in
           ${mod}-shift-j = 'move down'
           ${mod}-shift-k = 'move up'
           ${mod}-shift-l = 'move right'
+
+          ${mod}-left = 'focus-monitor --wrap-around left'
+          ${mod}-down = 'focus-monitor --wrap-around down'
+          ${mod}-up = 'focus-monitor --wrap-around up'
+          ${mod}-right = 'focus-monitor --wrap-around right'
+          ${mod}-shift-left = 'move-node-to-monitor --focus-follows-window --wrap-around left'
+          ${mod}-shift-down = 'move-node-to-monitor --focus-follows-window --wrap-around down'
+          ${mod}-shift-up = 'move-node-to-monitor --focus-follows-window --wrap-around up'
+          ${mod}-shift-right = 'move-node-to-monitor --focus-follows-window --wrap-around right'
 
           ${mod}-shift-minus = 'resize smart -50'
           ${mod}-shift-equal = 'resize smart +50'
@@ -158,7 +168,7 @@ in
           # See: https://nikitabobko.github.io/AeroSpace/guide#binding-modes
           [mode.service.binding]
           esc = ['reload-config', 'mode main']
-          r = ['flatten-workspace-tree', 'mode main'] # reset layout
+          r = ['layout floating', 'layout tiling', 'flatten-workspace-tree', 'mode main'] # reset layout
           f = ['layout floating tiling', 'mode main'] # Toggle between floating and tiling layout
           backspace = ['close-all-windows-but-current', 'mode main']
 
@@ -166,9 +176,6 @@ in
           ${mod}-shift-j = ['join-with down', 'mode main']
           ${mod}-shift-k = ['join-with up', 'mode main']
           ${mod}-shift-l = ['join-with right', 'mode main']
-
-          [workspace-to-monitor-force-assignment]
-          M = 3
 
           [[on-window-detected]]
           if.app-id = 'com.mitchellh.ghostty'

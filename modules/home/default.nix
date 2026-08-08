@@ -22,6 +22,7 @@ in
     ./darwin.nix
     ./desktop.nix
     ./dev.nix
+    ./finicky.nix
     ./firefox.nix
     ./git.nix
     ./gtk.nix

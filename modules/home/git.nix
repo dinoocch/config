@@ -66,31 +66,42 @@ in
     (mkIf cfg.work {
       programs.git = {
         settings = {
-          core = {
-            # sshCommand = "ssh -i ~/.ssh/github_personal";
+          user = {
+            name = lib.mkForce "docchial";
+            email = lib.mkForce "docchial@linkedin.com";
+            signingKey = lib.mkForce "~/.ssh/docchial_at_linkedin.com_ssh_key.pub";
           };
-          user.signingKey = lib.mkForce "~/.ssh/github_personal.pub";
+          core.sshCommand = "ssh -i ~/.ssh/docchial_at_linkedin.com_ssh_key -o IdentitiesOnly=yes";
+          url."ssh://git@github.com/".insteadOf = "git@github-personal:";
         };
         includes = [
           {
-            path = "~/.config/git/linkedin.inc";
-            condition = "gitdir:~/li/";
+            path = "~/.config/git/personal.inc";
+            condition = "hasconfig:remote.*.url:git@github.com:*/**";
           }
           {
-            path = "~/.config/git/linkedin.inc";
-            condition = "gitdir:/var/folders/";
+            path = "~/.config/git/personal.inc";
+            condition = "hasconfig:remote.*.url:https://github.com/**";
+          }
+          {
+            path = "~/.config/git/personal.inc";
+            condition = "hasconfig:remote.*.url:ssh://git@github.com/**";
+          }
+          {
+            path = "~/.config/git/personal.inc";
+            condition = "hasconfig:remote.*.url:git@github-personal:*/**";
           }
         ];
       };
 
-      xdg.configFile."git/linkedin.inc".text = ''
+      xdg.configFile."git/personal.inc".text = ''
         [user]
-        name = docchial
-        email = "docchial@linkedin.com"
-        signingKey = "~/.ssh/docchial_at_linkedin.com_ssh_key.pub"
+        name = dinoocch
+        email = "dino.occhialini@gmail.com"
+        signingKey = "~/.ssh/github_personal.pub"
 
         [core]
-        sshCommand = "ssh -i ~/.ssh/docchial_at_linkedin.com_ssh_key"
+        sshCommand = "ssh -i ~/.ssh/github_personal -o IdentitiesOnly=yes"
       '';
     })
   ]);

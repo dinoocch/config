@@ -3,6 +3,7 @@
   home.packages = with pkgs; [
     skim
     tree
+    worktrunk
     sad
     jq
     gnupg

@@ -8,6 +8,7 @@
 with lib;
 let
   cfg = config.dino.shells;
+  wt = "${pkgs.worktrunk}/bin/wt";
 in
 {
   config = mkMerge [
@@ -17,6 +18,7 @@ in
         interactiveShellInit = ''
           set fish_greeting
           fish_vi_key_bindings
+          ${wt} config shell init fish | source
         '';
       };
       programs.starship.enableFishIntegration = true;
@@ -25,7 +27,7 @@ in
     (mkIf cfg.zsh {
       programs.zsh = {
         enable = true;
-        dotDir = ".config/zsh";
+        dotDir = "${config.xdg.configHome}/zsh";
         autocd = true;
         cdpath = [ "~" ];
         shellAliases = {
@@ -52,13 +54,19 @@ in
           export PATH
           export VOLTA_HOME="$HOME/.volta"
           export PATH="$VOLTA_HOME/bin:$PATH"
+          eval "$(${wt} config shell init zsh)"
         '';
       };
       programs.starship.enableZshIntegration = true;
     })
 
     (mkIf cfg.bash {
-      programs.bash.enable = true;
+      programs.bash = {
+        enable = true;
+        initExtra = ''
+          eval "$(${wt} config shell init bash)"
+        '';
+      };
       programs.starship.enableBashIntegration = true;
     })
 

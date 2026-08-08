@@ -20,7 +20,6 @@ in
   imports =
     nixos-modules
     ++ [
-      nixpkgs.nixosModules.readOnlyPkgs
       { nixpkgs.pkgs = specialArgs.pkgs; }
       {
         nix.registry.nixpkgs.flake = nixpkgs;

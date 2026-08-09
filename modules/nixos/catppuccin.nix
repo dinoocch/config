@@ -1,12 +1,15 @@
-{ inputs, ... }:
 {
-  imports = [ inputs.catppuccin.nixosModules.catppuccin ];
+  config.nixos.modules.base =
+    { inputs, ... }:
+    {
+      imports = [ inputs.catppuccin.nixosModules.catppuccin ];
 
-  config = {
-    catppuccin = {
-      enable = true;
-      accent = "pink";
-      flavor = "mocha";
+      config = {
+        catppuccin = {
+          enable = true;
+          accent = "pink";
+          flavor = "mocha";
+        };
+      };
     };
-  };
 }

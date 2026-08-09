@@ -6,6 +6,10 @@
     nixpkgs.url = "github:nixos/nixpkgs/nixos-26.05";
     nixpkgs-unstable.url = "github:nixos/nixpkgs/nixos-unstable";
 
+    # Dendritic pattern plumbing
+    flake-parts.url = "github:hercules-ci/flake-parts";
+    import-tree.url = "github:vic/import-tree";
+
     # Secrets
     # agenix.url = "github:yaxitech/ragenix";
     # secrets = {
@@ -30,10 +34,6 @@
 
     hyprland = {
       url = "git+https://github.com/hyprwm/Hyprland?submodules=1";
-    };
-    shyfox = {
-      url = "github:naezr/shyfox";
-      flake = false;
     };
 
     # wezterm = {
@@ -74,145 +74,11 @@
   };
 
   outputs =
-    inputs@{
-      self,
-      systems,
-      nixpkgs,
-      conduit,
-      custom-fonts,
-      nixpkgs-unstable,
-      home-manager,
-      ...
-    }:
-    let
-      username = "dino";
-      userfullname = "Dino Occhialini";
-      useremail = "dino.occhialini@gmail.com";
-
-      x64_system = "x86_64-linux";
-      nixosSystem = import ./lib/nixosSystem.nix;
-      colmenaSystem = import ./lib/colmenaSystem.nix;
-
-      x64_specialArgs = {
-        inherit
-          username
-          userfullname
-          useremail
-          inputs
-          ;
-        pkgs = import nixpkgs {
-          system = x64_system;
-          config.allowUnfree = true;
-        };
-        pkgs-unstable = import nixpkgs-unstable {
-          system = x64_system;
-          config.allowUnfree = true;
-          overlays = [ custom-fonts.overlay ];
-        };
-      };
-
-      rome_modules = {
-        nixos-modules = [
-          ./hosts/rome
-          ./modules/nixos
-        ];
-        home-module = import ./hosts/rome/home.nix;
-      };
-
-      venice_modules = {
-        nixos-modules = [
-          ./hosts/venice
-          ./modules/nixos
-        ];
-        home-module = import ./hosts/venice/home.nix;
-      };
-
-      milan_modules = {
-        nixos-modules = [
-          ./hosts/milan
-          ./modules/nixos
-        ];
-        home-module = import ./hosts/milan/home.nix;
-      };
-
-      supportedSystems = [
-        "x86_64-linux"
-        "aarch64-linux"
-        "x86_64-darwin"
-        "aarch64-darwin"
+    inputs@{ flake-parts, import-tree, ... }:
+    flake-parts.lib.mkFlake { inherit inputs; } {
+      imports = [
+        (import-tree ./modules)
+        (import-tree ./hosts)
       ];
-      forAllSystems = nixpkgs.lib.genAttrs supportedSystems;
-    in
-    {
-      nixosConfigurations =
-        let
-          base_args = {
-            inherit home-manager nixpkgs;
-            system = x64_system;
-            specialArgs = x64_specialArgs;
-          };
-        in
-        {
-          rome = nixosSystem (rome_modules // base_args);
-          milan = nixosSystem (milan_modules // base_args);
-        };
-
-      colmena =
-        let
-          base_args = {
-            inherit home-manager nixpkgs;
-            specialArgs = x64_specialArgs;
-            targetUser = "root";
-          };
-        in
-        {
-          meta = {
-            specialArgs = x64_specialArgs;
-            nixpkgs = import nixpkgs {
-              system = x64_system;
-              config.allowUnfree = true;
-            };
-          };
-          venice = colmenaSystem (venice_modules // base_args);
-          milan = colmenaSystem (milan_modules // base_args);
-        };
-
-      homeConfigurations =
-        let
-          workConfig = inputs.home-manager.lib.homeManagerConfiguration {
-            pkgs = nixpkgs.legacyPackages.aarch64-darwin;
-            modules = [ ./hosts/work/home.nix ];
-            extraSpecialArgs = {
-              inherit inputs;
-              username = "docchial";
-              pkgs-unstable = import nixpkgs-unstable {
-                system = "aarch64-darwin";
-                config.allowUnfree = true;
-              };
-            };
-          };
-        in
-        {
-          "docchial@docchial-mn2" = workConfig;
-          "docchial" = workConfig;
-        };
-
-      formatter.x86_64-linux = nixpkgs.legacyPackages.x86_64-linux.nixfmt-rfc-style;
-      checks = forAllSystems (system: {
-        pre-commit-check = inputs.pre-commit-hooks.lib.${system}.run {
-          src = ./.;
-          hooks = {
-            nixfmt-rfc-style.enable = true;
-            statix.enable = true;
-          };
-        };
-      });
-
-      devShells = forAllSystems (system: {
-        default = nixpkgs.legacyPackages.${system}.mkShell {
-          inherit (self.checks.${system}.pre-commit-check) shellHook;
-          buildInputs = self.checks.${system}.pre-commit-check.enabledPackages;
-        };
-      });
     };
 }

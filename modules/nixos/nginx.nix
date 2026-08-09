@@ -1,10 +1,5 @@
-{ config, lib, ... }:
-with lib;
-let
-  cfg = config.dino.server;
-in
 {
-  config = mkIf cfg.enable {
+  config.nixos.modules.nginx = _: {
     services.nginx = {
       enable = true;
       statusPage = true;

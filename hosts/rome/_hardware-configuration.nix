@@ -4,13 +4,20 @@
   modulesPath,
   ...
 }:
+let
+  hasFacterReport = builtins.pathExists ./rome.facter.json;
+in
 {
   imports = [
     (modulesPath + "/installer/scan/not-detected.nix")
-    ../../modules/nixos/nvidia.nix
   ];
 
-  boot = {
+  # Once ./rome.facter.json exists (generated via `sudo nix run nixpkgs#nixos-facter -- -o rome.facter.json`
+  # on the physical host), hardware detection (kernel modules, CPU microcode, etc.) is derived from
+  # the report instead of the hand-maintained fallback below.
+  hardware.facter.reportPath = lib.mkIf hasFacterReport ./rome.facter.json;
+
+  boot = lib.mkIf (!hasFacterReport) {
     initrd.availableKernelModules = [
       "nvme"
       "xhci_pci"
@@ -68,5 +75,7 @@
   # networking.interfaces.wlp5s0.useDHCP = lib.mkDefault true;
 
   nixpkgs.hostPlatform = lib.mkDefault "x86_64-linux";
-  hardware.cpu.amd.updateMicrocode = lib.mkDefault config.hardware.enableRedistributableFirmware;
+  hardware.cpu.amd.updateMicrocode = lib.mkIf (!hasFacterReport) (
+    lib.mkDefault config.hardware.enableRedistributableFirmware
+  );
 }

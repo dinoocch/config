@@ -1,11 +1,6 @@
-{ config, lib, ... }:
-with lib;
-let
-  cfg = config.dino.server;
-in
 {
-  # TODO: I think this is broken
-  config = mkIf (cfg.enable && cfg.loki.enable) {
+  config.nixos.modules.loki = _: {
+    # TODO: I think this is broken
     networking.firewall.allowedTCPPorts = [ 3030 ];
     services.loki = {
       enable = true;

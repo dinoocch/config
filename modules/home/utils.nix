@@ -1,38 +1,41 @@
-{ pkgs, pkgs-unstable, ... }:
 {
-  home.packages = with pkgs; [
-    skim
-    tree
-    worktrunk
-    sad
-    jq
-    gnupg
-    zstd
-    unzip
-    fd
-    htop
-    btop
-    ripgrep
+  config.homeManager.modules.base =
+    { pkgs, pkgs-unstable, ... }:
+    {
+      home.packages = with pkgs; [
+        skim
+        tree
+        worktrunk
+        sad
+        jq
+        gnupg
+        zstd
+        unzip
+        fd
+        htop
+        btop
+        ripgrep
 
-    # nix-build --log-format internal-json -v |& nom --json
-    nix-output-monitor
-  ];
+        # nix-build --log-format internal-json -v |& nom --json
+        nix-output-monitor
+      ];
 
-  programs = {
-    bat.enable = true;
+      programs = {
+        bat.enable = true;
 
-    eza = {
-      enable = true;
-      # enableZshIntegration = true;
-      package = pkgs-unstable.eza;
+        eza = {
+          enable = true;
+          # enableZshIntegration = true;
+          package = pkgs-unstable.eza;
+        };
+
+        yazi = {
+          enable = true;
+          package = pkgs-unstable.yazi;
+          shellWrapperName = "y";
+          enableBashIntegration = true;
+          enableZshIntegration = true;
+        };
+      };
     };
-
-    yazi = {
-      enable = true;
-      package = pkgs-unstable.yazi;
-      shellWrapperName = "y";
-      enableBashIntegration = true;
-      enableZshIntegration = true;
-    };
-  };
 }

@@ -1,10 +1,5 @@
-{ config, lib, ... }:
-with lib;
-let
-  cfg = config.dino.zfs;
-in
 {
-  config = mkIf cfg.enable {
+  config.nixos.modules.zfs = _: {
     boot.zfs.forceImportRoot = false;
     boot.kernelParams = [
       "elevator=none"

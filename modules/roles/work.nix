@@ -1,11 +1,9 @@
-_: {
-  config.dino = {
-    dev = {
-      enable = true;
-      cpp = false;
-      rust = false;
+{
+  config.homeManager.modules.work = {
+    config.dino = {
+      dev.cpp = false;
+      dev.rust = false;
+      git.work = true;
     };
-    git.work = true;
-    gui.enable = false;
   };
 }

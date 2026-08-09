@@ -1,10 +1,5 @@
-{ config, lib, ... }:
-with lib;
-let
-  cfg = config.dino.server;
-in
 {
-  config = mkIf cfg.enable {
+  config.nixos.modules.docker = _: {
     virtualisation.containers.storage.settings = {
       storage = {
         graphroot = "/var/lib/containers/storage";

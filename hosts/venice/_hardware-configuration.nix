@@ -4,10 +4,18 @@
   modulesPath,
   ...
 }:
+let
+  hasFacterReport = builtins.pathExists ./venice.facter.json;
+in
 {
   imports = [ (modulesPath + "/installer/scan/not-detected.nix") ];
 
-  boot = {
+  # Once ./venice.facter.json exists (generated via `sudo nix run nixpkgs#nixos-facter -- -o venice.facter.json`
+  # on the physical host), hardware detection (kernel modules, CPU microcode, etc.) is derived from
+  # the report instead of the hand-maintained fallback below.
+  hardware.facter.reportPath = lib.mkIf hasFacterReport ./venice.facter.json;
+
+  boot = lib.mkIf (!hasFacterReport) {
     initrd.availableKernelModules = [
       "xhci_pci"
       "ahci"
@@ -38,5 +46,7 @@
 
   nixpkgs.hostPlatform = lib.mkDefault "x86_64-linux";
   powerManagement.cpuFreqGovernor = lib.mkDefault "powersave";
-  hardware.cpu.intel.updateMicrocode = lib.mkDefault config.hardware.enableRedistributableFirmware;
+  hardware.cpu.intel.updateMicrocode = lib.mkIf (!hasFacterReport) (
+    lib.mkDefault config.hardware.enableRedistributableFirmware
+  );
 }

@@ -36,9 +36,9 @@
       nixosModules = [
         config.nixos.modules.base
         config.nixos.modules.zfs
-        config.nixos.modules.desktop
+        # config.nixos.modules.desktop
         config.nixos.modules.nvidia
-        config.nixos.modules.wayland
+        # config.nixos.modules.wayland
         config.nixos.modules.rome
       ];
       homeModule = {
@@ -48,13 +48,13 @@
           config.homeManager.modules.git
           config.homeManager.modules.tmux
           config.homeManager.modules.herdr
-          config.homeManager.modules.desktop
-          config.homeManager.modules.hyprland
-          config.homeManager.modules.waybar
-          config.homeManager.modules.wayland
-          config.homeManager.modules.wlogout
-          config.homeManager.modules.terminal
-          config.homeManager.modules.gtk
+          # config.homeManager.modules.desktop
+          # config.homeManager.modules.hyprland
+          # config.homeManager.modules.waybar
+          # config.homeManager.modules.wayland
+          # config.homeManager.modules.wlogout
+          # config.homeManager.modules.terminal
+          # config.homeManager.modules.gtk
           config.homeManager.modules.rome
         ];
       };

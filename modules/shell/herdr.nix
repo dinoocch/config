@@ -1,7 +1,7 @@
 {
   config.homeManager.modules.herdr =
-    { pkgs, ... }:
+    { pkgs-unstable, ... }:
     {
-      home.packages = with pkgs; [ herdr ];
+      home.packages = with pkgs-unstable; [ herdr ];
     };
 }

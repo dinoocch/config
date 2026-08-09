@@ -10,7 +10,7 @@ let
   inherit (specialArgs) username;
 in
 nixpkgs.lib.nixosSystem {
-  inherit system specialArgs;
+  inherit specialArgs;
   modules = nixos-modules ++ [
     nixpkgs.nixosModules.readOnlyPkgs
     { nixpkgs.pkgs = specialArgs.pkgs; }

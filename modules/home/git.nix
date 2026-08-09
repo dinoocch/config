@@ -16,8 +16,10 @@ in
           enable = true;
           lfs.enable = true;
           settings = {
-            user.name = "dinoocch";
-            user.email = "dino.occhialini@gmail.com";
+            user = {
+              name = "dinoocch";
+              email = "dino.occhialini@gmail.com";
+            };
             alias = {
               co = "checkout";
               fe = "fetch --all -p";

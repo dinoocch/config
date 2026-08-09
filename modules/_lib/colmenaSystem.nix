@@ -5,8 +5,11 @@
   specialArgs,
   nixos-modules,
   home-module ? null,
-  targetUser ? specialArgs.username,
+  targetUser ? "root",
 }:
+let
+  inherit (specialArgs) username;
+in
 { name, nodes, ... }:
 {
   deployment = {
@@ -32,8 +35,9 @@
               useGlobalPkgs = true;
               useUserPackages = true;
               extraSpecialArgs = specialArgs;
-              # home-manager manages whichever user we actually deploy/log in as.
-              users."${targetUser}" = home-module;
+              # home-manager manages this host's primary user, independent of
+              # `targetUser` (the SSH/activation login, typically root).
+              users."${username}" = home-module;
             };
           }
         ]

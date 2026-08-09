@@ -27,7 +27,12 @@
           };
           targetUser = lib.mkOption {
             type = lib.types.str;
-            default = config.meta.username;
+            default = "root";
+            description = ''
+              SSH user colmena logs in and activates as. Defaults to `root`
+              (these hosts allow root SSH login, so no `sudo` escalation is
+              needed during activation).
+            '';
           };
           system = lib.mkOption {
             type = lib.types.str;

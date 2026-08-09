@@ -1,11 +1,18 @@
 {
   config.nixos.modules.promtail =
-    { config, ... }:
+    { config, lib, ... }:
     let
       cfg = config.dino.promtail;
     in
     {
-      services.promtail = {
+      options.dino.promtail = {
+        lokiServer = lib.mkOption {
+          type = lib.types.str;
+          default = "10.1.1.80:3030";
+        };
+      };
+
+      config.services.promtail = {
         enable = true;
         configuration = {
           server = {

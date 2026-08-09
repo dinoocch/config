@@ -47,7 +47,7 @@
           config.homeManager.modules.dev
           config.homeManager.modules.git
           config.homeManager.modules.tmux
-          config.homeManager.modules.zellij
+          config.homeManager.modules.herdr
           config.homeManager.modules.desktop
           config.homeManager.modules.hyprland
           config.homeManager.modules.waybar

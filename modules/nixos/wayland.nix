@@ -1,17 +1,11 @@
 {
   config.nixos.modules.wayland =
     {
-      config,
-      lib,
       pkgs,
       username,
       inputs,
       ...
     }:
-    with lib;
-    let
-      cfg = config.dino.gui;
-    in
     {
       services = {
         xserver.enable = false;
@@ -20,12 +14,7 @@
           settings = {
             default_session = {
               user = username;
-              command = mkMerge [
-                (mkIf (cfg.desktopEnvironment == "hyprland")
-                  "${inputs.hyprland.packages.${pkgs.system}.hyprland}/bin/Hyprland"
-                )
-                # TODO: River
-              ];
+              command = "${inputs.hyprland.packages.${pkgs.system}.hyprland}/bin/Hyprland";
             };
           };
         };
@@ -33,7 +22,7 @@
 
       security.pam.services.waylock = { };
 
-      programs.hyprland = mkIf (cfg.desktopEnvironment == "hyprland") {
+      programs.hyprland = {
         enable = true;
         package = inputs.hyprland.packages.${pkgs.system}.hyprland;
       };

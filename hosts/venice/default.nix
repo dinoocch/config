@@ -43,6 +43,7 @@
         config.nixos.modules.base
         config.nixos.modules.prometheus
         config.nixos.modules.acme
+        config.nixos.modules.domain
         config.nixos.modules.cfdyndns
         config.nixos.modules.docker
         config.nixos.modules.nginx

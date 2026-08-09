@@ -9,10 +9,11 @@ let
 in
 {
   # `meta.*` describes this flake itself (identity/specialArgs shared across
-  # every host). This is a distinct namespace from the nested `dino.*` options
-  # declared in `modules/_lib/dinoOptions.nix`, which are per-host NixOS/
-  # home-manager feature toggles evaluated inside separate module-system
-  # evaluations. Naming them differently avoids confusing the two.
+  # every host). This is a distinct namespace from the nested `dino.*` options,
+  # which are declared alongside the individual NixOS/home-manager modules
+  # that consume them and are per-host feature toggles/values evaluated
+  # inside separate module-system evaluations. Naming them differently avoids
+  # confusing the two.
   options.meta = {
     username = lib.mkOption {
       type = lib.types.str;

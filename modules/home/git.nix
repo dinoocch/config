@@ -6,6 +6,14 @@
       cfg = config.dino.git;
     in
     {
+      options.dino.git = {
+        work = mkOption {
+          type = types.bool;
+          description = "Configure work specific options";
+          default = false;
+        };
+      };
+
       config = mkMerge [
         {
           programs = {
@@ -60,12 +68,12 @@
           };
         }
 
-        (mkIf (!config.dino.minimal) {
+        {
           programs.delta = {
             enable = true;
             enableGitIntegration = true;
           };
-        })
+        }
 
         (mkIf cfg.work {
           programs.git = {

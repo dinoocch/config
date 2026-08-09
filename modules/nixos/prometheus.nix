@@ -7,8 +7,18 @@
       cfg = config.dino.prometheus;
     in
     {
-      networking.firewall.allowedTCPPorts = [ cfg.port ];
-      services.prometheus = {
+      options.dino.prometheus = {
+        port = mkOption {
+          type = types.int;
+          default = 9100;
+          description = "Port to listen on";
+          readOnly = true;
+        };
+      };
+
+      config = {
+        networking.firewall.allowedTCPPorts = [ cfg.port ];
+        services.prometheus = {
         exporters = {
           node = {
             enable = true;
@@ -92,6 +102,7 @@
                 ++ builtins.map mkApp (builtins.attrNames config.services.nginx.virtualHosts);
             };
           };
+        };
         };
       };
     };

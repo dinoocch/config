@@ -11,13 +11,27 @@
       cfg = config.dino.dev;
     in
     {
+      options.dino.dev = {
+        cpp = mkOption {
+          type = types.bool;
+          description = "Install cpp build tooling";
+          default = true;
+        };
+
+        rust = mkOption {
+          type = types.bool;
+          description = "Install rust tooling";
+          default = true;
+        };
+      };
+
       config = mkMerge [
-        (mkIf cfg.zig {
+        {
           home.packages = with pkgs; [
             zig
             zls
           ];
-        })
+        }
 
         (mkIf cfg.cpp {
           home.packages = with pkgs; [
@@ -45,9 +59,10 @@
           };
         })
 
-        (mkIf cfg.dirEnv { programs.direnv.enable = true; })
-
-        (mkIf cfg.kubernetes { programs.k9s.enable = true; })
+        {
+          programs.direnv.enable = true;
+          programs.k9s.enable = true;
+        }
 
         {
           # LSPs/formatters for neovim (modules/home/neovim) that only make

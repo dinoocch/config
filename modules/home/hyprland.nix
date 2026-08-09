@@ -1,18 +1,16 @@
 {
   config.homeManager.modules.hyprland =
     {
-      config,
-      lib,
       pkgs,
       pkgs-unstable,
+      lib,
       ...
     }:
     let
       inherit (pkgs) stdenv;
-      cfg = config.dino.gui;
     in
     {
-      config = lib.mkIf (stdenv.isLinux && cfg.desktopEnvironment == "hyprland") {
+      config = lib.mkIf stdenv.isLinux {
         services = {
           hyprpaper = {
             enable = true;

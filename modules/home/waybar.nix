@@ -1,17 +1,15 @@
 {
   config.homeManager.modules.waybar =
     {
-      config,
       lib,
       pkgs,
       ...
     }:
     let
       inherit (pkgs) stdenv;
-      cfg = config.dino.gui;
     in
     {
-      config = lib.mkIf (stdenv.isLinux && cfg.desktopEnvironment == "hyprland") {
+      config = lib.mkIf stdenv.isLinux {
         programs.waybar = {
           enable = true;
           settings = {

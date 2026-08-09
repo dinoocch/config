@@ -103,5 +103,8 @@
   };
 
   # TODO: DNS entries in milan
-  networking.extraHosts = "";
+  programs.nix-ld.enable = true;
+  networking.extraHosts = ''
+    192.168.1.228 venice
+  '';
 }

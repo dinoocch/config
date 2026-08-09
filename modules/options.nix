@@ -113,6 +113,10 @@ in
       };
     };
 
+    nvidia = {
+      enable = mkEnableOption ''Nvidia graphics drivers'';
+    };
+
     prometheus = {
       enable = mkOption {
         type = types.bool;

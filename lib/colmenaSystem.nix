@@ -20,7 +20,6 @@ in
   imports =
     nixos-modules
     ++ [
-      { nixpkgs.pkgs = specialArgs.pkgs; }
       {
         nix.registry.nixpkgs.flake = nixpkgs;
         environment.etc."nix/inputs/nixpkgs".source = "${nixpkgs}";

@@ -7,9 +7,6 @@
   home-module ? null,
   targetUser ? specialArgs.username,
 }:
-let
-  inherit (specialArgs) username;
-in
 { name, nodes, ... }:
 {
   deployment = {
@@ -35,7 +32,8 @@ in
               useGlobalPkgs = true;
               useUserPackages = true;
               extraSpecialArgs = specialArgs;
-              users."${username}" = home-module;
+              # home-manager manages whichever user we actually deploy/log in as.
+              users."${targetUser}" = home-module;
             };
           }
         ]

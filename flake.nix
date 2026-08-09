@@ -27,10 +27,6 @@
     };
 
     catppuccin.url = "github:catppuccin/nix/release-26.05";
-    spicetify-nix = {
-      url = "github:Gerg-L/spicetify-nix";
-      inputs.nixpkgs.follows = "nixpkgs-unstable";
-    };
 
     hyprland = {
       url = "git+https://github.com/hyprwm/Hyprland?submodules=1";

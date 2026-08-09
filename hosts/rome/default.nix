@@ -53,7 +53,6 @@
           config.homeManager.modules.waybar
           config.homeManager.modules.wayland
           config.homeManager.modules.wlogout
-          config.homeManager.modules.spicetify
           config.homeManager.modules.terminal
           config.homeManager.modules.gtk
           config.homeManager.modules.rome

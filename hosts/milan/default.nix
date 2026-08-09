@@ -415,9 +415,7 @@ in
       homeModule = milanHomeModule;
     };
 
-    colmena.hosts.milan = {
-      nixosModules = milanNixosModules;
-      homeModule = milanHomeModule;
-    };
+    # Inherits nixosModules/homeModule from nixos.hosts.milan above.
+    colmena.hosts.milan = { };
   };
 }

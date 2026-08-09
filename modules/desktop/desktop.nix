@@ -23,6 +23,7 @@
           gimp
           krita
           vlc
+          spotify
           zoom-us
           vscode
         ];

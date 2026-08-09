@@ -34,6 +34,12 @@ in
         port = 2342;
         addr = "0.0.0.0";
 
+        settings = {
+          security = {
+            secret_key = "SW2YcwTIb9zpOOhoPsMm";
+          };
+        };
+
         provision.datasources = {
           settings.datasources = [
             {

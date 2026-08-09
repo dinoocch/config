@@ -14,7 +14,6 @@ in
       recommendedTlsSettings = true;
       recommendedGzipSettings = true;
       recommendedBrotliSettings = true;
-      recommendedZstdSettings = true;
 
       commonHttpConfig = ''
         log_format json_combined escape=json

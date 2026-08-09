@@ -23,7 +23,6 @@ in
     ./desktop.nix
     ./dev.nix
     ./finicky.nix
-    ./firefox.nix
     ./git.nix
     ./gtk.nix
     ./shells.nix

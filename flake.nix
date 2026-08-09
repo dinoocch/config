@@ -31,11 +31,6 @@
     hyprland = {
       url = "git+https://github.com/hyprwm/Hyprland?submodules=1";
     };
-
-    schizofox = {
-      url = "github:schizofox/schizofox/main";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
     shyfox = {
       url = "github:naezr/shyfox";
       flake = false;

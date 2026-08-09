@@ -173,7 +173,10 @@
         {
           meta = {
             specialArgs = x64_specialArgs;
-            nixpkgs = import nixpkgs { system = x64_system; };
+            nixpkgs = import nixpkgs {
+              system = x64_system;
+              config.allowUnfree = true;
+            };
           };
           venice = colmenaSystem (venice_modules // base_args);
           milan = colmenaSystem (milan_modules // base_args);

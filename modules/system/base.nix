@@ -116,12 +116,5 @@
           # backend = "podman";
         };
       };
-
-      # TODO: DNS entries in milan
-      networking.extraHosts = ''
-        10.1.1.1 milan
-        10.1.1.69 rome
-        10.1.1.80 venice
-      '';
     };
 }

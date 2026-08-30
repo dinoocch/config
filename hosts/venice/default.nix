@@ -2,11 +2,7 @@
 {
   config = {
     nixos.modules.venice =
-      {
-        config,
-        username,
-        ...
-      }:
+      { config, username, ... }:
       {
         imports = [ ./_hardware-configuration.nix ];
 
@@ -47,6 +43,7 @@
         config.nixos.modules.cfdyndns
         config.nixos.modules.docker
         config.nixos.modules.nginx
+        config.nixos.modules.home-assistant
         config.nixos.modules.conduit
         config.nixos.modules.grafana
         config.nixos.modules.venice

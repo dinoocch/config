@@ -11,10 +11,10 @@
     import-tree.url = "github:vic/import-tree";
 
     # Secrets
-    # agenix.url = "github:yaxitech/ragenix";
-    # secrets = {
-    #   url = "git+ssh://git@github.com/dinoocch/secrets";
-    # };
+    agenix = {
+      url = "github:yaxitech/ragenix";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
     custom-fonts = {
       url = "git+ssh://git@github.com/dinoocch/fonts";
       inputs.nixpkgs.follows = "nixpkgs";

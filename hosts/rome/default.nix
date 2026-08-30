@@ -48,6 +48,7 @@
           config.homeManager.modules.git
           config.homeManager.modules.tmux
           config.homeManager.modules.herdr
+          config.homeManager.modules.llm
           # config.homeManager.modules.desktop
           # config.homeManager.modules.hyprland
           # config.homeManager.modules.waybar

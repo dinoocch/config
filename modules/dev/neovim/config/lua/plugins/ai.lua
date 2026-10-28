@@ -1,4 +1,5 @@
 return {
+	{ "ChmaraX/herdr-nvim", opts = {} },
 	{
 		"github/copilot.vim",
 		lazy = false,

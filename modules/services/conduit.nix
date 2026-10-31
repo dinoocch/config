@@ -115,15 +115,5 @@
           records = [ matrix_hostname ];
         };
       };
-
-      # Open firewall ports for HTTP, HTTPS, and Matrix federation
-      networking.firewall.allowedTCPPorts = [
-        80
-        443
-      ];
-      networking.firewall.allowedUDPPorts = [
-        80
-        443
-      ];
     };
 }

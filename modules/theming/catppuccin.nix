@@ -9,7 +9,6 @@
           enable = true;
           accent = "pink";
           flavor = "mocha";
-          gemini-cli.enable = false;
         };
       };
     };

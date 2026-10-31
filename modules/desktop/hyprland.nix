@@ -1,4 +1,14 @@
 {
+  config.nixos.modules.hyprland =
+    { pkgs-unstable, username }:
+    {
+      programs.hyprland = {
+        enable = true;
+        withUWSM = true;
+        package = pkgs-unstable.hyprland;
+      };
+    };
+
   config.homeManager.modules.hyprland =
     {
       pkgs,
@@ -89,57 +99,58 @@
             };
 
             "$mod" = "SUPER";
-            bind = [
-              "$mod, E, exec, pcmanfm"
-              "$mod, T, exec, ghostty"
-              "$mod, D, exec, fuzzel"
+            bind =
+              [
+                "$mod, E, exec, pcmanfm"
+                "$mod, T, exec, ghostty"
+                "$mod, D, exec, fuzzel"
 
-              "$mod SHIFT, Q, killactive"
-              "$mod SHIFT, E, exec, wlogout"
+                "$mod SHIFT, Q, killactive"
+                "$mod SHIFT, E, exec, wlogout"
 
-              "$mod, V, togglefloating,"
-              "$mod, P, pseudo,"
-              "$mod, M, togglesplit"
-              "$mod, F, fullscreen"
+                "$mod, V, togglefloating,"
+                "$mod, P, pseudo,"
+                "$mod, M, togglesplit"
+                "$mod, F, fullscreen"
 
-              "$mod, left, movefocus, l"
-              "$mod, H, movefocus, l"
-              "$mod, right, movefocus, r"
-              "$mod, L, movefocus, r"
-              "$mod, up, movefocus, u"
-              "$mod, K, movefocus, u"
-              "$mod, down, movefocus, d"
-              "$mod, J, movefocus, d"
+                "$mod, left, movefocus, l"
+                "$mod, H, movefocus, l"
+                "$mod, right, movefocus, r"
+                "$mod, L, movefocus, r"
+                "$mod, up, movefocus, u"
+                "$mod, K, movefocus, u"
+                "$mod, down, movefocus, d"
+                "$mod, J, movefocus, d"
 
-              "$mod SHIFT, left, movewindow, l"
-              "$mod SHIFT, H, movewindow, l"
-              "$mod SHIFT, right, movewindow, r"
-              "$mod SHIFT, L, movewindow, r"
-              "$mod SHIFT, up, movewindow, u"
-              "$mod SHIFT, K, movewindow, u"
-              "$mod SHIFT, down, movewindow, d"
-              "$mod SHIFT, J, movewindow, d"
-              "$mod, Tab, cyclenext,"
-              "$mod, Tab, bringactivetotop,"
+                "$mod SHIFT, left, movewindow, l"
+                "$mod SHIFT, H, movewindow, l"
+                "$mod SHIFT, right, movewindow, r"
+                "$mod SHIFT, L, movewindow, r"
+                "$mod SHIFT, up, movewindow, u"
+                "$mod SHIFT, K, movewindow, u"
+                "$mod SHIFT, down, movewindow, d"
+                "$mod SHIFT, J, movewindow, d"
+                "$mod, Tab, cyclenext,"
+                "$mod, Tab, bringactivetotop,"
 
-              "$mod, mouse_down, workspace, e+1"
-              "$mod, mouse_up, workspace, e-1"
+                "$mod, mouse_down, workspace, e+1"
+                "$mod, mouse_up, workspace, e-1"
 
-              "$mod, S, togglespecialworkspace, discord"
-              "$mod SHIFT, S, togglespecialworkspace, spotify"
-            ]
-            ++ (builtins.concatLists (
-              builtins.genList (
-                i:
-                let
-                  ws = i + 1;
-                in
-                [
-                  "$mod, code:1${toString i}, workspace, ${toString ws}"
-                  "$mod SHIFT, code:1${toString i}, movetoworkspace, ${toString ws}"
-                ]
-              ) 9
-            ));
+                "$mod, S, togglespecialworkspace, discord"
+                "$mod SHIFT, S, togglespecialworkspace, spotify"
+              ]
+              ++ (builtins.concatLists (
+                builtins.genList (
+                  i:
+                  let
+                    ws = i + 1;
+                  in
+                  [
+                    "$mod, code:1${toString i}, workspace, ${toString ws}"
+                    "$mod SHIFT, code:1${toString i}, movetoworkspace, ${toString ws}"
+                  ]
+                ) 9
+              ));
 
             bindm = [
               "$mod, mouse:272, movewindow"

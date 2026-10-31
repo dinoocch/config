@@ -206,7 +206,14 @@ in
                 "10.0.0.0/8 allow"
                 "fd00::/8 allow"
               ];
-              local-zone = "\"appt.dinoocch.dev\" static";
+              local-zone = [
+                "\"appt.dinoocch.dev\" static"
+                "\"dinoocch.dev\" transparent"
+              ];
+              local-data = [
+                "\"venice.dinoocch.dev. IN A 10.1.1.80\""
+                "\"venice.dinoocch.dev. IN AAAA fd00:1::80\""
+              ];
             };
           };
 

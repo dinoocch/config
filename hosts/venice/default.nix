@@ -6,25 +6,32 @@
       {
         imports = [ ./_hardware-configuration.nix ];
 
-        boot.supportedFilesystems = [
-          "ext4"
-          "btrfs"
-          "xfs"
-          "ntfs"
-          "fat"
-          "vfat"
-          "exfat"
-          "cifs"
-        ];
+        boot = {
+          supportedFilesystems = [
+            "ext4"
+            "btrfs"
+            "xfs"
+            "ntfs"
+            "fat"
+            "vfat"
+            "exfat"
+            "cifs"
+          ];
+
+          # Bootloader.
+          loader = {
+            efi.canTouchEfiVariables = true;
+            systemd-boot.enable = true;
+          };
+
+          kernel.sysctl = {
+            "net.ipv6.conf.enp2s0.accept_ra" = 2;
+            "net.ipv6.conf.enp2s0.accept_ra_rt_info_max_plen" = 64;
+          };
+        };
 
         users.users.root.openssh.authorizedKeys.keys =
           config.users.users."${username}".openssh.authorizedKeys.keys;
-
-        # Bootloader.
-        boot.loader = {
-          efi.canTouchEfiVariables = true;
-          systemd-boot.enable = true;
-        };
 
         networking = {
           hostName = "venice";

@@ -7,4 +7,8 @@ in
     dino
     venice
   ];
+  "zwave-js-keys.age".publicKeys = [
+    dino
+    venice
+  ];
 }

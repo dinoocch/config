@@ -50,3 +50,17 @@ entry point.
   under `hosts/` are excluded the same way, since they're plain NixOS
   hardware-scan output, not features to compose.
 
+## Work Mac
+
+`nh home switch . -c docchial` builds and activates the work profile with a
+build-tree display and a generation diff. Rust tools, including the language
+server and formatter, follow `dino.dev.rust`.
+
+Home Manager does not configure the system Nix daemon. Install
+`hosts/work/nix.conf` as a root-owned `/etc/nix/work.conf`, add
+`include /etc/nix/work.conf` to `/etc/nix/nix.conf`, and restart
+`system/org.nixos.nix-daemon` with `launchctl` while no builds are running.
+Reinstall that file and restart the daemon after changing it. It trusts the
+Nix Community cache without granting the user additional daemon privileges,
+and allows four concurrent builds with three cores each on the 12-core Mac.
+

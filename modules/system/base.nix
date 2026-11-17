@@ -34,14 +34,11 @@
 
   config.nixos.modules.base =
     {
-      inputs,
       lib,
       pkgs,
       ...
     }:
     {
-      imports = [ inputs.determinate.nixosModules.default ];
-
       boot.loader = {
         efi.canTouchEfiVariables = lib.mkDefault true;
         systemd-boot.enable = lib.mkDefault true;
@@ -57,6 +54,10 @@
       nix.settings = {
         auto-optimise-store = true;
         builders-use-substitutes = true;
+        extra-substituters = [ "https://nix-community.cachix.org" ];
+        extra-trusted-public-keys = [
+          "nix-community.cachix.org-1:mB9FSh9qf2dCimDSUo8Zy7bkq5CX+/rkCWyvRCYg3Fs="
+        ];
         experimental-features = [
           "nix-command"
           "flakes"

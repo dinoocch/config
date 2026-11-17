@@ -16,6 +16,7 @@
         btop
         ripgrep
 
+        nh
         # nix-build --log-format internal-json -v |& nom --json
         nix-output-monitor
       ];

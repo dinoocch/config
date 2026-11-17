@@ -50,6 +50,7 @@
             cargo-nextest
             cargo-watch
             rust-analyzer
+            rustfmt
             rustPlatform.rustcSrc
           ];
 
@@ -73,8 +74,6 @@
             stylua
             shfmt
             pyright
-            rust-analyzer
-            rustfmt
             taplo
             nixpkgs-fmt
             nil

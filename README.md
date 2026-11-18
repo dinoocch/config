@@ -63,4 +63,6 @@ Home Manager does not configure the system Nix daemon. Install
 Reinstall that file and restart the daemon after changing it. It trusts the
 Nix Community cache without granting the user additional daemon privileges,
 and allows four concurrent builds with three cores each on the 12-core Mac.
+It also enables `nix-command` and `flakes` system-wide, including for commands
+that `nh` runs through `sudo`.
 
